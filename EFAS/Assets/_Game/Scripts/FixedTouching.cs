@@ -8,7 +8,7 @@ public class FixedTouching : MonoBehaviour, IDragHandler , IPointerUpHandler , I
 {
     [SerializeField] private Image imgCamControl;
     [SerializeField] private CinemachineFreeLook cameraFreeLook;
-    private string strMouseX = "Touch X", strMouseY = "Mouse Y";
+    private string strMouseX = "Mouse X", strMouseY = "Mouse Y";
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -18,7 +18,6 @@ public class FixedTouching : MonoBehaviour, IDragHandler , IPointerUpHandler , I
                 eventData.enterEventCamera,
                 out Vector2 posOut))
         {
-            Debug.Log(posOut);
             cameraFreeLook.m_XAxis.m_InputAxisName = strMouseX;
             cameraFreeLook.m_YAxis.m_InputAxisName = strMouseY;
         }
