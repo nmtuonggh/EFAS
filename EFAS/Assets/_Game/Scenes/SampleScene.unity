@@ -2128,7 +2128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &733950614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,12 +2913,12 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 1.0722535
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 1, y: 1}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2954,8 +2954,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.037767004, y: 0.9546759, z: -0.13819452, w: -0.2609022}
-  m_LocalPosition: {x: 2.5429626, y: 3, z: 12.025038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 2.62, z: 3.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3264,7 +3264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194228}
-  turnSmoothTime: 1000
+  turnSmoothTime: 1
   turnSmoothVelocity: 1
   fixedJoystick: {fileID: 1207637815}
   speed: 10
@@ -5792,14 +5792,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804738222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c073da8ea8ad604fa83d8b626cd842e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fc307229153ca34ba813b2b9d6b49e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cinemachineCameraTarget: {fileID: 0}
-  virtualCamera: {fileID: 1895453195}
-  TopClamp: 70
-  BottomClamp: -30
-  Sensitivity: 1
+  topClamp: 70
+  bottomClamp: -30
+  cameraFollow: {fileID: 2028809275}
 --- !u!43 &1840525203
 Mesh:
   m_ObjectHideFlags: 0
@@ -5981,7 +5979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1895453194
 Transform:
   m_ObjectHideFlags: 0
@@ -5991,7 +5989,7 @@ Transform:
   m_GameObject: {fileID: 1895453192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2.96, z: 3.2199998}
+  m_LocalPosition: {x: 0.5, y: 2.62, z: 3.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6019,12 +6017,12 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 2028809275}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
-    ModeOverride: 0
+    ModeOverride: 2
     LensShift: {x: 0, y: 0}
     GateFit: 2
     FocusDistance: 10
@@ -6573,7 +6571,7 @@ Transform:
   m_GameObject: {fileID: 2028809274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6589,6 +6587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2041438849}
   - component: {fileID: 2041438850}
+  - component: {fileID: 2041438851}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -6623,6 +6622,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2041438851
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041438848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damping: {x: 0.1, y: 0.5, z: 0.3}
+  ShoulderOffset: {x: 0.5, y: -0.4, z: -1.8}
+  VerticalArmLength: 0.4
+  CameraSide: 1
+  CameraDistance: 2
+  CameraCollisionFilter:
+    serializedVersion: 2
+    m_Bits: 0
+  IgnoreTag: 
+  CameraRadius: 0.2
+  DampingIntoCollision: 0
+  DampingFromCollision: 2
 --- !u!1 &2127914262
 GameObject:
   m_ObjectHideFlags: 3

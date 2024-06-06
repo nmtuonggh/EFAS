@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,14 +29,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         normalSpeed = speed;
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        Movement();
+        //Movement();
+        Move();
         VerticalControll();
     }
 
@@ -49,6 +49,24 @@ public class PlayerController : MonoBehaviour
             
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(cameraRelavetiveMovement, Vector3.up), rotateSpeed * Time.deltaTime );
             characterController.Move(cameraRelavetiveMovement * speed * Time.deltaTime);
+        }
+    }
+
+    private float targetRotation;
+    private void Move()
+    {
+        Vector3 inputMoveDir = new Vector3(fixedJoystick.Horizontal, 0 , fixedJoystick.Vertical);
+        if(inputMoveDir!= Vector3.zero)
+        {
+            targetRotation = Mathf.Atan2(inputMoveDir.x, inputMoveDir.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetRotation.y, Vector3.up), rotateSpeed * Time.deltaTime );
+            
+            Vector3 targetDir = Quaternion.Euler(0f,targetRotation , 0f) * Vector3.forward;
+        
+            //move player
+            characterController.Move(targetDir.normalized * (speed * Time.deltaTime) + new Vector3(0.0f,verticalVelo.y,0.0f ) * Time.deltaTime);
         }
     }
 
