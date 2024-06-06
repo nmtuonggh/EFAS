@@ -112,8 +112,8 @@ public class PlayerController : MonoBehaviour
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
         
-        cameraFollow.transform.rotation = Quaternion.Euler(cinemachineTargetPitch,
-            -cinemachineTargetYaw, 0.0f);
+        cameraFollow.transform.rotation = Quaternion.Euler(-cinemachineTargetPitch,
+            cinemachineTargetYaw, 0.0f);
     }
     
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         {
             slopSlideVelocity -=slopSlideVelocity * Time.deltaTime * 5;
 
-            if (slopSlideVelocity.magnitude > 50)
+            if (slopSlideVelocity.magnitude > 70)
             {
                 return;
             }
