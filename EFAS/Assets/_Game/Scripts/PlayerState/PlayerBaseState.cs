@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public interface PlayerBaseState
+public abstract class PlayerBaseState
 {
-    void OnEnter();
-    void OnUpdate();
-    void OnExit();
+    public abstract void OnEnterState();
+    public abstract void OnUpdateState();
+    public abstract void OnExitState();
 }
