@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class FactoryStates : MonoBehaviour
+public class FactoryStates 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   StatesMachineController _context;
+   
+   public FactoryStates(StatesMachineController currentContext)
+   {
+       _context = currentContext;
+   }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public IdleState Idle()
+   {
+       return new IdleState();
+   }
+   public JumpState Jump(){       
+       return new JumpState();
+   }
+   public WalkState Walk(){       
+       return new WalkState();
+   }
+   public RunState Run(){       
+       return new RunState();
+   }
+   public SlideState Slide(){       
+       return new SlideState();
+   }
 }

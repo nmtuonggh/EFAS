@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StatesMachineController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private PlayerBaseState _currentState;
+    private FactoryStates _states;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        _states = new FactoryStates(this);
+        _currentState = _states.Idle();
+        _currentState.OnEnterState();
     }
 }
