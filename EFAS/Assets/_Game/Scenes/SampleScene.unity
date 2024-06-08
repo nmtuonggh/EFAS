@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3034,12 +3034,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  normalSpeed: 0
-  smoothRotation: 20
-  gravity: -9.8
-  jumpHeight: 2
-  mainCamera: {fileID: 963194225}
-  playerRotationObj: {fileID: 513728359}
+  _normalSpeed: 10
+  _smoothRotation: 10
+  _gravity: -9.8
+  _jumpHeight: 10
+  _mainCamera: {fileID: 963194225}
+  _playerRotationObj: {fileID: 513728359}
 --- !u!143 &1154038457
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14f41f52551b5446adce681b93784ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraFollow: {fileID: 2028809275}
+  _cameraFollow: {fileID: 2028809275}
   cinemachineTargetYaw: 0
   cinemachineTargetPitch: 0
   sens: 2

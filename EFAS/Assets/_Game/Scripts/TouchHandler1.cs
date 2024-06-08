@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    [SerializeField] private bool isTouching = false;
-    private Vector2 previousTouchPosition;
-    [SerializeField] private int activeFingerId = -1;
+    [SerializeField] private bool _isTouching = false;
+    private Vector2 _previousTouchPosition;
+    [SerializeField] private int _activeFingerId = -1;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isTouching) return;
-        isTouching = true;
-        previousTouchPosition = eventData.position;
+        if (_isTouching) return;
+        _isTouching = true;
+        _previousTouchPosition = eventData.position;
         
         foreach (var touch in Input.touches)
         {
-            if (Vector2.Distance(touch.position, previousTouchPosition) < 10f)
+            if (Vector2.Distance(touch.position, _previousTouchPosition) < 10f)
             {
-                activeFingerId = touch.fingerId;
+                _activeFingerId = touch.fingerId;
                 break;
             }
         }
@@ -31,15 +32,15 @@ public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             return;
         }
         
-        if (isTouching && activeFingerId != -1)
+        if (_isTouching && _activeFingerId != -1)
         {
-            Touch currentTouch = GetTouchById(activeFingerId);
+            Touch currentTouch = GetTouchById(_activeFingerId);
             if (currentTouch.fingerId != -1)
             {
                 var currentTouchPosition = currentTouch.position;
-                Vector2 deltaPosition = currentTouchPosition - previousTouchPosition;
+                Vector2 deltaPosition = currentTouchPosition - _previousTouchPosition;
                 CameraController.Instance.CameraRotation(deltaPosition);
-                previousTouchPosition = currentTouchPosition;
+                _previousTouchPosition = currentTouchPosition;
             }
         }
     }
@@ -47,7 +48,7 @@ public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerUp(PointerEventData eventData)
     {
         // Nếu ngón tay đang chạm được nhấc lên, thiết lập lại trạng thái
-        if (eventData.pointerId == activeFingerId)
+        if (eventData.pointerId == _activeFingerId)
         {
             ResetTouchState();
         }
@@ -55,8 +56,8 @@ public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void ResetTouchState()
     {
-        isTouching = false;
-        activeFingerId = -1;
+        _isTouching = false;
+        _activeFingerId = -1;
     }
 
     private Touch GetTouchById(int fingerId)

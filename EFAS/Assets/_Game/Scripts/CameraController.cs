@@ -2,23 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
     public static CameraController Instance;
-
+    
     [Header("Camera Follow Object")] 
     [SerializeField]
-    Transform cameraFollow;
+    private Transform _cameraFollow;
 
+    
     [Header("Values")] 
-    [SerializeField] private float cinemachineTargetYaw;
-    [SerializeField] private float cinemachineTargetPitch;
-    [SerializeField] private float sens = 2f;
+    [SerializeField] private float _cinemachineTargetYaw;
+    [SerializeField] private float _cinemachineTargetPitch;
+    [SerializeField] private float _sens = 2f;
 
     [Header("Clamp Values")] 
-    public float topClamp = 70.0f;
-    public float bottomClamp = -30.0f;
+    private float _topClamp = 70.0f;
+    private float _bottomClamp = -30.0f;
 
     private void Awake()
     {
@@ -34,21 +36,21 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        cinemachineTargetYaw = cameraFollow.transform.rotation.eulerAngles.y;
+        _cinemachineTargetYaw = _cameraFollow.transform.rotation.eulerAngles.y;
     }
 
     public void CameraRotation(Vector2 outputPosition)
     {
-        float deltaTimeMultiplier = Time.deltaTime * sens;
+        float deltaTimeMultiplier = Time.deltaTime * _sens;
 
-        cinemachineTargetYaw += outputPosition.x * deltaTimeMultiplier;
-        cinemachineTargetPitch += outputPosition.y * deltaTimeMultiplier;
+        _cinemachineTargetYaw += outputPosition.x * deltaTimeMultiplier;
+        _cinemachineTargetPitch += outputPosition.y * deltaTimeMultiplier;
 
-        cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
-        cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, bottomClamp, topClamp);
+        _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
+        _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _bottomClamp, _topClamp);
 
-        cameraFollow.transform.rotation = Quaternion.Euler(-cinemachineTargetPitch,
-            cinemachineTargetYaw, 0.0f);
+        _cameraFollow.transform.rotation = Quaternion.Euler(-_cinemachineTargetPitch,
+            _cinemachineTargetYaw, 0.0f);
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
