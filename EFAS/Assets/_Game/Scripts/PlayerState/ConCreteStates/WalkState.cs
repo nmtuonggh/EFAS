@@ -9,6 +9,7 @@ public class WalkState : PlayerBaseState
     }
     public override void OnEnterState()
     {
+        _context._animator.SetBool("run", true);
     }
 
     public override void OnUpdateState()

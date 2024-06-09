@@ -1,8 +1,11 @@
 
+using UnityEngine;
+
 public abstract class PlayerBaseState
 {
-    private StatesMachineController _context;
+    protected StatesMachineController _context;
     private FactoryStates _factory;
+    //protected Animator _animator;
     public PlayerBaseState(StatesMachineController currentContext, FactoryStates playerFactoryState)
     {
         _context = currentContext;

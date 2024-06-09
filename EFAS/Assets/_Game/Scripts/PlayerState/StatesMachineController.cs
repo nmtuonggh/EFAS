@@ -7,6 +7,7 @@ public class StatesMachineController : MonoBehaviour
 {
     private PlayerBaseState _currentState;
     private FactoryStates _states;
+    [SerializeField] public Animator _animator;
 
     //get,set
     public PlayerBaseState CurrentState
@@ -18,7 +19,7 @@ public class StatesMachineController : MonoBehaviour
     private void Awake()
     {
         _states = new FactoryStates(this);
-        _currentState = _states.Idle();
+        _currentState = _states.Walk();
         _currentState.OnEnterState();
     }
 

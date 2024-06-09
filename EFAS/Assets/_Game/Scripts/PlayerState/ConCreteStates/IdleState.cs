@@ -8,6 +8,7 @@ public class IdleState : PlayerBaseState
     {}
     public override void OnEnterState()
     {
+        //_animator.Set
         Debug.Log("Enter Idle State");
     }
 
