@@ -7,20 +7,20 @@ public class FactoryStates
        _context = currentContext;
    }
 
-   public IdleState Idle()
+   public PlayerBaseState Idle()
    {
-       return new IdleState();
+       return new IdleState(_context, this);
    }
-   public JumpState Jump(){       
-       return new JumpState();
+   public PlayerBaseState Jump(){       
+       return new JumpState(_context, this);
    }
-   public WalkState Walk(){       
-       return new WalkState();
+   public PlayerBaseState Walk(){       
+       return new WalkState(_context, this);
    }
-   public RunState Run(){       
-       return new RunState();
+   public PlayerBaseState Run(){       
+       return new RunState(_context, this);
    }
-   public SlideState Slide(){       
-       return new SlideState();
+   public PlayerBaseState Slide(){       
+       return new SlideState(_context, this);
    }
 }

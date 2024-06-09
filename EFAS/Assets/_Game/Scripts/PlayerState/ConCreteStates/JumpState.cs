@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class JumpState : PlayerBaseState
 {
-
+    public JumpState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    {
+    }
     public override void OnEnterState()
     {
     }
@@ -15,5 +17,10 @@ public class JumpState : PlayerBaseState
 
     public override void OnExitState()
     {
+    }
+
+    public override void CheckSwitchState()
+    {
+        
     }
 }

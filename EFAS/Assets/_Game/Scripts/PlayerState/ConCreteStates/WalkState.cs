@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WalkState : PlayerBaseState
 {
+    public WalkState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    {
+    }
     public override void OnEnterState()
     {
     }
@@ -14,6 +17,11 @@ public class WalkState : PlayerBaseState
 
     public override void OnExitState()
     {
+    }
+
+    public override void CheckSwitchState()
+    {
+        
     }
 }
 
