@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
 
     public bool IsMoving()
     {
-        return (move != Vector2.zero);
+        return (move.magnitude > 0f);
     }
     
     public bool IsOnAir()

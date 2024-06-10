@@ -20,7 +20,7 @@ public class FactoryStates
    public PlayerBaseState Run(){       
        return new RunState(_context, this);
    }
-   public PlayerBaseState Slide(){       
-       return new SlideState(_context, this);
+   public PlayerBaseState Fall(){       
+       return new FallState(_context, this);
    }
 }

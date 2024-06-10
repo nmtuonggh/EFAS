@@ -13,7 +13,7 @@ public class IdleState : PlayerBaseState
     public override void OnEnterState()
     {
         _elapsedTime = 0;
-        _context.Animator.SetBool(Constan.AnimIdle, true);
+        _context.Animator.SetTrigger(Constan.AnimIdle);
     }
 
     public override void OnUpdateState()
@@ -24,13 +24,15 @@ public class IdleState : PlayerBaseState
 
     public override void OnExitState()
     {
-        _context.Animator.SetBool(Constan.AnimIdle, false);
+        //_context.Animator.SetBool(Constan.AnimIdle, false);
     }
 
     public override void CheckSwitchState()
     {
         if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
+            Debug.Log("Idle ===> Walk");
+
             SwitchState(_factory.Walk());
         }
         if(InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround() )

@@ -9,18 +9,19 @@ public class WalkState : PlayerBaseState
     }
     public override void OnEnterState()
     {
-        _context.Animator.SetBool(Constan.AnimWalk, true);
+        _context.Animator.SetTrigger(Constan.AnimWalk);
     }
 
     public override void OnUpdateState()
     {
+        Debug.Log(InputManager.Instance.Move.magnitude);
         WalkHandler();
         CheckSwitchState();
     }
 
     public override void OnExitState()
     {
-        _context.Animator.SetBool(Constan.AnimWalk, false);
+        //_context.Animator.SetBool(Constan.AnimWalk, false);
     }
 
     public override void CheckSwitchState()
@@ -31,8 +32,9 @@ public class WalkState : PlayerBaseState
             SwitchState(_factory.Jump());
         }
         //to idle
-        if(!InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        if(!InputManager.Instance.IsMoving())
         {
+            Debug.Log("Walk ===> Idle");
             SwitchState(_factory.Idle());
         }
         //to run

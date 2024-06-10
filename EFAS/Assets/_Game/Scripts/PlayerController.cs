@@ -217,6 +217,25 @@ public class PlayerController : MonoBehaviour
         return _characterController.isGrounded;
     }
 
+    public bool JumpState()
+    {
+        if(verticalVelocity.y > 0)
+        {
+            return true;
+        }
+        else if(verticalVelocity.y <-1f )
+        {
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+        {
+            return false;
+        }
+    }
+
     private void OnAir()
     {
         if (InputManager.Instance.IsMoving())

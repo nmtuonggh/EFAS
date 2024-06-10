@@ -12,13 +12,19 @@ public class JumpState : PlayerBaseState
     {
         Debug.Log("Enter Jump State");
         _elapsedTime = 0;
-        _context.Animator.SetBool(Constan.AnimJump, true);
+        _context.Animator.SetTrigger(Constan.AnimJump);
         JumpHandler();
     }
 
     public override void OnUpdateState()
     {
+        Debug.Log(PlayerController.Instance.VerticalVelocity.y);   
+
         _elapsedTime+=Time.deltaTime;
+        if (!PlayerController.Instance.JumpState())
+        {
+            _context.Animator.SetTrigger("fall");
+        }
         WalkHandler();
         CheckSwitchState();
     }
@@ -26,12 +32,17 @@ public class JumpState : PlayerBaseState
     public override void OnExitState()
     {
         Debug.Log("Exit Jump State");
-        _context.Animator.SetBool(Constan.AnimJump, false);
+        //_context.Animator.SetBool(Constan.AnimJump, false);
     }
 
     public override void CheckSwitchState()
     {
-        if (!InputManager.Instance.isJumping && _elapsedTime >= jumpTime)
+        if (!PlayerController.Instance.JumpState())
+        {
+            //_context.Animator.SetTrigger("fall");
+            SwitchState(_factory.Fall());
+        }
+        if (!InputManager.Instance.isJumping && _elapsedTime >= jumpTime && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Idle());
         }
@@ -45,7 +56,6 @@ public class JumpState : PlayerBaseState
     }
     void WalkHandler()
     {
-        Debug.Log("call walk handler in jump state");
         float targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
             PlayerController.Instance.MainCamera.transform.eulerAngles.y;

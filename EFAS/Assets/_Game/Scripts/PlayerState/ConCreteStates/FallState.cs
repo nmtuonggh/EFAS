@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlideState : PlayerBaseState
+public class FallState : PlayerBaseState
 {
-    public SlideState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    public FallState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
     {
     }
     public override void OnEnterState()
     {
-        
+        _context.Animator.SetTrigger("fall");
     }
 
     public override void OnUpdateState()
@@ -23,6 +23,9 @@ public class SlideState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        
+        if (PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Idle());
+        }
     }
 }
