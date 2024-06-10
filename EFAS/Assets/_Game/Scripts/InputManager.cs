@@ -12,7 +12,10 @@ public class InputManager : MonoBehaviour
     public GameObject lookPanel;
     
     [Header("Player Input values")] 
-    public Vector2 move;
+    private Vector2 move;
+
+    public Vector2 Move { get => move; }
+
     public Vector2 look;
     
     private void Awake()

@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (InputManager.Instance.move.magnitude >= 0.1f)
+        if (InputManager.Instance.Move.magnitude >= 0.1f)
         {
             float targetRotation =
-                Mathf.Atan2(InputManager.Instance.move.x, InputManager.Instance.move.y) * Mathf.Rad2Deg +
+                Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
                 _mainCamera.transform.eulerAngles.y;
             Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
 

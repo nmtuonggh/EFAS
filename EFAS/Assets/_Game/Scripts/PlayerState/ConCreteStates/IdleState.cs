@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class IdleState : PlayerBaseState
 {
+    public IdleState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    {}
     public override void OnEnterState()
     {
+        //_animator.Set
+        Debug.Log("Enter Idle State");
     }
 
     public override void OnUpdateState()
@@ -13,6 +17,11 @@ public class IdleState : PlayerBaseState
     }
 
     public override void OnExitState()
+    {
+        Debug.Log("Exit Idle State  ");
+    }
+
+    public override void CheckSwitchState()
     {
     }
 }
