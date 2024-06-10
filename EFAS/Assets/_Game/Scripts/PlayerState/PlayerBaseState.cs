@@ -4,8 +4,9 @@ using UnityEngine;
 public abstract class PlayerBaseState
 {
     protected StatesMachineController _context;
-    private FactoryStates _factory;
-    //protected Animator _animator;
+    protected FactoryStates _factory;
+    protected float _elapsedTime = 0f;
+    
     public PlayerBaseState(StatesMachineController currentContext, FactoryStates playerFactoryState)
     {
         _context = currentContext;
@@ -18,7 +19,7 @@ public abstract class PlayerBaseState
 
     protected void SwitchState(PlayerBaseState newState)
     {
-        OnEnterState();
+        OnExitState();
         newState.OnEnterState();
         _context.CurrentState = newState;
     }

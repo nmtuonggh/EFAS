@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class InputManager : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class InputManager : MonoBehaviour
     
     [Header("Player Input values")] 
     private Vector2 move;
+
+    //public bool isReadyToJump = false;
+    public bool jumpBtn = false;
+    public bool isJumping = false;
 
     public Vector2 Move { get => move; }
 
@@ -28,6 +34,30 @@ public class InputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void JumpBtnDown1()
+    {
+        StartCoroutine(SetJumping());
+    }
+
+    private IEnumerator SetJumping()
+    {
+        jumpBtn = true;
+        //isJumping = true;
+        yield return null; 
+        //isJumping = false;
+        jumpBtn = false;
+    }
+
+    public bool IsMoving()
+    {
+        return (move != Vector2.zero);
+    }
+    
+    public bool IsOnAir()
+    {
+        return !PlayerController.Instance.IsGround();
     }
 
     private void Update()

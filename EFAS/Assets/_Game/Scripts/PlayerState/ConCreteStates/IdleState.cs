@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class IdleState : PlayerBaseState
 {
-    public IdleState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
-    {}
+    float delayJumpTime = 0.4f;
+    public IdleState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
+        playerFactoryState)
+    {
+    }
+
     public override void OnEnterState()
     {
-        //_animator.Set
-        Debug.Log("Enter Idle State");
+        _elapsedTime = 0;
+        _context.Animator.SetBool(Constan.AnimIdle, true);
     }
 
     public override void OnUpdateState()
     {
+        _elapsedTime += Time.deltaTime;
+        CheckSwitchState();
     }
 
     public override void OnExitState()
     {
-        Debug.Log("Exit Idle State  ");
+        _context.Animator.SetBool(Constan.AnimIdle, false);
     }
 
     public override void CheckSwitchState()
     {
+        if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Walk());
+        }
+        if(InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround() )
+        {
+            SwitchState(_factory.Jump());
+        }
     }
+    
 }

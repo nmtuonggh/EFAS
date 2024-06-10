@@ -14,6 +14,7 @@ public class SlideState : PlayerBaseState
 
     public override void OnUpdateState()
     {
+        CheckSwitchState();
     }
 
     public override void OnExitState()

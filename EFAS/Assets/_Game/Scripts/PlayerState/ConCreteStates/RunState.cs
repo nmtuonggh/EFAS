@@ -9,10 +9,12 @@ public class RunState : PlayerBaseState
     }
     public override void OnEnterState()
     {
+        _context.Animator.SetBool("run", true);
     }
 
     public override void OnUpdateState()
     {
+        CheckSwitchState();
     }
 
     public override void OnExitState()
