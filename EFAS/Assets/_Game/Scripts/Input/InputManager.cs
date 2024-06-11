@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     [Header("Input modules")] 
-    public FixedJoystick moveJoystick;
+    public FloatingJoystick moveJoystick;
 
     [Header("Player Input values")] 
     private Vector2 move;
@@ -21,8 +21,6 @@ public class InputManager : MonoBehaviour
     public bool runBtnUp = false;
 
     public Vector2 Move => move;
-
-    public Vector2 look;
 
     private void Awake()
     {
