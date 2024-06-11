@@ -21,18 +21,18 @@ public class RunState : PlayerBaseState
     public override void OnExitState()
     {
         _context.Animator.ResetTrigger(Constan.AnimRun);
-        PlayerController.Instance.Speed = PlayerController.Instance.NormalSpeed;
+        PlayerController.Instance.Speed = PlayerController.Instance.NormalSpeed ;
     }
 
     public override void CheckSwitchState()
     {
-        //to jump
-        if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
+        //to slide
+        if (PlayerController.Instance.IsSliding)
         {
-            SwitchState(_factory.Jump());
+            SwitchState(_factory.Slide());
         }
         //to idle
-        if(InputManager.Instance.runBtnUp && PlayerController.Instance.IsGround())
+        if((InputManager.Instance.runBtnDown)&& PlayerController.Instance.IsGround()&& !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
@@ -40,6 +40,11 @@ public class RunState : PlayerBaseState
         if(InputManager.Instance.runBtnUp && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Walk());
+        }
+        //to jump
+        if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
+        {
+            SwitchState(_factory.Jump());
         }
     }
 }

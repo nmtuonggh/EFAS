@@ -59,13 +59,6 @@ public class InputManager : MonoBehaviour
         runBtnHold = false;
         runBtnUp = false;
     }
-
-    public void RunBtnHold()
-    {
-        runBtnDown = true;
-        runBtnHold = true;
-        runBtnUp = false;
-    }
     public void RunBtnUp()
     {   
         runBtnDown = false;

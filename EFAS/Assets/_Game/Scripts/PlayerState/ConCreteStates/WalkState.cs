@@ -25,6 +25,11 @@ public class WalkState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
+        //to slide
+        if (PlayerController.Instance.IsSliding)
+        {
+            SwitchState(_factory.Slide());
+        }
         //to jump
         if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
         {

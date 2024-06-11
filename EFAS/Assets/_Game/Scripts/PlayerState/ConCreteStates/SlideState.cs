@@ -24,15 +24,15 @@ public class SlideState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        //to idle
-        if (PlayerController.Instance.IsGround())
+        if (PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
         {
+            Debug.Log("Slide to Idle");
             SwitchState(_factory.Idle());
         }
-        //to walk
-        //if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
-        //{
-            //SwitchState(_factory.Walk());
-        //}
+        if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        {
+            Debug.Log("Slide to Walk");
+            SwitchState(_factory.Walk());
+        }
     }
 }

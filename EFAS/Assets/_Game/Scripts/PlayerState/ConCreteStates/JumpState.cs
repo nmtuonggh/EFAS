@@ -17,8 +17,6 @@ public class JumpState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        Debug.Log(PlayerController.Instance.VerticalVelocity.y);   
-
         _elapsedTime+=Time.deltaTime;
         if (!PlayerController.Instance.JumpState())
         {
@@ -37,13 +35,7 @@ public class JumpState : PlayerBaseState
     {
         if (!PlayerController.Instance.JumpState())
         {
-            //_context.Animator.SetTrigger("fall");
             SwitchState(_factory.Fall());
-        }
-        //to idle
-        if (!InputManager.Instance.isJumping && _elapsedTime >= jumpTime && PlayerController.Instance.IsGround())
-        {
-            SwitchState(_factory.Idle());
         }
         //to slide
         if (PlayerController.Instance.IsSliding)

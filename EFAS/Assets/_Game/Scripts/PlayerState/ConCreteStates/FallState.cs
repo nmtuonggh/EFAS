@@ -24,8 +24,13 @@ public class FallState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
+        //to slide
+        if (PlayerController.Instance.IsSliding)
+        {
+            SwitchState(_factory.Slide());
+        }
         //to idle
-        if (PlayerController.Instance.IsGround())
+        if (PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
@@ -35,9 +40,5 @@ public class FallState : PlayerBaseState
             SwitchState(_factory.Walk());
         }
         //to run
-        if (InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
-        {
-            SwitchState(_factory.Run());
-        }
     }
 }

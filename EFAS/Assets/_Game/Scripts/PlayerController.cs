@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         OnAir();
-        //Move();
         VerticalControll();
         CheckSlopeSlideVelocity();
         if (_slopSlideVelocity == Vector3.zero)
@@ -188,17 +187,21 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        HandlerSlide();
+        _slopSlideVelocity = Vector3.zero;
+    }
 
+    private void HandlerSlide()
+    {
         if (_isSliding)
         {
             _slopSlideVelocity -= _slopSlideVelocity * Time.deltaTime * 5;
 
             if (_slopSlideVelocity.magnitude > 70)
             {
-                return;
+                return ;
             }
         }
-
         _slopSlideVelocity = Vector3.zero;
     }
 
