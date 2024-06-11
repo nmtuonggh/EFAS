@@ -11,14 +11,17 @@ public class InputManager : MonoBehaviour
     
     [Header("Input modules")]
     public FixedJoystick moveJoystick;
-    public GameObject lookPanel;
     
     [Header("Player Input values")] 
     private Vector2 move;
 
+    [Header("Player check values")] 
     //public bool isReadyToJump = false;
     public bool jumpBtn = false;
     public bool isJumping = false;
+    public bool runBtnDown = false;
+    public bool runBtnHold = false;
+    public bool runBtnUp = false;
 
     public Vector2 Move { get => move; }
 
@@ -49,10 +52,30 @@ public class InputManager : MonoBehaviour
         //isJumping = false;
         jumpBtn = false;
     }
+    
+    public void RunBtnDown()
+    {
+        runBtnDown = true;
+        runBtnHold = false;
+        runBtnUp = false;
+    }
+
+    public void RunBtnHold()
+    {
+        runBtnDown = true;
+        runBtnHold = true;
+        runBtnUp = false;
+    }
+    public void RunBtnUp()
+    {   
+        runBtnDown = false;
+        runBtnHold = false;
+        runBtnUp = true;
+    }
 
     public bool IsMoving()
     {
-        return (move.magnitude > 0f);
+        return (move != Vector2.zero);
     }
     
     public bool IsOnAir()

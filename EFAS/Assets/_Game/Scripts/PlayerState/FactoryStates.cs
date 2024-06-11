@@ -23,4 +23,8 @@ public class FactoryStates
    public PlayerBaseState Fall(){       
        return new FallState(_context, this);
    }
+   
+   public PlayerBaseState Slide(){       
+       return new SlideState(_context, this);
+   }
 }

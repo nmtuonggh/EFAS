@@ -9,7 +9,7 @@ public class FallState : PlayerBaseState
     }
     public override void OnEnterState()
     {
-        _context.Animator.SetTrigger("fall");
+        _context.Animator.SetTrigger(Constan.AnimFall);
     }
 
     public override void OnUpdateState()
@@ -19,13 +19,25 @@ public class FallState : PlayerBaseState
 
     public override void OnExitState()
     {
+        _context.Animator.ResetTrigger(Constan.AnimFall);
     }
 
     public override void CheckSwitchState()
     {
+        //to idle
         if (PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Idle());
+        }
+        //to walk
+        if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Walk());
+        }
+        //to run
+        if (InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Run());
         }
     }
 }

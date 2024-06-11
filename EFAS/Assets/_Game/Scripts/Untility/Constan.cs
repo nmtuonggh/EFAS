@@ -9,4 +9,5 @@ public class Constan
     public const string AnimWalk = "walk";
     public const string AnimJump = "jump";
     public const string AnimSlide = "slide";
+    public const string AnimFall = "fall";
 }

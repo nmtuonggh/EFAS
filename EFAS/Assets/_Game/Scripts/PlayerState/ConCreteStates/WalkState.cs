@@ -14,14 +14,13 @@ public class WalkState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        Debug.Log(InputManager.Instance.Move.magnitude);
         WalkHandler();
         CheckSwitchState();
     }
 
     public override void OnExitState()
     {
-        //_context.Animator.SetBool(Constan.AnimWalk, false);
+        _context.Animator.ResetTrigger(Constan.AnimWalk);
     }
 
     public override void CheckSwitchState()
@@ -32,12 +31,15 @@ public class WalkState : PlayerBaseState
             SwitchState(_factory.Jump());
         }
         //to idle
-        if(!InputManager.Instance.IsMoving())
+        if(!InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
-            Debug.Log("Walk ===> Idle");
             SwitchState(_factory.Idle());
         }
         //to run
+        if(InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Run());
+        }
     }
     
     void WalkHandler()

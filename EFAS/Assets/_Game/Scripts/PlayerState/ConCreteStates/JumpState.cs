@@ -10,7 +10,6 @@ public class JumpState : PlayerBaseState
     }
     public override void OnEnterState()
     {
-        Debug.Log("Enter Jump State");
         _elapsedTime = 0;
         _context.Animator.SetTrigger(Constan.AnimJump);
         JumpHandler();
@@ -31,8 +30,7 @@ public class JumpState : PlayerBaseState
 
     public override void OnExitState()
     {
-        Debug.Log("Exit Jump State");
-        //_context.Animator.SetBool(Constan.AnimJump, false);
+        _context.Animator.ResetTrigger(Constan.AnimJump);
     }
 
     public override void CheckSwitchState()
@@ -42,9 +40,15 @@ public class JumpState : PlayerBaseState
             //_context.Animator.SetTrigger("fall");
             SwitchState(_factory.Fall());
         }
+        //to idle
         if (!InputManager.Instance.isJumping && _elapsedTime >= jumpTime && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Idle());
+        }
+        //to slide
+        if (PlayerController.Instance.IsSliding)
+        {
+            SwitchState(_factory.Slide());
         }
     }
     

@@ -90,6 +90,16 @@ public class PlayerController : MonoBehaviour
 
     public float Gravity => _gravity;
 
+    public bool IsSliding => _isSliding;
+
+    public Vector3 SlopSlideVelocity
+    {
+        get => _slopSlideVelocity;
+        set => _slopSlideVelocity = value;
+    }
+
+    public float NormalSpeed => _normalSpeed;
+
 
     private void Awake()
     {
@@ -223,17 +233,11 @@ public class PlayerController : MonoBehaviour
         {
             return true;
         }
-        else if(verticalVelocity.y <-1f )
+        if(verticalVelocity.y <-1f )
         {
             return false;
         }
-        else
-        {
-            return false;
-        }
-        {
-            return false;
-        }
+        return false;
     }
 
     private void OnAir()
