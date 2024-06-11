@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SlideState : PlayerBaseState
 {
-    public SlideState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    public SlideState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
+        playerFactoryState)
     {
     }
+
     public override void OnEnterState()
     {
         _context.Animator.SetTrigger(Constan.AnimSlide);
@@ -24,14 +26,15 @@ public class SlideState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
+        if (!PlayerController.Instance.IsSliding && PlayerController.Instance.IsGround() &&
+            !InputManager.Instance.IsMoving())
         {
-            Debug.Log("Slide to Idle");
             SwitchState(_factory.Idle());
         }
-        if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+
+        if (!PlayerController.Instance.IsSliding && InputManager.Instance.IsMoving() &&
+            PlayerController.Instance.IsGround())
         {
-            Debug.Log("Slide to Walk");
             SwitchState(_factory.Walk());
         }
     }

@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
     private CharacterController _characterController;
-    private Animator anim;
 
     [Header("Player Move")] [SerializeField]
     private float _speed;
+
     [SerializeField] private float _normalSpeed;
     [SerializeField] private float _smoothRotation;
 
@@ -22,25 +22,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpHeight;
     private Vector3 verticalVelocity;
-    
 
     //camera
     [SerializeField] private GameObject _mainCamera;
     [SerializeField] private GameObject _playerRotationObj;
-    
-    
+
     //Slide
-    private bool _isSliding;
+    [SerializeField] private bool _isSliding;
     private Vector3 _slopSlideVelocity;
+
     //bool check event
     private bool _isJumping = false;
     private bool _isRunning = false;
 
-    public GameObject PlayerRotationObj
-    {
-        get => _playerRotationObj;
-        set => _playerRotationObj = value;
-    }
+
     public bool IsJumping
     {
         get => _isJumping;
@@ -54,18 +49,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public Vector3 VerticalVelocity
-    { 
+    {
         get => verticalVelocity;
         set => verticalVelocity = value;
-    }
-    
-    public GameObject MainCamera
-    {
-        get => _mainCamera;
-        set
-        {
-            _mainCamera = value;
-        }
     }
 
     public float Speed
@@ -73,33 +59,14 @@ public class PlayerController : MonoBehaviour
         get => _speed;
         set => _speed = value;
     }
-
-    public CharacterController CharacterController
-    {
-        get => _characterController;
-        set => _characterController = value;
-    }
-
-    public float SmoothRotation
-    {
-        get => _smoothRotation;
-        set => _smoothRotation = value;
-    }
-
+    public GameObject PlayerRotationObj => _playerRotationObj;
+    public GameObject MainCamera => _mainCamera;
+    public CharacterController CharacterController => _characterController;
+    public float SmoothRotation => _smoothRotation;
     public float JumpHeight => _jumpHeight;
-
     public float Gravity => _gravity;
-
     public bool IsSliding => _isSliding;
-
-    public Vector3 SlopSlideVelocity
-    {
-        get => _slopSlideVelocity;
-        set => _slopSlideVelocity = value;
-    }
-
     public float NormalSpeed => _normalSpeed;
-
 
     private void Awake()
     {
@@ -115,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
         _normalSpeed = _speed;
         _characterController = GetComponent<CharacterController>();
     }
@@ -123,34 +89,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         OnAir();
-        VerticalControll();
         CheckSlopeSlideVelocity();
+        VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)
         {
             _isSliding = false;
         }
     }
 
-    private void Move()
-    {
-        if (InputManager.Instance.Move.magnitude >= 0.1f)
-        {
-            float targetRotation =
-                Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
-                _mainCamera.transform.eulerAngles.y;
-            Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-            _playerRotationObj.transform.rotation = Quaternion.Slerp(_playerRotationObj.transform.rotation,
-                targetRotationQuaternion, Time.deltaTime * _smoothRotation);
-            Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-
-            _characterController.Move(targetDir.normalized * (_speed * Time.deltaTime) +
-                                     new Vector3(0.0f, verticalVelocity.y, 0.0f) * Time.deltaTime);
-        }
-    }
-
-
-    private void VerticalControll()
+    private void VerticalControl()
     {
         if (_characterController.isGrounded && verticalVelocity.y < 0)
         {
@@ -187,6 +134,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+
         HandlerSlide();
         _slopSlideVelocity = Vector3.zero;
     }
@@ -199,30 +147,11 @@ public class PlayerController : MonoBehaviour
 
             if (_slopSlideVelocity.magnitude > 70)
             {
-                return ;
+                return;
             }
         }
+
         _slopSlideVelocity = Vector3.zero;
-    }
-
-    public void Jump()
-    {
-        if (_characterController.isGrounded && _isSliding == false)
-        {
-            _isJumping = true;
-            verticalVelocity.y = Mathf.Sqrt((_jumpHeight * 10) * -2f * _gravity);
-        }
-    }
-
-    public void Run()
-    {
-        _isRunning = true;
-        _speed += 10;
-    }
-
-    public void Walke()
-    {
-        _speed = _normalSpeed; 
     }
 
     public bool IsGround()
@@ -232,14 +161,16 @@ public class PlayerController : MonoBehaviour
 
     public bool JumpState()
     {
-        if(verticalVelocity.y > 0)
+        if (verticalVelocity.y > 0)
         {
             return true;
         }
-        if(verticalVelocity.y <-1f )
+
+        if (verticalVelocity.y < -1f)
         {
             return false;
         }
+
         return false;
     }
 
@@ -259,6 +190,5 @@ public class PlayerController : MonoBehaviour
             _characterController.Move(targetDir.normalized * (_speed * Time.deltaTime) +
                                       new Vector3(0.0f, verticalVelocity.y, 0.0f) * Time.deltaTime);
         }
-        
     }
 }

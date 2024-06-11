@@ -1162,9 +1162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveJoystick: {fileID: 1207637815}
   jumpBtn: 0
-  isJumping: 0
   runBtnDown: 0
-  runBtnHold: 0
   runBtnUp: 0
   look: {x: 0, y: 0}
 --- !u!1 &498336992
@@ -3668,8 +3666,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.39, y: 2.62, z: 82.91}
+  m_LocalRotation: {x: 0, y: 0.9896202, z: 0, w: 0.14370732}
+  m_LocalPosition: {x: 54.215298, y: 20.320002, z: 114.95942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4314,6 +4312,7 @@ MonoBehaviour:
   _jumpHeight: 2
   _mainCamera: {fileID: 963194225}
   _playerRotationObj: {fileID: 513728359}
+  _isSliding: 0
 --- !u!143 &1154038457
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4348,15 +4347,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154038455}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.39, y: 1, z: 87.04}
+  m_LocalRotation: {x: -0, y: 0.9896202, z: -0, w: 0.14370732}
+  m_LocalPosition: {x: 55.39, y: 18.7, z: 111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 513728360}
   - {fileID: 2028809275}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 163.475, z: 0}
 --- !u!114 &1154038460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9714,8 +9713,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895453192}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.39, y: 2.62, z: 82.91}
+  m_LocalRotation: {x: -0, y: 0.9896202, z: -0, w: 0.14370732}
+  m_LocalPosition: {x: 54.215298, y: 20.320002, z: 114.95942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

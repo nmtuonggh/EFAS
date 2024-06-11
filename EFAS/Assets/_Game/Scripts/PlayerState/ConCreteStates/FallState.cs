@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FallState : PlayerBaseState
 {
-    public FallState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    public FallState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
+        playerFactoryState)
     {
     }
+
     public override void OnEnterState()
     {
         _context.Animator.SetTrigger(Constan.AnimFall);
@@ -29,11 +31,13 @@ public class FallState : PlayerBaseState
         {
             SwitchState(_factory.Slide());
         }
+
         //to idle
         if (PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
+
         //to walk
         if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {

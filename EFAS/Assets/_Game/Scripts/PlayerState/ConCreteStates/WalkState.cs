@@ -30,6 +30,11 @@ public class WalkState : PlayerBaseState
         {
             SwitchState(_factory.Slide());
         }
+        //to fall
+        if (!PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Fall());
+        }
         //to jump
         if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
         {
@@ -46,8 +51,8 @@ public class WalkState : PlayerBaseState
             SwitchState(_factory.Run());
         }
     }
-    
-    void WalkHandler()
+
+    private static void WalkHandler()
     {
         float targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +

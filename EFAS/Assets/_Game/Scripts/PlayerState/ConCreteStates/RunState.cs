@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RunState : PlayerBaseState
 {
-    public RunState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    public RunState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
+        playerFactoryState)
     {
     }
+
     public override void OnEnterState()
     {
         _context.Animator.SetTrigger(Constan.AnimRun);
@@ -21,7 +23,7 @@ public class RunState : PlayerBaseState
     public override void OnExitState()
     {
         _context.Animator.ResetTrigger(Constan.AnimRun);
-        PlayerController.Instance.Speed = PlayerController.Instance.NormalSpeed ;
+        PlayerController.Instance.Speed = PlayerController.Instance.NormalSpeed;
     }
 
     public override void CheckSwitchState()
@@ -31,16 +33,20 @@ public class RunState : PlayerBaseState
         {
             SwitchState(_factory.Slide());
         }
+
         //to idle
-        if((InputManager.Instance.runBtnDown)&& PlayerController.Instance.IsGround()&& !InputManager.Instance.IsMoving())
+        if ((InputManager.Instance.runBtnDown) && PlayerController.Instance.IsGround() &&
+            !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
+
         //to walk
-        if(InputManager.Instance.runBtnUp && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        if (InputManager.Instance.runBtnUp && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Walk());
         }
+
         //to jump
         if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
         {

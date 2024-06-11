@@ -11,13 +11,11 @@ public class IdleState : PlayerBaseState
 
     public override void OnEnterState()
     {
-        _elapsedTime = 0;
         _context.Animator.SetTrigger(Constan.AnimIdle);
     }
 
     public override void OnUpdateState()
     {
-        _elapsedTime += Time.deltaTime;
         CheckSwitchState();
     }
 
@@ -28,16 +26,22 @@ public class IdleState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
+        //to slide
+        if (PlayerController.Instance.IsSliding)
+        {
+            SwitchState(_factory.Slide());
+        }
+
         //to walk
         if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Walk());
         }
+
         //to jump
-        if(InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround() )
+        if (InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Jump());
         }
     }
-    
 }

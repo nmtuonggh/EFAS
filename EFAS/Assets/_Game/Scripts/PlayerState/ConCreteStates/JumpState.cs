@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class JumpState : PlayerBaseState
 {
-    private float jumpTime = 0.2f;
-    public JumpState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
+    public JumpState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
+        playerFactoryState)
     {
     }
+
     public override void OnEnterState()
     {
         _elapsedTime = 0;
@@ -17,11 +18,7 @@ public class JumpState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        _elapsedTime+=Time.deltaTime;
-        if (!PlayerController.Instance.JumpState())
-        {
-            _context.Animator.SetTrigger("fall");
-        }
+        _elapsedTime += Time.deltaTime;
         WalkHandler();
         CheckSwitchState();
     }
@@ -33,35 +30,40 @@ public class JumpState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
+        //to slide
         if (!PlayerController.Instance.JumpState())
         {
             SwitchState(_factory.Fall());
         }
+
         //to slide
         if (PlayerController.Instance.IsSliding)
         {
             SwitchState(_factory.Slide());
         }
     }
-    
-    public void JumpHandler()
+
+    private void JumpHandler()
     {
         var vector3 = PlayerController.Instance.VerticalVelocity;
         vector3.y = Mathf.Sqrt((PlayerController.Instance.JumpHeight * 10) * -2f * PlayerController.Instance.Gravity);
         PlayerController.Instance.VerticalVelocity = vector3;
     }
-    void WalkHandler()
+
+    private static void WalkHandler()
     {
-        float targetRotation =
+        var targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
             PlayerController.Instance.MainCamera.transform.eulerAngles.y;
-        Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
+        var targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
 
-        PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(PlayerController.Instance.PlayerRotationObj.transform.rotation,
+        PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
+            PlayerController.Instance.PlayerRotationObj.transform.rotation,
             targetRotationQuaternion, Time.deltaTime * PlayerController.Instance.SmoothRotation);
-        Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
+        var targetDir = targetRotationQuaternion * Vector3.forward;
 
-        PlayerController.Instance.CharacterController.Move(targetDir.normalized * (PlayerController.Instance.Speed * Time.deltaTime) +
-                                                           new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
+        PlayerController.Instance.CharacterController.Move(
+            targetDir.normalized * (PlayerController.Instance.Speed * Time.deltaTime) +
+            new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
     }
 }
