@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallState : PlayerBaseState
+public class FallState : AirBorneState
 {
     public FallState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
         playerFactoryState)
@@ -11,16 +11,19 @@ public class FallState : PlayerBaseState
 
     public override void OnEnterState()
     {
+        Debug.Log("Start FallState");
         _context.Animator.SetTrigger(Constan.AnimFall);
     }
 
     public override void OnUpdateState()
     {
+        base.OnUpdateState();
         CheckSwitchState();
     }
 
     public override void OnExitState()
     {
+        Debug.Log("Exit FallState");
         _context.Animator.ResetTrigger(Constan.AnimFall);
     }
 

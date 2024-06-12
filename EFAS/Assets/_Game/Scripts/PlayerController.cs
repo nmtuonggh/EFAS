@@ -32,21 +32,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _slopSlideVelocity;
 
     //bool check event
-    private bool _isJumping = false;
-    private bool _isRunning = false;
-
-
-    public bool IsJumping
-    {
-        get => _isJumping;
-        set => _isJumping = value;
-    }
-
-    public bool IsRunning
-    {
-        get => _isRunning;
-        set => _isRunning = value;
-    }
+    //private bool _isJumping = false;
+    //private bool _isRunning = false;
 
     public Vector3 VerticalVelocity
     {
@@ -88,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        OnAir();
+        //OnAir();
         CheckSlopeSlideVelocity();
         VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)

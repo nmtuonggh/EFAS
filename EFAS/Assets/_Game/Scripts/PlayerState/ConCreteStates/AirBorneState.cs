@@ -2,57 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : AirBorneState
+public class AirBorneState : PlayerBaseState
 {
-    public JumpState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
-        playerFactoryState)
+    public AirBorneState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
     {
     }
 
     public override void OnEnterState()
     {
-        Debug.Log("Start JumpState");
-        _elapsedTime = 0;
-        _context.Animator.SetTrigger(Constan.AnimJump);
-        JumpHandler();
+        Debug.Log("Start AirBorneState");
     }
 
     public override void OnUpdateState()
     {
-        _elapsedTime += Time.deltaTime;
-        //WalkHandler();
-        base.OnUpdateState();
-        CheckSwitchState();
+        Debug.Log("Update AirBorneState");
+        WalkHandler();
     }
 
     public override void OnExitState()
     {
-        Debug.Log("Exit JumpState");
-        _context.Animator.ResetTrigger(Constan.AnimJump);
+        Debug.Log("Exit AirBorneState");
     }
 
     public override void CheckSwitchState()
     {
-        //to slide
-        if (!PlayerController.Instance.JumpState())
-        {
-            SwitchState(_factory.Fall());
-        }
-
-        //to slide
-        if (PlayerController.Instance.IsSliding)
-        {
-            SwitchState(_factory.Slide());
-        }
     }
-
-    private void JumpHandler()
-    {
-        var vector3 = PlayerController.Instance.VerticalVelocity;
-        vector3.y = Mathf.Sqrt((PlayerController.Instance.JumpHeight * 10) * -2f * PlayerController.Instance.Gravity);
-        PlayerController.Instance.VerticalVelocity = vector3;
-    }
-
+    
     private static void WalkHandler()
     {
         var targetRotation =

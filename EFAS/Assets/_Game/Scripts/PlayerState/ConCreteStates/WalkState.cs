@@ -14,7 +14,7 @@ public class WalkState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        WalkHandler();
+        MoveHandler();
         CheckSwitchState();
     }
 
@@ -40,19 +40,19 @@ public class WalkState : PlayerBaseState
         {
             SwitchState(_factory.Jump());
         }
+        //to run
+        if(InputManager.Instance.IsMoving()&&InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
+        {
+            SwitchState(_factory.Run());
+        }
         //to idle
         if(!InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Idle());
         }
-        //to run
-        if(InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
-        {
-            SwitchState(_factory.Run());
-        }
     }
 
-    private static void WalkHandler()
+    private static void MoveHandler()
     {
         float targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
