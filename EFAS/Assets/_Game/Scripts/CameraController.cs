@@ -33,6 +33,13 @@ public class CameraController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 
     private void Start()
     {
@@ -43,7 +50,7 @@ public class CameraController : MonoBehaviour
     {
         float deltaTimeMultiplier = Time.deltaTime * _sens;
 
-        _cinemachineTargetYaw += outputPosition.x * deltaTimeMultiplier;
+        _cinemachineTargetYaw += outputPosition.x * deltaTimeMultiplier ;
         _cinemachineTargetPitch += outputPosition.y * deltaTimeMultiplier;
 
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);

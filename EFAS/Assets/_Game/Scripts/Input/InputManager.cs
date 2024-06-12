@@ -8,22 +8,20 @@ using UnityEngine.Serialization;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
-    
-    [Header("Input modules")]
-    public FixedJoystick moveJoystick;
-    public GameObject lookPanel;
-    
+
+    [Header("Input modules")] 
+    public FloatingJoystick moveJoystick;
+
     [Header("Player Input values")] 
     private Vector2 move;
 
-    //public bool isReadyToJump = false;
+    [Header("Player check values")] 
     public bool jumpBtn = false;
-    public bool isJumping = false;
+    public bool runBtnDown = false;
+    public bool runBtnUp = false;
 
-    public Vector2 Move { get => move; }
+    public Vector2 Move => move;
 
-    public Vector2 look;
-    
     private void Awake()
     {
         if (Instance == null)
@@ -44,20 +42,25 @@ public class InputManager : MonoBehaviour
     private IEnumerator SetJumping()
     {
         jumpBtn = true;
-        //isJumping = true;
-        yield return null; 
-        //isJumping = false;
+        yield return null;
         jumpBtn = false;
+    }
+
+    public void RunBtnDown()
+    {
+        runBtnDown = true;
+        runBtnUp = false;
+    }
+
+    public void RunBtnUp()
+    {
+        runBtnDown = false;
+        runBtnUp = true;
     }
 
     public bool IsMoving()
     {
-        return (move.magnitude > 0f);
-    }
-    
-    public bool IsOnAir()
-    {
-        return !PlayerController.Instance.IsGround();
+        return (move != Vector2.zero);
     }
 
     private void Update()

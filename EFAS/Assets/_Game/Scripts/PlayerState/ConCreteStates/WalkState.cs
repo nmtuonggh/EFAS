@@ -14,33 +14,45 @@ public class WalkState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        Debug.Log(InputManager.Instance.Move.magnitude);
-        WalkHandler();
+        MoveHandler();
         CheckSwitchState();
     }
 
     public override void OnExitState()
     {
-        //_context.Animator.SetBool(Constan.AnimWalk, false);
+        _context.Animator.ResetTrigger(Constan.AnimWalk);
     }
 
     public override void CheckSwitchState()
     {
+        //to slide
+        if (PlayerController.Instance.IsSliding)
+        {
+            SwitchState(_factory.Slide());
+        }
+        //to fall
+        if (!PlayerController.Instance.IsGround() && PlayerController.Instance.FallState())
+        {
+            SwitchState(_factory.Fall());
+        }
         //to jump
         if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
         {
             SwitchState(_factory.Jump());
         }
-        //to idle
-        if(!InputManager.Instance.IsMoving())
+        //to run
+        if(InputManager.Instance.IsMoving()&&InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
         {
-            Debug.Log("Walk ===> Idle");
+            SwitchState(_factory.Run());
+        }
+        //to idle
+        if(!InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        {
             SwitchState(_factory.Idle());
         }
-        //to run
     }
-    
-    void WalkHandler()
+
+    private static void MoveHandler()
     {
         float targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
@@ -49,9 +61,11 @@ public class WalkState : PlayerBaseState
 
         PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(PlayerController.Instance.PlayerRotationObj.transform.rotation,
             targetRotationQuaternion, Time.deltaTime * PlayerController.Instance.SmoothRotation);
-        Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-
-        PlayerController.Instance.CharacterController.Move(targetDir.normalized * (PlayerController.Instance.Speed * Time.deltaTime) +
+        
+        //Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
+        Vector3 targetDir = new Vector3(InputManager.Instance.Move.x ,0, InputManager.Instance.Move.y);
+        //Debug.Log("targerDir.x = " + targetDir.x + " targetDir.y = " + targetDir.y + " targetDir.z = " + targetDir.z );
+        PlayerController.Instance.CharacterController.Move(targetDir * (PlayerController.Instance.Speed * Time.deltaTime) +
                                   new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
     }
 }
