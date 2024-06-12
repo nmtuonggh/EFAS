@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JumpState : AirBorneState
 {
+    private float _jumpToFallThreshold = 0 ;
     public JumpState(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext,
         playerFactoryState)
     {
@@ -11,6 +12,7 @@ public class JumpState : AirBorneState
 
     public override void OnEnterState()
     {
+        _jumpToFallThreshold = 0;
         _elapsedTime = 0;
         _context.Animator.SetTrigger(Constan.AnimJump);
         JumpHandler();
@@ -19,6 +21,7 @@ public class JumpState : AirBorneState
     public override void OnUpdateState()
     {
         _elapsedTime += Time.deltaTime;
+        _jumpToFallThreshold += Time.deltaTime;
         base.OnUpdateState();
         CheckSwitchState();
     }
@@ -31,7 +34,7 @@ public class JumpState : AirBorneState
 
     public override void CheckSwitchState()
     {
-        //to slide
+        //to fall
         if (!PlayerController.Instance.JumpState())
         {
             SwitchState(_factory.Fall());
