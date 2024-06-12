@@ -10,7 +10,6 @@ public class LandState : PlayerBaseState
 
     public override void OnEnterState()
     {
-        //Debug.Log("endter land");
         _elapsedTime = 0;
         _context.Animator.SetTrigger(Constan.AnimLand);
     }
@@ -31,19 +30,19 @@ public class LandState : PlayerBaseState
     public override void CheckSwitchState()
     {
         //to idle
-        if (_elapsedTime >= 1.5f && PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
+        if (_elapsedTime >= 1.2f && PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
 
         //to walk
-        if (_elapsedTime >= 1.5f && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        if (_elapsedTime >= 1.2f && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Walk());
         }
         
         //to jump
-        if (_elapsedTime >= 1.5f && InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround())
+        if (_elapsedTime >= 1.2f && InputManager.Instance.jumpBtn && PlayerController.Instance.IsGround())
         {
             SwitchState(_factory.Jump());
         }

@@ -28,7 +28,6 @@ public class JumpState : AirBorneState
 
     public override void OnExitState()
     {
-       
         _context.Animator.ResetTrigger(Constan.AnimJump);
     }
 
@@ -39,7 +38,7 @@ public class JumpState : AirBorneState
         {
             SwitchState(_factory.Fall());
         }
-
+        
         //to slide
         if (PlayerController.Instance.IsSliding)
         {
