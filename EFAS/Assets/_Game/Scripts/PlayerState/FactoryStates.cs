@@ -27,4 +27,8 @@ public class FactoryStates
    public PlayerBaseState Slide(){       
        return new SlideState(_context, this);
    }
+   
+   public PlayerBaseState Land(){       
+       return new LandState(_context, this);
+   }
 }

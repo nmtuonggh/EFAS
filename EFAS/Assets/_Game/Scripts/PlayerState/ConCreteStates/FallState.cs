@@ -16,7 +16,6 @@ public class FallState : AirBorneState
 
     public override void OnUpdateState()
     {
-        //Debug.Log("VerticalVelocity.y: " + PlayerController.Instance.VerticalVelocity.y);
         base.OnUpdateState();
         CheckSwitchState();
     }
@@ -33,18 +32,11 @@ public class FallState : AirBorneState
         {
             SwitchState(_factory.Slide());
         }
-
-        //to idle
-        if (PlayerController.Instance.IsGround() && !InputManager.Instance.IsMoving())
+        
+        //to land
+        if (PlayerController.Instance.IsGround())
         {
-            SwitchState(_factory.Idle());
+            SwitchState(_factory.Land());
         }
-
-        //to walk
-        if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
-        {
-            SwitchState(_factory.Walk());
-        }
-        //to run
     }
 }
