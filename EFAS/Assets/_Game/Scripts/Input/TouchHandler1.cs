@@ -7,6 +7,7 @@ public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     [SerializeField] private bool _isTouching = false;
     private Vector2 _previousTouchPosition;
     [SerializeField] private int _activeFingerId = -1;
+    private float _camsensitivity = 1f;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -39,7 +40,14 @@ public class TouchHandler1 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             {
                 var currentTouchPosition = currentTouch.position;
                 Vector2 deltaPosition = currentTouchPosition - _previousTouchPosition;
-                CameraController.Instance.CameraRotation(deltaPosition);
+                deltaPosition /= Time.deltaTime;
+                deltaPosition /= (140f / _camsensitivity);
+                //Debug.Log("deltaPosition: " + deltaPosition);
+                deltaPosition = Vector2.ClampMagnitude(deltaPosition,10f);
+                var targetLook = Vector2.zero;
+                targetLook.x = Mathf.Abs(deltaPosition.x) > 0.8f ? deltaPosition.x : 0;
+                targetLook.y = Mathf.Abs(deltaPosition.y) > 0.8f ? deltaPosition.y : 0;
+                CameraController.Instance.CameraRotation(targetLook);
                 _previousTouchPosition = currentTouchPosition;
             }
         }

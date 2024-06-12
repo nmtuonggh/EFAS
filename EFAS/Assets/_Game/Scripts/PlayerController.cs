@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
+
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
@@ -30,11 +25,7 @@ public class PlayerController : MonoBehaviour
     //Slide
     [SerializeField] private bool _isSliding;
     private Vector3 _slopSlideVelocity;
-
-    //bool check event
-    //private bool _isJumping = false;
-    //private bool _isRunning = false;
-
+    
     public Vector3 VerticalVelocity
     {
         get => verticalVelocity;
@@ -75,7 +66,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //OnAir();
         CheckSlopeSlideVelocity();
         VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)
@@ -148,34 +138,19 @@ public class PlayerController : MonoBehaviour
 
     public bool JumpState()
     {
-        if (verticalVelocity.y > 0)
+        if (verticalVelocity.y > 1f)
         {
             return true;
         }
-
-        if (verticalVelocity.y < -1f)
-        {
-            return false;
-        }
-
         return false;
     }
-
-    private void OnAir()
+    
+    public bool FallState()
     {
-        if (InputManager.Instance.IsMoving())
+        if (verticalVelocity.y < -8f)
         {
-            float targetRotation =
-                Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
-                _mainCamera.transform.eulerAngles.y;
-            Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-            _playerRotationObj.transform.rotation = Quaternion.Slerp(_playerRotationObj.transform.rotation,
-                targetRotationQuaternion, Time.deltaTime * _smoothRotation);
-            Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-
-            _characterController.Move(targetDir.normalized * (_speed * Time.deltaTime) +
-                                      new Vector3(0.0f, verticalVelocity.y, 0.0f) * Time.deltaTime);
+            return true;
         }
+        return false;
     }
 }

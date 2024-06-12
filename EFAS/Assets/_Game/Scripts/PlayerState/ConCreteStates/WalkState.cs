@@ -31,7 +31,7 @@ public class WalkState : PlayerBaseState
             SwitchState(_factory.Slide());
         }
         //to fall
-        if (!PlayerController.Instance.IsGround())
+        if (!PlayerController.Instance.IsGround() && PlayerController.Instance.FallState())
         {
             SwitchState(_factory.Fall());
         }

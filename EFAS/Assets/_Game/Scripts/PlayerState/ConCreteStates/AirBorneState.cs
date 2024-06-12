@@ -10,18 +10,18 @@ public class AirBorneState : PlayerBaseState
 
     public override void OnEnterState()
     {
-        Debug.Log("Start AirBorneState");
+       
     }
 
     public override void OnUpdateState()
     {
-        Debug.Log("Update AirBorneState");
+        
         WalkHandler();
     }
 
     public override void OnExitState()
     {
-        Debug.Log("Exit AirBorneState");
+       
     }
 
     public override void CheckSwitchState()
