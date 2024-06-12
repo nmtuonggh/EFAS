@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2051d42641589254a977d274ff719019
+guid: 697328bf05eeffc4184e3f424d515e70
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -37,21 +37,21 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: StopWalking
+      name: Idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 180
+      lastFrame: 500
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
