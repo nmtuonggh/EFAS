@@ -9767,7 +9767,7 @@ MonoBehaviour:
   _normalSpeed: 10
   _smoothRotation: 10
   _gravity: -5
-  _jumpHeight: 5
+  _jumpHeight: 3
   _mainCamera: {fileID: 963194225}
   _playerRotationObj: {fileID: 513728359}
   _isSliding: 0
@@ -15756,7 +15756,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895453192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
   m_Name: 
