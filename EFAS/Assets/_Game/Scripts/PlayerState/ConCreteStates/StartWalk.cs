@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartWalk : MonoBehaviour
+public class StartWalk : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public StartWalk(StatesMachineController currentContext, FactoryStates playerFactoryState) : base(currentContext, playerFactoryState)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnEnterState()
     {
-        
+    }
+
+    public override void OnUpdateState()
+    {
+        CheckSwitchState();
+    }
+
+    public override void OnExitState()
+    {
+    }
+
+    public override void CheckSwitchState()
+    {
     }
 }
