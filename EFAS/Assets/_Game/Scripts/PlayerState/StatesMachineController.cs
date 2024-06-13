@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StatesMachineController : MonoBehaviour
 {
+<<<<<<< HEAD
     private PlayerBaseState _currentState;
     private FactoryStates _states;
     [SerializeField] private Animator _animator;
@@ -34,3 +35,7 @@ public class StatesMachineController : MonoBehaviour
         _currentState.OnUpdateState();
     }
 }
+=======
+    
+}
+>>>>>>> main
