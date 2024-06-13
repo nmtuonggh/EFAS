@@ -11,6 +11,7 @@ public class IdleState : PlayerBaseState
 
     public override void OnEnterState()
     {
+        _elapsedTime = 0;
         _context.Animator.SetTrigger(Constan.AnimIdle);
     }
 
@@ -19,7 +20,7 @@ public class IdleState : PlayerBaseState
         CheckSwitchState();
     }
 
-    public override void OnExitState()
+    protected override void OnExitState()
     {
         _context.Animator.ResetTrigger(Constan.AnimIdle);
     }
@@ -32,10 +33,10 @@ public class IdleState : PlayerBaseState
             SwitchState(_factory.Slide());
         }
 
-        //to walk
+        //to start walk
         if (InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
         {
-            SwitchState(_factory.Walk());
+            SwitchState(_factory.StartWalk());
         }
 
         //to jump

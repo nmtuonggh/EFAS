@@ -11,4 +11,6 @@ public class Constan
     public const string AnimSlide = "slide";
     public const string AnimFall = "fall";
     public const string AnimLand = "land";
+    public const string AnimStartWalk = "startW";
+    public const string AnimStopWalk = "stopW";
 }
