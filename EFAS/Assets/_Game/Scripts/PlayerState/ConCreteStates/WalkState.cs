@@ -62,11 +62,9 @@ public class WalkState : PlayerBaseState
         PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(PlayerController.Instance.PlayerRotationObj.transform.rotation,
             targetRotationQuaternion, Time.deltaTime * PlayerController.Instance.SmoothRotation);
         
-        //Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-        Vector3 targetDir = new Vector3(InputManager.Instance.Move.x ,0, InputManager.Instance.Move.y);
-        //Debug.Log("targerDir.x = " + targetDir.x + " targetDir.y = " + targetDir.y + " targetDir.z = " + targetDir.z );
+        Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
         PlayerController.Instance.CharacterController.Move(targetDir * (PlayerController.Instance.Speed * Time.deltaTime) +
-                                  new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
+                                                           new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
     }
 }
 
