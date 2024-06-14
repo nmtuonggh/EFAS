@@ -52,7 +52,7 @@ public class WalkState : PlayerBaseState
         }
     }
 
-    private static void MoveHandler()
+    private void MoveHandler()
     {
         Vector2 moveInput = InputManager.Instance.Move;
     
@@ -84,6 +84,7 @@ public class WalkState : PlayerBaseState
             targetDir * (speed * Time.deltaTime) +
             new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime
         );
+        PlayerController.Instance.SetMovementDirection(targetDir);
     }
 }
 

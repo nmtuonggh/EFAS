@@ -1,8 +1,9 @@
 
+using EasyCharacterMovement;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
     public static PlayerController Instance;
     private CharacterController _characterController;
@@ -14,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _smoothRotation;
 
     //jump
-    [SerializeField] private float _gravity;
     [SerializeField] private float _jumpHeight;
     private Vector3 verticalVelocity;
 
@@ -37,17 +37,22 @@ public class PlayerController : MonoBehaviour
         get => _speed;
         set => _speed = value;
     }
-    public GameObject PlayerRotationObj => _playerRotationObj;
     public GameObject MainCamera => _mainCamera;
     public CharacterController CharacterController => _characterController;
     public float SmoothRotation => _smoothRotation;
     public float JumpHeight => _jumpHeight;
-    public float Gravity => _gravity;
     public bool IsSliding => _isSliding;
     public float NormalSpeed => _normalSpeed;
 
-    private void Awake()
+    public GameObject PlayerRotationObj
     {
+        get => _playerRotationObj;
+        set => _playerRotationObj = value;
+    }
+
+    protected override void Awake()
+    {
+        //base.Awake();
         if (Instance == null)
         {
             Instance = this;
@@ -58,19 +63,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
-        _normalSpeed = _speed;
-        _characterController = GetComponent<CharacterController>();
+       //base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        CheckSlopeSlideVelocity();
-        VerticalControl();
+        //base.Update();
+        //MoveHandler();
+        //CheckSlopeSlideVelocity();
+        //VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)
         {
             _isSliding = false;
+        }
+    }
+    private void MoveHandler()
+    {
+        if(InputManager.Instance.IsMoving())
+        {
+            Debug.Log("call");
+            Vector2 moveInput = InputManager.Instance.Move;
+    
+            // Tính độ lớn của vector di chuyển
+            float inputMagnitude = moveInput.magnitude;
+    
+            // Đảm bảo độ lớn không vượt quá 1
+            inputMagnitude = Mathf.Clamp01(inputMagnitude);
+    
+            // Tính toán hướng xoay dựa trên input của joystick
+            float targetRotation = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + PlayerController.Instance.MainCamera.transform.eulerAngles.y;
+            Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
+
+            // Xoay đối tượng nhân vật
+            PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
+                PlayerController.Instance.PlayerRotationObj.transform.rotation,
+                targetRotationQuaternion,
+                Time.deltaTime * PlayerController.Instance.SmoothRotation
+            );
+    
+            // Tính toán hướng di chuyển
+            Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
+    
+            // Tính toán tốc độ di chuyển dựa trên độ lớn của vector input
+            float speed = PlayerController.Instance.Speed * inputMagnitude;
+    
+            // Di chuyển nhân vật
+       
+            PlayerController.Instance.SetMovementDirection(targetDir);
         }
     }
 
@@ -96,7 +137,7 @@ public class PlayerController : MonoBehaviour
             _characterController.Move(velocity * Time.deltaTime);
         }
 
-        verticalVelocity.y += (_gravity * 9.8f) * Time.deltaTime;
+        
         _characterController.Move(verticalVelocity * Time.deltaTime);
     }
 

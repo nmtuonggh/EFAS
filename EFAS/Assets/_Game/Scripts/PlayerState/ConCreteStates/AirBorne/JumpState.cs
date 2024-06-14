@@ -49,7 +49,7 @@ public class JumpState : AirBorneState
     private void JumpHandler()
     {
         var vector3 = PlayerController.Instance.VerticalVelocity;
-        vector3.y = Mathf.Sqrt((PlayerController.Instance.JumpHeight * 10) * -2f * PlayerController.Instance.Gravity);
+        //vector3.y = Mathf.Sqrt((PlayerController.Instance.JumpHeight * 10) * -2f * PlayerController.Instance.Gravity);
         PlayerController.Instance.VerticalVelocity = vector3;
     }
 }
