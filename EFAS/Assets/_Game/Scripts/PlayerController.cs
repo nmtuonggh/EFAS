@@ -1,8 +1,9 @@
 
+using EasyCharacterMovement;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
     public static PlayerController Instance;
     private CharacterController _characterController;
@@ -14,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _smoothRotation;
 
     //jump
-    [SerializeField] private float _gravity;
     [SerializeField] private float _jumpHeight;
     private Vector3 verticalVelocity;
 
@@ -37,17 +37,22 @@ public class PlayerController : MonoBehaviour
         get => _speed;
         set => _speed = value;
     }
-    public GameObject PlayerRotationObj => _playerRotationObj;
     public GameObject MainCamera => _mainCamera;
     public CharacterController CharacterController => _characterController;
     public float SmoothRotation => _smoothRotation;
     public float JumpHeight => _jumpHeight;
-    public float Gravity => _gravity;
     public bool IsSliding => _isSliding;
     public float NormalSpeed => _normalSpeed;
 
+    public GameObject PlayerRotationObj
+    {
+        get => _playerRotationObj;
+        set => _playerRotationObj = value;
+    }
+
     private void Awake()
     {
+        base.Awake();
         if (Instance == null)
         {
             Instance = this;
@@ -60,14 +65,16 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        base.Start();
         _normalSpeed = _speed;
         _characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        CheckSlopeSlideVelocity();
-        VerticalControl();
+        base.Update();
+        //CheckSlopeSlideVelocity();
+        //VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)
         {
             _isSliding = false;
@@ -96,7 +103,7 @@ public class PlayerController : MonoBehaviour
             _characterController.Move(velocity * Time.deltaTime);
         }
 
-        verticalVelocity.y += (_gravity * 9.8f) * Time.deltaTime;
+        
         _characterController.Move(verticalVelocity * Time.deltaTime);
     }
 

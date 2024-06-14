@@ -1,4 +1,5 @@
 
+using EasyCharacterMovement;
 using UnityEngine;
 
 public abstract class PlayerBaseState
