@@ -1,19 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
+
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     private CharacterController _characterController;
-    private Animator anim;
 
     [Header("Player Move")] [SerializeField]
-    private float speed;
+    private float _speed;
 
     [SerializeField] private float _normalSpeed;
     [SerializeField] private float _smoothRotation;
@@ -28,47 +23,58 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _playerRotationObj;
 
     //Slide
-    private bool _isSliding;
+    [SerializeField] private bool _isSliding;
     private Vector3 _slopSlideVelocity;
+    
+    public Vector3 VerticalVelocity
+    {
+        get => verticalVelocity;
+        set => verticalVelocity = value;
+    }
+
+    public float Speed
+    {
+        get => _speed;
+        set => _speed = value;
+    }
+    public GameObject PlayerRotationObj => _playerRotationObj;
+    public GameObject MainCamera => _mainCamera;
+    public CharacterController CharacterController => _characterController;
+    public float SmoothRotation => _smoothRotation;
+    public float JumpHeight => _jumpHeight;
+    public float Gravity => _gravity;
+    public bool IsSliding => _isSliding;
+    public float NormalSpeed => _normalSpeed;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        _normalSpeed = speed;
+        _normalSpeed = _speed;
         _characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        Move();
-        VerticalControll();
         CheckSlopeSlideVelocity();
+        VerticalControl();
         if (_slopSlideVelocity == Vector3.zero)
         {
             _isSliding = false;
         }
     }
 
-    private void Move()
-    {
-        if (InputManager.Instance.move.magnitude >= 0.1f)
-        {
-            float targetRotation =
-                Mathf.Atan2(InputManager.Instance.move.x, InputManager.Instance.move.y) * Mathf.Rad2Deg +
-                _mainCamera.transform.eulerAngles.y;
-            Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-            _playerRotationObj.transform.rotation = Quaternion.Slerp(_playerRotationObj.transform.rotation,
-                targetRotationQuaternion, Time.deltaTime * _smoothRotation);
-            Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-
-            _characterController.Move(targetDir.normalized * (speed * Time.deltaTime) +
-                                     new Vector3(0.0f, verticalVelocity.y, 0.0f) * Time.deltaTime);
-        }
-    }
-
-
-    private void VerticalControll()
+    private void VerticalControl()
     {
         if (_characterController.isGrounded && verticalVelocity.y < 0)
         {
@@ -106,6 +112,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        HandlerSlide();
+        _slopSlideVelocity = Vector3.zero;
+    }
+
+    private void HandlerSlide()
+    {
         if (_isSliding)
         {
             _slopSlideVelocity -= _slopSlideVelocity * Time.deltaTime * 5;
@@ -119,21 +131,26 @@ public class PlayerController : MonoBehaviour
         _slopSlideVelocity = Vector3.zero;
     }
 
-    public void Jump()
+    public bool IsGround()
     {
-        if (_characterController.isGrounded && _isSliding == false)
+        return _characterController.isGrounded;
+    }
+
+    public bool JumpState()
+    {
+        if (verticalVelocity.y > 1f)
         {
-            verticalVelocity.y = Mathf.Sqrt((_jumpHeight * 10) * -2f * _gravity);
+            return true;
         }
+        return false;
     }
-
-    public void Run()
+    
+    public bool FallState()
     {
-        speed += 10;
-    }
-
-    public void Walke()
-    {
-        speed = _normalSpeed;
+        if (verticalVelocity.y < -10f)
+        {
+            return true;
+        }
+        return false;
     }
 }
