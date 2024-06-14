@@ -64,11 +64,11 @@ public class RunState : PlayerBaseState
     {
         float targetRotation =
             Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
-            PlayerController.Instance.MainCamera.transform.eulerAngles.y;
+            CameraController.Instance.MainCamera.transform.eulerAngles.y;
         Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
 
-        PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(PlayerController.Instance.PlayerRotationObj.transform.rotation,
-            targetRotationQuaternion, Time.deltaTime * PlayerController.Instance.SmoothRotation);
+        CameraController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(CameraController.Instance.PlayerRotationObj.transform.rotation,
+            targetRotationQuaternion, Time.deltaTime * 10);
         Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
 
         PlayerController.Instance.CharacterController.Move(targetDir.normalized * (PlayerController.Instance.Speed * Time.deltaTime) +

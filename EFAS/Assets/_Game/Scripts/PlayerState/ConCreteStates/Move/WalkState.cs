@@ -25,66 +25,65 @@ public class WalkState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        //to jump
-        if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
-        {
-            SwitchState(_factory.Jump());
-        }
+        // //to jump
+        // if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
+        // {
+        //     SwitchState(_factory.Jump());
+        // }
         //to stop walk
-        if(!InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        if(!InputManager.Instance.IsMoving() && _context.Character.IsGrounded())
         {
             SwitchState(_factory.StopWalk());
         }
-        //to slide
-        if (PlayerController.Instance.IsSliding)
-        {
-            SwitchState(_factory.Slide());
-        }
-        //to fall
-        if (!PlayerController.Instance.IsGround() && PlayerController.Instance.FallState())
-        {
-            SwitchState(_factory.Fall());
-        }
-        //to run
-        if(InputManager.Instance.IsMoving()&&InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
-        {
-            SwitchState(_factory.Run());
-        }
+        // //to slide
+        // if (PlayerController.Instance.IsSliding)
+        // {
+        //     SwitchState(_factory.Slide());
+        // }
+        // //to fall
+        // if (!PlayerController.Instance.IsGround() && PlayerController.Instance.FallState())
+        // {
+        //     SwitchState(_factory.Fall());
+        // }
+        // //to run
+        // if(InputManager.Instance.IsMoving()&&InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround())
+        // {
+        //     SwitchState(_factory.Run());
+        // }
     }
 
     private void MoveHandler()
     {
         Vector2 moveInput = InputManager.Instance.Move;
-    
-        // Tính độ lớn của vector di chuyển
-        float inputMagnitude = moveInput.magnitude;
-    
-        // Đảm bảo độ lớn không vượt quá 1
-        inputMagnitude = Mathf.Clamp01(inputMagnitude);
-    
+
         // Tính toán hướng xoay dựa trên input của joystick
-        float targetRotation = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + PlayerController.Instance.MainCamera.transform.eulerAngles.y;
+        float targetRotation = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + CameraController.Instance.MainCamera.transform.eulerAngles.y;
         Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
 
         // Xoay đối tượng nhân vật
-        PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
-            PlayerController.Instance.PlayerRotationObj.transform.rotation,
+        CameraController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
+            CameraController.Instance.PlayerRotationObj.transform.rotation,
             targetRotationQuaternion,
-            Time.deltaTime * PlayerController.Instance.SmoothRotation
+            Time.deltaTime * 10
         );
     
         // Tính toán hướng di chuyển
-        Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-    
-        // Tính toán tốc độ di chuyển dựa trên độ lớn của vector input
-        float speed = PlayerController.Instance.Speed * inputMagnitude;
-    
-        // Di chuyển nhân vật
-        PlayerController.Instance.CharacterController.Move(
-            targetDir * (speed * Time.deltaTime) +
-            new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime
-        );
-        PlayerController.Instance.SetMovementDirection(targetDir);
+        //Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
+        Vector3 cameraForward = CameraController.Instance.MainCamera.transform.forward;
+        Vector3 cameraRight = CameraController.Instance.MainCamera.transform.right;
+
+        // Loại bỏ thành phần y để tránh di chuyển lên xuống
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+
+        // Chuẩn hóa vector để đảm bảo nó không ảnh hưởng đến tốc độ di chuyển
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        // Tính toán hướng di chuyển mới dựa trên hướng của camera và input từ joystick
+        Vector3 targetDir = cameraForward * moveInput.y + cameraRight * moveInput.x;
+
+        _context.Character.SetMovementDirection(targetDir);
     }
 }
 

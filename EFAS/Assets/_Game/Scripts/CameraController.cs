@@ -11,6 +11,14 @@ public class CameraController : MonoBehaviour
     [Header("Camera Follow Object")] 
     [SerializeField]
     private Transform _cameraFollow;
+    [SerializeField] public GameObject _mainCamera;
+    [SerializeField] private GameObject _playerRotationObj;
+    public GameObject PlayerRotationObj
+    {
+        get => _playerRotationObj;
+        set => _playerRotationObj = value;
+    }
+    public GameObject MainCamera => _mainCamera;
 
     
     [Header("Values")] 

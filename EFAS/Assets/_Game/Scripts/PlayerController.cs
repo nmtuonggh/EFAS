@@ -19,8 +19,8 @@ public class PlayerController : Character
     private Vector3 verticalVelocity;
 
     //camera
-    [SerializeField] private GameObject _mainCamera;
-    [SerializeField] private GameObject _playerRotationObj;
+    //[SerializeField] private GameObject _mainCamera;
+    //[SerializeField] private GameObject _playerRotationObj;
 
     //Slide
     [SerializeField] private bool _isSliding;
@@ -37,18 +37,13 @@ public class PlayerController : Character
         get => _speed;
         set => _speed = value;
     }
-    public GameObject MainCamera => _mainCamera;
+    //public GameObject MainCamera => _mainCamera;
     public CharacterController CharacterController => _characterController;
     public float SmoothRotation => _smoothRotation;
     public float JumpHeight => _jumpHeight;
     public bool IsSliding => _isSliding;
     public float NormalSpeed => _normalSpeed;
-
-    public GameObject PlayerRotationObj
-    {
-        get => _playerRotationObj;
-        set => _playerRotationObj = value;
-    }
+    
 
     protected override void Awake()
     {
@@ -77,41 +72,6 @@ public class PlayerController : Character
         if (_slopSlideVelocity == Vector3.zero)
         {
             _isSliding = false;
-        }
-    }
-    private void MoveHandler()
-    {
-        if(InputManager.Instance.IsMoving())
-        {
-            Debug.Log("call");
-            Vector2 moveInput = InputManager.Instance.Move;
-    
-            // Tính độ lớn của vector di chuyển
-            float inputMagnitude = moveInput.magnitude;
-    
-            // Đảm bảo độ lớn không vượt quá 1
-            inputMagnitude = Mathf.Clamp01(inputMagnitude);
-    
-            // Tính toán hướng xoay dựa trên input của joystick
-            float targetRotation = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg + PlayerController.Instance.MainCamera.transform.eulerAngles.y;
-            Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-            // Xoay đối tượng nhân vật
-            PlayerController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
-                PlayerController.Instance.PlayerRotationObj.transform.rotation,
-                targetRotationQuaternion,
-                Time.deltaTime * PlayerController.Instance.SmoothRotation
-            );
-    
-            // Tính toán hướng di chuyển
-            Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-    
-            // Tính toán tốc độ di chuyển dựa trên độ lớn của vector input
-            float speed = PlayerController.Instance.Speed * inputMagnitude;
-    
-            // Di chuyển nhân vật
-       
-            PlayerController.Instance.SetMovementDirection(targetDir);
         }
     }
 
