@@ -8,7 +8,7 @@ public class StatesMachineController : MonoBehaviour
     private PlayerBaseState _currentState;
     private FactoryStates _states;
     [SerializeField] private Animator _animator;
-    [SerializeField] private PlayerController _playerController;
+    //[SerializeField] private PlayerController _playerController;
 
     //get,set
     public PlayerBaseState CurrentState

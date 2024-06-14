@@ -3907,7 +3907,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1871443070}
-  _playerController: {fileID: 1154038456}
 --- !u!4 &533635176
 Transform:
   m_ObjectHideFlags: 0
@@ -12241,6 +12240,7 @@ GameObject:
   - component: {fileID: 1361047292}
   - component: {fileID: 1361047296}
   - component: {fileID: 1361047297}
+  - component: {fileID: 1361047298}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -12365,8 +12365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e02e3f1fa61e994398719751b66b31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handleInput: 1
-  _rotationMode: 1
+  _handleInput: 0
+  _rotationMode: 0
   _rotationRate: 540
   _defaultMovementMode: 1
   _maxWalkSpeed: 6
@@ -12438,6 +12438,68 @@ MonoBehaviour:
   _cinemachineTargetYaw: 0
   _cinemachineTargetPitch: 0
   _sens: 2
+--- !u!114 &1361047298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361047290}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fd6cd1fc55cb247bf243284c3a3964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handleInput: 0
+  _rotationMode: 0
+  _rotationRate: 540
+  _defaultMovementMode: 1
+  _maxWalkSpeed: 6
+  _minAnalogWalkSpeed: 0
+  _maxAcceleration: 20
+  _brakingDecelerationWalking: 20
+  _groundFriction: 8
+  _maxFallSpeed: 40
+  _brakingDecelerationFalling: 0
+  _fallingLateralFriction: 0.3
+  _airControl: 0.3
+  _maxFlySpeed: 10
+  _brakingDecelerationFlying: 0
+  _flyingFriction: 0.5
+  _canEverSwim: 1
+  _maxSwimSpeed: 3
+  _brakingDecelerationSwimming: 0
+  _swimmingFriction: 0.5
+  _buoyancy: 1
+  _useSeparateBrakingFriction: 0
+  _brakingFriction: 0
+  _canEverSprint: 1
+  _sprintSpeedModifier: 1.5
+  _sprintAccelerationModifier: 1
+  _canEverCrouch: 1
+  _unCrouchedHeight: 2
+  _crouchedHeight: 1.25
+  _crouchingSpeedModifier: 0.5
+  _canEverJump: 1
+  _jumpWhileCrouching: 0
+  _jumpMaxCount: 1
+  _jumpImpulse: 6
+  _jumpMaxHoldTime: 0.35
+  _jumpPreGroundedTime: 0.15
+  _jumpPostGroundedTime: 0.15
+  _gravity: {x: 0, y: -9.81, z: 0}
+  _gravityScale: 1
+  _useRootMotion: 0
+  _impartPlatformMovement: 0
+  _impartPlatformRotation: 0
+  _impartPlatformVelocity: 0
+  _enablePhysicsInteraction: 0
+  _applyPushForceToCharacters: 0
+  _applyStandingDownwardForce: 0
+  _mass: 1
+  _pushForceScale: 1
+  _standingDownwardForceScale: 1
+  _camera: {fileID: 0}
 --- !u!1 &1377383551
 GameObject:
   m_ObjectHideFlags: 0
@@ -16278,7 +16340,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 1361047295}
   m_Follow: {fileID: 754445070}
   m_Lens:
     FieldOfView: 50

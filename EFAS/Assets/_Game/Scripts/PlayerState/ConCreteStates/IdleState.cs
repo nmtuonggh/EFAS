@@ -13,12 +13,13 @@ public class IdleState : PlayerBaseState
     {
         Debug.Log("Enter Idle State");
         _elapsedTime = 0;
-        _context.Animator.SetTrigger(Constan.AnimIdle);
+        //_context.Animator.SetTrigger(Constan.AnimIdle);
     }
 
     public override void OnUpdateState()
     {
         MoveHandler();
+
         //CheckSwitchState();
     }
 
@@ -51,6 +52,7 @@ public class IdleState : PlayerBaseState
     {
         if(InputManager.Instance.IsMoving())
         {
+            Debug.Log("call");
             Vector2 moveInput = InputManager.Instance.Move;
     
             // Tính độ lớn của vector di chuyển
