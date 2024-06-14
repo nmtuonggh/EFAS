@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
     
     public bool FallState()
     {
-        if (verticalVelocity.y < -8f)
+        if (verticalVelocity.y < -10f)
         {
             return true;
         }
