@@ -28,15 +28,16 @@ public class StopWalk : PlayerBaseState
     public override void CheckSwitchState()
     {
         //to idle
-        if(_elapsedTime >= 0.6f &&!InputManager.Instance.IsMoving() && _context.Character.IsGrounded())
+        if(_elapsedTime >= 0.3f && !InputManager.Instance.IsMoving() && _context.Character.IsGrounded())
         {
+            Debug.Log("Stop Walk to Idle");
             SwitchState(_factory.Idle());
         }
-        // //to start walk
-        // if (_elapsedTime is > 0.3f and < 0.6f && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
-        // {
-        //     SwitchState(_factory.StartWalk());
-        // }
+        //to start walk
+        if (_elapsedTime is > 0.15f and < 0.3f && InputManager.Instance.IsMoving() && _context.Character.IsGrounded())
+        {
+            SwitchState(_factory.StartWalk());
+        }
         // //to jump
         // if (_elapsedTime is > 0.3f and < 0.6f && PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
         // {

@@ -12,67 +12,46 @@ public class RunState : PlayerBaseState
     public override void OnEnterState()
     {
         _context.Animator.SetTrigger(Constan.AnimRun);
-        PlayerController.Instance.Speed += 10f;
+        _context.Character.Sprint();
     }
 
     public override void OnUpdateState()
     {
-        MoveHandler();
+        InputManager.Instance.MoveHandler();
         CheckSwitchState();
     }
 
     protected override void OnExitState()
     {
         _context.Animator.ResetTrigger(Constan.AnimRun);
-        PlayerController.Instance.Speed = PlayerController.Instance.NormalSpeed;
+        _context.Character.StopSprinting();
     }
 
     public override void CheckSwitchState()
     {
         //to fall
-        if (PlayerController.Instance.FallState())
+        if (_context.Character.IsFalling())
         {
             SwitchState(_factory.Fall());
         }
-        
-        //to slide
-        if (PlayerController.Instance.IsSliding)
-        {
-            SwitchState(_factory.Slide());
-        }
 
         //to stop Walk (idle)
-        if (InputManager.Instance.runBtnDown && PlayerController.Instance.IsGround() &&
+        if (InputManager.Instance.runBtnDown && _context.Character.IsGrounded() &&
             !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.StopWalk());
         }
 
         //to walk
-        if (InputManager.Instance.runBtnUp && InputManager.Instance.IsMoving() && PlayerController.Instance.IsGround())
+        if (InputManager.Instance.runBtnUp && InputManager.Instance.IsMoving() && _context.Character.IsGrounded())
         {
             SwitchState(_factory.Walk());
         }
 
         //to jump
-        if (PlayerController.Instance.IsGround() && InputManager.Instance.jumpBtn)
+        if (_context.Character.IsGrounded() && InputManager.Instance.jumpBtn)
         {
             SwitchState(_factory.Jump());
         }
     }
-    private static void MoveHandler()
-    {
-        float targetRotation =
-            Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
-            CameraController.Instance.MainCamera.transform.eulerAngles.y;
-        Quaternion targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-        CameraController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(CameraController.Instance.PlayerRotationObj.transform.rotation,
-            targetRotationQuaternion, Time.deltaTime * 10);
-        Vector3 targetDir = targetRotationQuaternion * Vector3.forward;
-
-        PlayerController.Instance.CharacterController.Move(targetDir.normalized * (PlayerController.Instance.Speed * Time.deltaTime) +
-                                                           new Vector3(0.0f, PlayerController.Instance.VerticalVelocity.y, 0.0f) * Time.deltaTime);
-    }
-    
 }

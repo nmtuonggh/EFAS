@@ -31,28 +31,16 @@ public class JumpState : AirBorneState
 
     public override void CheckSwitchState()
     {
-        // //to fall
-        // if (_elapsedTime >= 0.3f && !PlayerController.Instance.JumpState())
-        // {
-        //     SwitchState(_factory.Fall());
-        // }
-        //
-        // //to slide
-        // if (PlayerController.Instance.IsSliding)
-        // {
-        //     SwitchState(_factory.Slide());
-        // }
+        //to fall
+        if (_context.Character.IsFalling() && !_context.Character.IsGrounded())
+        {
+            SwitchState(_factory.Fall());
+        }
+        
         //to idle
         if(_context.Character.IsGrounded() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Idle());
         }
-    }
-
-    private void JumpHandler()
-    {
-        var vector3 = PlayerController.Instance.VerticalVelocity;
-        //vector3.y = Mathf.Sqrt((PlayerController.Instance.JumpHeight * 10) * -2f * PlayerController.Instance.Gravity);
-        PlayerController.Instance.VerticalVelocity = vector3;
     }
 }

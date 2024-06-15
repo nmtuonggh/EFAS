@@ -31,16 +31,7 @@ public class AirBorneState : PlayerBaseState
     {
         if (InputManager.Instance.Move != Vector2.zero)
         {
-            var targetRotation =
-                Mathf.Atan2(InputManager.Instance.Move.x, InputManager.Instance.Move.y) * Mathf.Rad2Deg +
-                CameraController.Instance.MainCamera.transform.eulerAngles.y;
-            var targetRotationQuaternion = Quaternion.Euler(0f, targetRotation, 0f);
-
-            CameraController.Instance.PlayerRotationObj.transform.rotation = Quaternion.Slerp(
-                CameraController.Instance.PlayerRotationObj.transform.rotation,
-                targetRotationQuaternion, Time.deltaTime * 10);
-            var targetDir = targetRotationQuaternion * Vector3.forward;
-            _context.Character.SetMovementDirection(targetDir);
+            InputManager.Instance.MoveHandler();
         }
     }
 }

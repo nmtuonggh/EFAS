@@ -27,16 +27,26 @@ public class FallState : AirBorneState
 
     public override void CheckSwitchState()
     {
-        //to slide
-        if (PlayerController.Instance.IsSliding)
-        {
-            SwitchState(_factory.Slide());
-        }
-        
         //to land
-        if (PlayerController.Instance.IsGround())
+        // if (_context.Character.IsGrounded())
+        // {
+        //     Debug.Log("fall to land");
+        //     SwitchState(_factory.Land());
+        // }
+        //to idle
+        if (_context.Character.IsGrounded() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Land());
+        }
+        //to start walk
+        if (_context.Character.IsGrounded() && InputManager.Instance.IsMoving())
+        {
+            SwitchState(_factory.StartWalk());
+        }
+        //to run   
+        if (_context.Character.IsGrounded() && _context.Character.IsSprinting())
+        {
+            SwitchState(_factory.Run());
         }
     }
 }
