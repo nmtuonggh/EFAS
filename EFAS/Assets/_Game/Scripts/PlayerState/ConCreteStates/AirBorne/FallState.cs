@@ -22,18 +22,14 @@ public class FallState : AirBorneState
 
     protected override void OnExitState()
     {
+        base.OnExitState();
         _context.Animator.ResetTrigger(Constan.AnimFall);
     }
 
     public override void CheckSwitchState()
     {
+
         //to land
-        // if (_context.Character.IsGrounded())
-        // {
-        //     Debug.Log("fall to land");
-        //     SwitchState(_factory.Land());
-        // }
-        //to idle
         if (_context.Character.IsGrounded() && !InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Land());
@@ -44,7 +40,7 @@ public class FallState : AirBorneState
             SwitchState(_factory.StartWalk());
         }
         //to run   
-        if (_context.Character.IsGrounded() && _context.Character.IsSprinting())
+        if (_context.Character.IsGrounded() && _context.Character.IsSprinting() && InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.Run());
         }

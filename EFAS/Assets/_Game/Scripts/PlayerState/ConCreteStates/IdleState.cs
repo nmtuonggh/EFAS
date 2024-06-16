@@ -18,7 +18,7 @@ public class IdleState : PlayerBaseState
 
     public override void OnUpdateState()
     {
-        //Debug.Log("update idle");
+        Debug.Log("update idle");
         CheckSwitchState();
     }
 
@@ -30,7 +30,7 @@ public class IdleState : PlayerBaseState
     public override void CheckSwitchState()
     {
         //to start walk
-        if (InputManager.Instance.IsMoving() )
+        if (InputManager.Instance.IsMoving())
         {
             SwitchState(_factory.StartWalk());
         }

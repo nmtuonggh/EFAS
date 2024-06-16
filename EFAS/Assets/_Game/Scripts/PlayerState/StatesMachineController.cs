@@ -7,7 +7,7 @@ using UnityEngine;
 public class StatesMachineController : MonoBehaviour
 {
     [SerializeField] private Character _character;
-    private PlayerBaseState _currentState;
+    [SerializeField]private PlayerBaseState _currentState;
     private FactoryStates _states;
     [SerializeField] private Animator _animator;
     //[SerializeField] private PlayerController _playerController;
@@ -40,6 +40,7 @@ public class StatesMachineController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("current state: " + _currentState.GetType().Name);
         _currentState.OnUpdateState();
     }
 }

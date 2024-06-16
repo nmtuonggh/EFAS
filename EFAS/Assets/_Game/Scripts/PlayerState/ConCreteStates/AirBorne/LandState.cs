@@ -33,7 +33,7 @@ public class LandState : PlayerBaseState
     public override void CheckSwitchState()
     {
         //to idle
-        if (_context.Character.IsGrounded() && !InputManager.Instance.IsMoving()  && _elapsedTime >= 1.2f )
+        if (_context.Character.IsGrounded() && _elapsedTime >= 1.2f && !InputManager.Instance.IsMoving())
         {
             Debug.Log("Land to idle");
             SwitchState(_factory.Idle());

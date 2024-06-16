@@ -25,6 +25,7 @@ public class JumpState : AirBorneState
 
     protected override void OnExitState()
     {
+        base.OnExitState();
         _context.Character.StopJumping();
         _context.Animator.ResetTrigger(Constan.AnimJump);
     }
@@ -37,10 +38,10 @@ public class JumpState : AirBorneState
             SwitchState(_factory.Fall());
         }
         
-        //to idle
-        if(_context.Character.IsGrounded() && !InputManager.Instance.IsMoving())
-        {
-            SwitchState(_factory.Idle());
-        }
+        // //to idle
+        // if(_context.Character.IsGrounded() && !InputManager.Instance.IsMoving())
+        // {
+        //     SwitchState(_factory.Idle());
+        // }
     }
 }

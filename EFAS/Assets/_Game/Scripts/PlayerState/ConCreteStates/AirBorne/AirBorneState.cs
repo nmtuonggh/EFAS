@@ -20,7 +20,7 @@ public class AirBorneState : PlayerBaseState
 
     protected override void OnExitState()
     {
-       
+       _context.Character.SetMovementDirection(Vector3.zero);
     }
 
     public override void CheckSwitchState()
