@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Animancer;
 using EasyCharacterMovement;
 using UnityEngine;
 
 public class StatesMachineController : MonoBehaviour
 {
     [SerializeField] private Character _character;
-    [SerializeField]private PlayerBaseState _currentState;
+    [SerializeField] private PlayerBaseState _currentState;
     private FactoryStates _states;
     [SerializeField] private Animator _animator;
-    //[SerializeField] private PlayerController _playerController;
 
     //get,set
     public PlayerBaseState CurrentState

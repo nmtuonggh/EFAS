@@ -11,6 +11,7 @@ public class FallState : AirBorneState
 
     public override void OnEnterState()
     {
+        
         _context.Animator.SetTrigger(Constan.AnimFall);
     }
 

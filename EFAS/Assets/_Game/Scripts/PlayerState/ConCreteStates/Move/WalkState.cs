@@ -11,7 +11,7 @@ public class WalkState : PlayerBaseState
 
     public override void OnEnterState()
     {
-        _context.Animator.SetTrigger(Constan.AnimWalk);
+        //_context.Animator.SetTrigger(Constan.AnimWalk);
     }
 
     public override void OnUpdateState()
@@ -22,7 +22,7 @@ public class WalkState : PlayerBaseState
 
     protected override void OnExitState()
     {
-        _context.Animator.ResetTrigger(Constan.AnimWalk);
+        //_context.Animator.ResetTrigger(Constan.AnimWalk);
     }
 
     public override void CheckSwitchState()
