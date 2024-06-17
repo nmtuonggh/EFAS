@@ -1,8 +1,7 @@
 
 using EasyCharacterMovement;
 using UnityEngine;
-
-public abstract class PlayerBaseState
+public abstract class PlayerBaseState 
 {
     //protected Character _character;
     protected StatesMachineController _context;
