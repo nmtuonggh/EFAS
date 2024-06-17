@@ -11,6 +11,7 @@ public class IdleState : PlayerBaseState
 
     public override void OnEnterState()
     {
+        
         Debug.Log("enter idle");
         _context.Animator.SetTrigger(Constan.AnimIdle);
         _elapsedTime = 0;

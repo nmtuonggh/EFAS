@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using EasyCharacterMovement;
 using UnityEngine;
 
-public class StatesMachineController : MonoBehaviour
+public class StatesMachineController : AnimStoject
 {
     [SerializeField] private Character _character;
     [SerializeField]private PlayerBaseState _currentState;
