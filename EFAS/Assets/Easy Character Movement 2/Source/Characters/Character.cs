@@ -3036,6 +3036,7 @@ namespace EasyCharacterMovement
 
         public void SetMovementDirection(Vector3 movementDirection)
         {
+            Debug.Log("run");
             _movementDirection = movementDirection;
         }
         

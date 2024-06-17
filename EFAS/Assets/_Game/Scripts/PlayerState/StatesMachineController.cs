@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyCharacterMovement;
 using UnityEngine;
 
 public class StatesMachineController : MonoBehaviour
 {
-    private PlayerBaseState _currentState;
+    [SerializeField] private Character _character;
+    [SerializeField]private PlayerBaseState _currentState;
     private FactoryStates _states;
     [SerializeField] private Animator _animator;
     //[SerializeField] private PlayerController _playerController;
@@ -22,6 +24,13 @@ public class StatesMachineController : MonoBehaviour
         get => _animator;
         set => _animator = value;
     }
+
+    public Character Character
+    {
+        get => _character;
+        set => _character = value;
+    }
+
     private void Awake()
     {
         _states = new FactoryStates(this);
@@ -31,6 +40,7 @@ public class StatesMachineController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("current state: " + _currentState.GetType().Name);
         _currentState.OnUpdateState();
     }
 }

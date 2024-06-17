@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-    protected Character _character;
+    //protected Character _character;
     protected StatesMachineController _context;
     protected FactoryStates _factory;
     protected float _elapsedTime = 0f;

@@ -27,7 +27,8 @@ public class StartWalk : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (_elapsedTime >= 0.3)
+        //to walk
+        if (_elapsedTime >= 0.15f)
         {
             SwitchState(_factory.Walk());
         }
