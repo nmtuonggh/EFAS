@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c24ced4d68fb14fbf0671a82787c48, type: 3}
+  m_Name: Fall
+  m_EditorClassIdentifier: 
+  canTransiotionToSelf: 0
+  _mainAnimation:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 1f7a93442b82e564ab956b4cd8a0bc07, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  _walkState: {fileID: 11400000, guid: 30ffda33d4ed2d944bb2944ec16357d8, type: 2}
+  _sprintState: {fileID: 11400000, guid: ca5588c5327fd3247a5b1b70b3bfbda6, type: 2}
+  _swingState: {fileID: 11400000, guid: 87400c29a1e987d47a56902e799b2489, type: 2}
+  _landIdleState: {fileID: 11400000, guid: 25155cbd778c80146aa068f51b09ac3f, type: 2}
+  _landWalkState: {fileID: 11400000, guid: 1056ab990b0c0344187b2243639d1f8e, type: 2}
+  _landSprintState: {fileID: 11400000, guid: e0d3d5ec09c1a3145b9c9977ae44f537, type: 2}
