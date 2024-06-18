@@ -121,7 +121,7 @@ public class InputManager1 : MonoBehaviour
 //             }
 
 //#if UNITY_ANDROID && !UNITY_EDITOR
-        Debug.Log("Move " + joystickMove.Horizontal + " " + joystickMove.Vertical);
+        //Debug.Log("Move " + joystickMove.Horizontal + " " + joystickMove.Vertical);
         move = new Vector2(joystickMove.Horizontal, joystickMove.Vertical);
 
         if (Input.touchCount == 0)
