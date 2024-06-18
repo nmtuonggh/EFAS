@@ -19,7 +19,7 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: 8b58b8e3d02c1a14a86cb01d534a76e3, type: 3}
+    _Clip: {fileID: 7400000, guid: caf6d7d8202d32046a5b44dc620c96d7, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   _jumState: {fileID: 11400000, guid: 9ca923fd16e25c147a4c686b93026754, type: 2}
