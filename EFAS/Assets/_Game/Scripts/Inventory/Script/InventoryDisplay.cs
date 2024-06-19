@@ -11,9 +11,13 @@ namespace _Game.Scripts.Inventory.Script
         public int X_SPACE_BETWEEN_ITEM;
         public int NUMBER_OF_COLUMNS;
         public int Y_SPACE_BETWEEN_ITEM;
-        [SerializeField] private GameObject inventoryUI;
+        
         public GameObject inventoryPrefab;
+        
+        [SerializeField] private GameObject inventoryUI;
         [SerializeField] private InventoryObject inventory;
+        private InventorySlot _selectedSlot;
+        
         Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
         private void Start()
