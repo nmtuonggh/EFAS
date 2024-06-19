@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 342f513c57eb2634e90a00fa2b0cf266, type: 3}
-  m_Name: Apricot
+  m_Name: Carrot_FruitObject
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7851880496450429039, guid: 716911d64e86bc74f972cab5425f5eec, type: 3}
+  Id: 3
+  uiDisplay: {fileID: 21300000, guid: cb72f0e218720784f8d83f589d5870dc, type: 3}
   type: 0
   stackable: 0
   description: 

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 342f513c57eb2634e90a00fa2b0cf266, type: 3}
-  m_Name: BananaHill
+  m_Name: Banana_FruitObject
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7329405418704024017, guid: ad10bdb78c4ad4b46809a68bd9758aab, type: 3}
+  Id: 2
+  uiDisplay: {fileID: 21300000, guid: d5a92975589a4624da93e7216ee3fc90, type: 3}
   type: 0
   stackable: 0
-  description: eddadadadsdasdasda
+  description: 
