@@ -6,6 +6,7 @@ namespace _Game.Scripts.Inventory.Item.Scripts
     {
         Food,
         Weapon,
+        Dish,
         Default
     }
     public class BaseItemObject : ScriptableObject
