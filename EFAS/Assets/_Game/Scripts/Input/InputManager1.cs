@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using TouchPhase = UnityEngine.TouchPhase;
 
 public class InputManager1 : MonoBehaviour
@@ -19,7 +20,8 @@ public class InputManager1 : MonoBehaviour
     public Vector2 look;
     public bool isLooking;
 
-    [Header("Input Actions")] public InputAction jump;
+    [Header("Input Actions")] 
+    public InputAction jump;
     public InputAction sprint;
 
     public bool disableInput;

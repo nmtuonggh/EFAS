@@ -8,22 +8,20 @@ namespace _Game.Scripts.Inventory
     public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiver
     {
         public BaseItemObject[] Items;
-        public Dictionary<BaseItemObject, int> GetId = new Dictionary<BaseItemObject, int>();
         public Dictionary<int, BaseItemObject> GetItem = new Dictionary<int, BaseItemObject>();
     
         public void OnAfterDeserialize()
         {
-            GetItem = new Dictionary<int, BaseItemObject>();
-            GetId = new Dictionary<BaseItemObject, int>();
             for (int i = 0; i < Items.Length; i++)
             {
-                GetId.Add(Items[i], i);
+                Items[i].Id = i;
                 GetItem.Add(i, Items[i]);
             }
         }
     
         public void OnBeforeSerialize()
         {
+            GetItem = new Dictionary<int, BaseItemObject>();
         }
     }
 }
