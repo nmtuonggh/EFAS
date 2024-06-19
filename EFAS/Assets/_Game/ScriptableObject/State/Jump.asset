@@ -22,7 +22,7 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 71a4dd5632c200f4a83c67d9154fc031, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
-  jumpImpuleModifier: 0.5
+  jumpImpuleModifier: 1
   _walkState: {fileID: 11400000, guid: 30ffda33d4ed2d944bb2944ec16357d8, type: 2}
   _fallState: {fileID: 11400000, guid: 297ba3b97db19934b95f9971ddd0072e, type: 2}
   _fallLoopAnimation:
@@ -31,6 +31,6 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: -203655887218126122, guid: 804387a5f68453e458af8efcb350b276, type: 3}
+    _Clip: {fileID: 7400000, guid: 1f7a93442b82e564ab956b4cd8a0bc07, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN

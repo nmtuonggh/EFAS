@@ -16,6 +16,7 @@ namespace _Game.Scripts.Inventory
                 if (Container[i].item == item)
                 {
                     Container[i].AddAmount(amount);
+                    hasItem = true;
                     break;
                 }
             }

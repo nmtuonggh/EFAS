@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794f27895e4a494995f1e0139d21989, type: 3}
-  m_Name: WalkToIdle
+  m_Script: {fileID: 11500000, guid: adea340f048600540996aaa166ac85ba, type: 3}
+  m_Name: Land
   m_EditorClassIdentifier: 
   canTransiotionToSelf: 0
   _mainAnimation:
@@ -19,11 +19,9 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: caf6d7d8202d32046a5b44dc620c96d7, type: 3}
+    _Clip: {fileID: 0}
     _Speed: 1
     _NormalizedStartTime: NaN
   _jumState: {fileID: 11400000, guid: 9ca923fd16e25c147a4c686b93026754, type: 2}
   _fallState: {fileID: 11400000, guid: 297ba3b97db19934b95f9971ddd0072e, type: 2}
   canJump: 1
-  _idleState: {fileID: 11400000, guid: fe4ad8ba9913f0647aaad6eae4e10a5b, type: 2}
-  _walkState: {fileID: 11400000, guid: 30ffda33d4ed2d944bb2944ec16357d8, type: 2}
