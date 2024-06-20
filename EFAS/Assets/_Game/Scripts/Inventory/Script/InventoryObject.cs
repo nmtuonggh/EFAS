@@ -15,7 +15,7 @@ namespace _Game.Scripts.Inventory
         public string savePath;
         public Inventory Container;
         //private ItemDatabaseObject database;
-        public ItemDatabaseObject database;
+        public ItemDatabaseObject database; 
 
         
         public void DropItem(Item.Scripts.Item _item)
@@ -71,7 +71,6 @@ namespace _Game.Scripts.Inventory
                 catch (Exception ex)
                 {
                     Debug.LogError("Error loading data: " + ex.Message);
-                    // Xử lý lỗi: Khôi phục hoặc thông báo lỗi đến người dùng
                 }
             }
         }

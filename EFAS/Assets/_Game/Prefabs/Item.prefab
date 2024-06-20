@@ -261,7 +261,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forcusLine: {fileID: 6491882224461591831}
   _isSelecting: 0
-  _inventorySlot: {fileID: 0}
+  _inventorySlot:
+    ID: 0
+    item:
+      Name: 
+      Id: 0
+    amount: 0
 --- !u!1 &3976117326725167264
 GameObject:
   m_ObjectHideFlags: 0

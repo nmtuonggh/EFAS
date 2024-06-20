@@ -13,7 +13,6 @@ namespace _Game.Scripts.Inventory.Script
         [SerializeField] private GameObject inventoryUI;
         [SerializeField] private GameObject movementUI;
         [SerializeField] private InventoryObject inventory;
-        private InventorySlot _selectedSlot;
         Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
         private void Start()
@@ -37,7 +36,7 @@ namespace _Game.Scripts.Inventory.Script
                 }
                 else
                 {
-                    var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                    var obj = Instantiate(inventoryPrefab, transform);
                     obj.GetComponent<ItemUI>()._inventorySlot = slot;
 
                     obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite =
@@ -56,11 +55,10 @@ namespace _Game.Scripts.Inventory.Script
             {
                 InventorySlot slot = inventory.Container.Items[i];
 
-                var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(inventoryPrefab, transform);
                 obj.GetComponent<ItemUI>()._inventorySlot = slot;
                 obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite =
                     inventory.database.GetItem[slot.item.Id].uiDisplay;
-                //obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount.ToString("n0");
                 itemsDisplayed.Add(slot, obj);
             }

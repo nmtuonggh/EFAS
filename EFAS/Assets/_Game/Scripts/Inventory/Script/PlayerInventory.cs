@@ -19,7 +19,6 @@ public class PlayerInventory : MonoBehaviour
         var item = other.gameObject.GetComponent<GroundItem>();
         if (item)
         {
-            Debug.Log("run");
             inventory.AddItem(new Item(item.item),1); 
             Destroy(other.gameObject);
             _itemPickedUp = true;
