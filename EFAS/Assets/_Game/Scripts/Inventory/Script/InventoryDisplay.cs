@@ -8,16 +8,11 @@ namespace _Game.Scripts.Inventory.Script
 {
     public class InventoryDisplay : MonoBehaviour
     {
-        public int X_SPACE_BETWEEN_ITEM;
-        public int NUMBER_OF_COLUMNS;
-        public int Y_SPACE_BETWEEN_ITEM;
-        
         public GameObject inventoryPrefab;
-        
+
         [SerializeField] private GameObject inventoryUI;
+        [SerializeField] private GameObject movementUI;
         [SerializeField] private InventoryObject inventory;
-        private InventorySlot _selectedSlot;
-        
         Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
         private void Start()
@@ -41,11 +36,14 @@ namespace _Game.Scripts.Inventory.Script
                 }
                 else
                 {
-                    var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                    var obj = Instantiate(inventoryPrefab, transform);
+                    obj.GetComponent<ItemUI>()._inventorySlot = slot;
+
                     obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite =
                         inventory.database.GetItem[slot.item.Id].uiDisplay;
                     //obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                     obj.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount.ToString("n0");
+
                     itemsDisplayed.Add(slot, obj);
                 }
             }
@@ -57,29 +55,35 @@ namespace _Game.Scripts.Inventory.Script
             {
                 InventorySlot slot = inventory.Container.Items[i];
 
-                var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(inventoryPrefab, transform);
+                obj.GetComponent<ItemUI>()._inventorySlot = slot;
                 obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite =
                     inventory.database.GetItem[slot.item.Id].uiDisplay;
-                //obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount.ToString("n0");
                 itemsDisplayed.Add(slot, obj);
             }
         }
-        
-        public Vector3 GetPosition(int i)
+
+        public void RemoveItemDisplay(InventorySlot slot)
         {
-            return new Vector3(X_SPACE_BETWEEN_ITEM * (i % NUMBER_OF_COLUMNS),
-                -Y_SPACE_BETWEEN_ITEM * (i / NUMBER_OF_COLUMNS), 0f);
+            if (itemsDisplayed.ContainsKey(slot))
+            {
+                GameObject itemDisplay = itemsDisplayed[slot];
+                itemsDisplayed.Remove(slot);
+                Destroy(itemDisplay);
+            }
         }
 
         public void CloseInventory()
         {
             inventoryUI.SetActive(false);
+            movementUI.SetActive(true);
         }
 
         public void OpenInventory()
         {
             inventoryUI.SetActive(true);
+            movementUI.SetActive(false);
         }
     }
 }

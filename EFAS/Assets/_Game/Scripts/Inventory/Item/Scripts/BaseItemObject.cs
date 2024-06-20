@@ -11,12 +11,14 @@ namespace _Game.Scripts.Inventory.Item.Scripts
     }
     public class BaseItemObject : ScriptableObject
     {
+        //public int stackAmount;
         public int Id;
         public Sprite uiDisplay;
         public ItemType type;
         public bool stackable;
         [TextArea(15, 20)]
         public string description;
+        
     }
 
     [System.Serializable]

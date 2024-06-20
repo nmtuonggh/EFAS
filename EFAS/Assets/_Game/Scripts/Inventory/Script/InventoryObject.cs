@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using _Game.Scripts.Inventory.Item.Scripts;
 using UnityEditor;
 using UnityEngine;
+
 namespace _Game.Scripts.Inventory
 {
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
@@ -14,7 +15,22 @@ namespace _Game.Scripts.Inventory
         public string savePath;
         public Inventory Container;
         //private ItemDatabaseObject database;
-        public ItemDatabaseObject database;
+        public ItemDatabaseObject database; 
+
+        
+        public void DropItem(Item.Scripts.Item _item)
+        {
+            for (int i = 0; i < Container.Items.Count; i++)
+            {
+                if (Container.Items[i].item.Id == _item.Id)
+                {
+                    Container.Items.RemoveAt(i);
+                    return;
+                }
+            }
+        }
+
+        #region SaveLoad
 
         /*private void OnEnable()
         {
@@ -24,6 +40,59 @@ namespace _Game.Scripts.Inventory
             database = Resources.Load<ItemDatabaseObject>("Database");
 #endif
         }*/
+        [ContextMenu("Save")]
+        public void Save()
+        {
+            /*string saveData = JsonUtility.ToJson(this, true);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
+            bf.Serialize(file, saveData);
+            file.Close();*/
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create,
+                FileAccess.Write);
+            formatter.Serialize(stream, Container);
+            stream.Close();
+        }
+
+        [ContextMenu("Load")]
+        public void Load()
+        {
+            if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
+            {
+                try
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath),
+                        FileMode.Open, FileAccess.Read);
+                    Container = (Inventory)formatter.Deserialize(stream);
+                    stream.Close();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError("Error loading data: " + ex.Message);
+                }
+            }
+        }
+
+        [ContextMenu("Clear")]
+        public void Clear()
+        {
+            Container = new Inventory();
+        }
+
+        /*public void OnAfterDeserialize()
+        {
+            for(int i = 0; i < Container.Items.Count; i++)
+            {
+                Container.Items[i].item = database.GetItem[Container.Items[i].ID];
+            }
+        }*/
+        public void OnBeforeSerialize()
+        {
+        }
+
+        #endregion
 
         public void AddItem(Item.Scripts.Item _item, int amount)
         {
@@ -35,59 +104,8 @@ namespace _Game.Scripts.Inventory
                     return;
                 }
             }
+
             Container.Items.Add(new InventorySlot(_item.Id, _item, amount));
-        }
-
-        [ContextMenu("Save")]
-        public void Save()
-        {
-            /*string saveData = JsonUtility.ToJson(this, true);
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(string.Concat(Application.persistentDataPath, savePath));
-            bf.Serialize(file, saveData);   
-            file.Close();*/
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, Container);
-            stream.Close();
-        }
-        [ContextMenu("Load")]
-        public void Load()
-        {
-            if (File.Exists(string.Concat(Application.persistentDataPath, savePath)))
-            {
-                try
-                {
-                    IFormatter formatter = new BinaryFormatter();
-                    Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
-                    Container = (Inventory)formatter.Deserialize(stream);
-                    stream.Close();
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError("Error loading data: " + ex.Message);
-                    // Xử lý lỗi: Khôi phục hoặc thông báo lỗi đến người dùng
-                }
-            }
-        }
-
-        [ContextMenu("Clear")]
-        
-        public void Clear()
-        {
-            Container = new Inventory();
-        }
-        
-        /*public void OnAfterDeserialize()
-        {
-            for(int i = 0; i < Container.Items.Count; i++)
-            {
-                Container.Items[i].item = database.GetItem[Container.Items[i].ID];
-            } 
-        }*/
-        
-        public void OnBeforeSerialize()
-        {
         }
     }
 
@@ -95,7 +113,6 @@ namespace _Game.Scripts.Inventory
     public class Inventory
     {
         public List<InventorySlot> Items = new List<InventorySlot>();
-        //public InventorySlot[] Items = 
     }
 
     [System.Serializable]
@@ -111,7 +128,6 @@ namespace _Game.Scripts.Inventory
             item = _item;
             amount = _amount;
         }
-
         public void AddAmount(int value)
         {
             amount += value;
