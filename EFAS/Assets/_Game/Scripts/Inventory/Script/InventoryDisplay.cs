@@ -46,8 +46,19 @@ namespace _Game.Scripts.Inventory.Script
                         inventory.database.GetItem[slot.item.Id].uiDisplay;
                     //obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                     obj.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount.ToString("n0");
+                   
                     itemsDisplayed.Add(slot, obj);
                 }
+            }
+        }
+        public void HighlightItem(InventorySlot slot)
+        {
+            // Tìm item trong danh sách hiển thị
+            if (itemsDisplayed.TryGetValue(slot, out GameObject item))
+            {
+                // Thay đổi trạng thái hiển thị của item để nó được highlight
+                // Ví dụ: thay đổi màu của item
+                item.GetComponent<Image>().color = Color.yellow;
             }
         }
 
