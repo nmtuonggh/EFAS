@@ -10,11 +10,18 @@ public class InventorySlot_UI : MonoBehaviour
     [SerializeField] private Image itemSprite;
     [SerializeField] private TextMeshProUGUI itemCount;
     [SerializeField] private InventorySlot assingnedInventorySlot;
+    [SerializeField] private GameObject focus_Line;
 
     private Button button;
     
     public InventorySlot AssingnedInventorySlot => assingnedInventorySlot;
     public InventoryDisplay ParentDisplay { get; private set; }
+
+    public GameObject FocusLine
+    {
+        get => focus_Line;
+        set => focus_Line = value;
+    }
 
     private void Awake()
     {
@@ -76,5 +83,15 @@ public class InventorySlot_UI : MonoBehaviour
     {
         //ParentDisplay?.SlotClicked(this);
         if(ParentDisplay!= null) ParentDisplay.SlotClicked(this);
+    }
+    
+    public void SetFocus()
+    {
+        FocusLine.SetActive(true);
+    }
+    
+    public void UnFocus()
+    {
+        FocusLine.SetActive(false);
     }
 }
