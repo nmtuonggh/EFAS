@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e6020b03878444cb7220481a54fae8, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  ID: 0
-  WorldItem: {fileID: 0}
+  ID: 3
+  WorldItemPrefab: {fileID: 2906585874017408304, guid: e9d1404f58b908f47ac83e3cd060332c, type: 3}

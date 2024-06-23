@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e6020b03878444cb7220481a54fae8, type: 3}
   m_Name: Apricot
   m_EditorClassIdentifier: 
-  ID: 0
-  WorldItem: {fileID: 0}
+  ID: 1
+  WorldItemPrefab: {fileID: 5920593745242702897, guid: 7eaa1212496384c4c8d153777ede0f5f, type: 3}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemPickedUp : MonoBehaviour
 {
     public InventoryItemData ItemData;
-
+    public WorldItemData WorldItemData;
     public void OnTriggerEnter(Collider other)
     {
         var inventoryHolder = other.GetComponent<InventoryHolder>();
@@ -14,7 +14,8 @@ public class ItemPickedUp : MonoBehaviour
         if (inventoryHolder.InventorySystem.AddToInventory(ItemData, 1))
         {
             Debug.Log("pick");
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            WorldItemData.ReturnToPool(this.gameObject);
         }
     }
 }

@@ -26,20 +26,10 @@ public class InventorySlot_UI : MonoBehaviour
     private void Awake()
     {
         ClearSlot();
-
         button = GetComponent<Button>();
         button.onClick.AddListener(OnUISlotClick);
-        if (transform.parent == null)
-        {
-            Debug.LogError("The parent object is missing.");
-            return;
-        }
-    
+
         ParentDisplay = transform.parent.GetComponent<InventoryDisplay>();
-        if (ParentDisplay == null)
-        {
-            Debug.LogError("The parent object does not have an InventoryDisplay component.");
-        }
     }
     
     
