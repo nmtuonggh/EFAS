@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5272255925732304356}
   - component: {fileID: -3364061271221917088}
   - component: {fileID: 7949126045282346345}
-  - component: {fileID: 5111004825674003679}
+  - component: {fileID: 5740281157424456468}
   m_Layer: 0
   m_Name: Apricot
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8088126736539204602, guid: feb9ea603d242f54395bdb15fadebd48, type: 3}
---- !u!114 &5111004825674003679
+--- !u!114 &5740281157424456468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5920593745242702897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7042298fe8036d64fa3b24f866702af8, type: 3}
+  m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 0bf444ad2b6d34e44ac59b61dadd2153, type: 2}
+  ItemData: {fileID: 11400000, guid: ab9e08b08d7eaea4886843a47b8b95d5, type: 2}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3699346470568621285}
   - component: {fileID: 185115726488453973}
   - component: {fileID: 6029112794517620535}
-  - component: {fileID: 4050391213674088144}
+  - component: {fileID: 8350333166290052278}
   m_Layer: 0
   m_Name: Carrot B
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6240014769142659922, guid: cc1a32b8335fea84b871400251fb5d1b, type: 3}
---- !u!114 &4050391213674088144
+--- !u!114 &8350333166290052278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2906585874017408304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7042298fe8036d64fa3b24f866702af8, type: 3}
+  m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 2a9269000cfa431498d5f05d8f119bed, type: 2}
+  ItemData: {fileID: 11400000, guid: 0d61dd106d7d16f4281de96441ed7c43, type: 2}
