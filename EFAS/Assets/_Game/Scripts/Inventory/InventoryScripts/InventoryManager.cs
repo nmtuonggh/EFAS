@@ -7,7 +7,9 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject InventoryUI;
     [SerializeField] private GameObject ControlUI;
-    
+    [SerializeField] public InventorySystem _inventorySystem;
+    [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
+
     public void OpenInventory()
     {
         InventoryUI.SetActive(true);
@@ -19,4 +21,6 @@ public class InventoryManager : MonoBehaviour
         InventoryUI.SetActive(false);
         ControlUI.SetActive(true);
     }
+
+    
 }

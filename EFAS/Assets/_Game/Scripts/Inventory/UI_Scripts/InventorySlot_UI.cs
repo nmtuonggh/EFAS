@@ -74,14 +74,4 @@ public class InventorySlot_UI : MonoBehaviour
         //ParentDisplay?.SlotClicked(this);
         if(ParentDisplay!= null) ParentDisplay.SlotClicked(this);
     }
-    
-    public void SetFocus()
-    {
-        FocusLine.SetActive(true);
-    }
-    
-    public void UnFocus()
-    {
-        FocusLine.SetActive(false);
-    }
 }

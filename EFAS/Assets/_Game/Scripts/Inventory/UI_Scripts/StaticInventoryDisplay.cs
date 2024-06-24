@@ -37,4 +37,5 @@ public class StaticInventoryDisplay : InventoryDisplay
             slots[i].Init(_inventorySystem.InventorySlots[i]);
         }
     }
+    
 }

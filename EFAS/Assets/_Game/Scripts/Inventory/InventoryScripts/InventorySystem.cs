@@ -60,4 +60,10 @@ public class InventorySystem
         freeSlot = InventorySlots.FirstOrDefault(slot => slot.ItemData == null);
         return freeSlot == null ? false : true;
     }
+    
+    public void DropOneItem(InventorySlot slotToDrop)
+    {
+        slotToDrop.RemoveFromStack(1);
+        OnInventorySlotChanged?.Invoke(slotToDrop);
+    }
 }

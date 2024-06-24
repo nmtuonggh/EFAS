@@ -2157,6 +2157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 6287978483105616530}
   ControlUI: {fileID: 1011082802}
+  _inventorySystem:
+    _inventorySlots: []
+  staticInventoryDisplay: {fileID: 6287978483930375467}
 --- !u!1 &277325248
 GameObject:
   m_ObjectHideFlags: 0
