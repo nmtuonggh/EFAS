@@ -7,8 +7,6 @@ public abstract class InventoryDisplay : MonoBehaviour
     protected InventorySystem _inventorySystem;
     protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
     protected InventorySlot_UI _focusSlot;
-
-    public InventorySystem InventorySystem1 => _inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
 
     public InventorySlot_UI FocusSlot
@@ -37,24 +35,19 @@ public abstract class InventoryDisplay : MonoBehaviour
     
     public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
-        Debug.Log("slot clicked");
         SetFocus(clickedUISlot);
-
-        if (FocusSlot != null && FocusSlot.AssingnedInventorySlot.ItemData != null)
-        {
-            _inventorySystem.DropOneItem(FocusSlot.AssingnedInventorySlot);
-            //spawnWorldItem.SpawnItem(_focusSlot.AssingnedInventorySlot.ItemData);
-        }
     }
 
     private void SetFocus(InventorySlot_UI clickedUISlot)
     {
-        if (FocusSlot != null)
+        if (FocusSlot != null || clickedUISlot.AssingnedInventorySlot.ItemData == null)
         {
             FocusSlot.FocusLine.SetActive(false);
         }
-
-        FocusSlot = clickedUISlot;
-        FocusSlot.FocusLine.SetActive(true);
+        if(clickedUISlot.AssingnedInventorySlot.ItemData != null)
+        {
+            FocusSlot = clickedUISlot;
+            FocusSlot.FocusLine.SetActive(true);
+        }
     }
 }
