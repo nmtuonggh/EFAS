@@ -15,14 +15,14 @@ public class WorldItemWithoutColliderData : ScriptableObject, IFactoryWorldItemW
         {
             GameObject item = PoolWorldItemWithoutData.Dequeue();
             item.transform.position = position;
-            item.transform.rotation = rotation;
+            item.transform.rotation = ItemPrefab.transform.rotation;
             item.transform.SetParent(parent);
             item.gameObject.SetActive(true);
             return item;
         }
         else
         {
-            return Instantiate(ItemPrefab, position, rotation, parent);
+            return Instantiate(ItemPrefab, position, ItemPrefab.transform.rotation, parent);
         }
     }
     

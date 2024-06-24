@@ -7,8 +7,6 @@ public abstract class InventoryDisplay : MonoBehaviour
     protected InventorySystem _inventorySystem;
     protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
     protected InventorySlot_UI _focusSlot;
-
-    public InventorySystem InventorySystem1 => _inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
 
     public InventorySlot_UI FocusSlot

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d02447014256f48acdaf58e3370acd, type: 3}
+  m_Script: {fileID: 11500000, guid: 30e6020b03878444cb7220481a54fae8, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
   ID: 0
-  ItemPrefab: {fileID: 0}
+  WorldItemPrefab: {fileID: 4826758025746620715, guid: a4d64e00a7004b74dbd8ef23a5882074, type: 3}

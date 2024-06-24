@@ -148,4 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: 54e44b23e0d76f9489f8de285625aa8e, type: 2}
-  WorldItemData: {fileID: 11400000, guid: 89b4340d218e06b4ead5e69ee1fc42c4, type: 2}
+  pickupItemSystem: {fileID: 0}
+  worldItemData: {fileID: 11400000, guid: 89b4340d218e06b4ead5e69ee1fc42c4, type: 2}
