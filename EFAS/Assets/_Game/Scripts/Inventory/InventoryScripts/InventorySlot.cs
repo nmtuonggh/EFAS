@@ -57,6 +57,4 @@ public class InventorySlot
     {
         _stackSize -= amount;
     }
-    
-    
 }

@@ -20,13 +20,14 @@ public class ItemPickedUp : MonoBehaviour
     }*/
     
     public InventoryItemData ItemData;
-    //public PickupItemSystem pickupItemSystem;
     public WorldItemData worldItemData;
+    private bool _isTriggered;
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if(itemPickupItemSystem != null)
+        if(itemPickupItemSystem != null && !_isTriggered)
         {
+            _isTriggered = true;
             itemPickupItemSystem.ItemsInRange.Add(this);
             itemPickupItemSystem.DisplayItems();
         }
@@ -37,6 +38,7 @@ public class ItemPickedUp : MonoBehaviour
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
         if(itemPickupItemSystem!= null)
         {
+            _isTriggered = false;
             itemPickupItemSystem.ItemsInRange.Remove(this);
             itemPickupItemSystem.DisplayItems();
         }
