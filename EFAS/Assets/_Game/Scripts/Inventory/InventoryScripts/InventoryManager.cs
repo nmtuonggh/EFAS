@@ -6,14 +6,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryManager :MonoBehaviour
-{
+{   
+    [Header("UI Elements")]
     [SerializeField] private GameObject InventoryUI;
     [SerializeField] private GameObject ControlUI;
-    [SerializeField] public InventoryHolder _InventoryHolder;
+    [SerializeField] private GameObject dropButton; 
+    
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
     [SerializeField] private SpawnWorldItem spawnWorldItem;
-    [SerializeField] private GameObject dropButton; 
-    [SerializeField] PreviewHolder _previewHolder;
+
+    [Header("Spawn Item")]
+    [SerializeField] private PreviewHolder _previewHolder;
+    //[SerializeField] private PreviewHolder _previewHolder;
+    
     public static InventoryManager Instance;
     
     private void Awake()
@@ -92,6 +97,7 @@ public class InventoryManager :MonoBehaviour
         if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null && _previewHolder.ItemCount < 4)
         {
             spawnWorldItem.SpawnToPreview(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID, _previewHolder.ItemCount);
+            spawnWorldItem.SpawnToPlayer(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID, _previewHolder.ItemCount);
             _previewHolder.ItemCount += 1;
             InventorySlot selectedSlot = staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
 
