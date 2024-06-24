@@ -13,6 +13,7 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
     [SerializeField] private SpawnWorldItem spawnWorldItem;
     [SerializeField] private GameObject dropButton; 
+    [SerializeField] PreviewHolder _previewHolder;
     public static InventoryManager Instance;
     
     private void Awake()
@@ -26,7 +27,9 @@ public class InventoryManager :MonoBehaviour
             Destroy(this);
         }
     }
-    
+
+    #region On Off Inventory
+
     public void OpenInventory()
     {
         InventoryUI.SetActive(true);
@@ -38,7 +41,11 @@ public class InventoryManager :MonoBehaviour
         InventoryUI.SetActive(false);
         ControlUI.SetActive(true);
     }
+
+    #endregion
     
+    #region DropItem
+
     public void DropItem()
     {
         if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null)
@@ -77,5 +84,27 @@ public class InventoryManager :MonoBehaviour
             staticInventoryDisplay.FocusSlot.UpdateUISlot();
         }
     }
+
+    #endregion    
     
+    public void HoldItem()
+    {
+        if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null && _previewHolder.ItemCount < 4)
+        {
+            spawnWorldItem.SpawnToPreview(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID, _previewHolder.ItemCount);
+            _previewHolder.ItemCount += 1;
+            InventorySlot selectedSlot = staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
+
+            if (selectedSlot.StackSize > 1)
+            {
+                selectedSlot.RemoveFromStack(1);
+                staticInventoryDisplay.FocusSlot.UpdateUISlot();
+            }
+            else
+            {
+                selectedSlot.ClearData();
+                staticInventoryDisplay.FocusSlot.UpdateUISlot();
+            }
+        }
+    }
 }
