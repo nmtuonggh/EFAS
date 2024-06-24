@@ -24,7 +24,7 @@ public class InventorySlot
         ClearData();
     }
 
-    private void ClearData()
+    public void ClearData()
     {
         _itemData = null;
         _stackSize = -1;

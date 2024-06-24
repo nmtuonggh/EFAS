@@ -37,24 +37,19 @@ public abstract class InventoryDisplay : MonoBehaviour
     
     public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
-        Debug.Log("slot clicked");
         SetFocus(clickedUISlot);
-
-        if (FocusSlot != null && FocusSlot.AssingnedInventorySlot.ItemData != null)
-        {
-            _inventorySystem.DropOneItem(FocusSlot.AssingnedInventorySlot);
-            //spawnWorldItem.SpawnItem(_focusSlot.AssingnedInventorySlot.ItemData);
-        }
     }
 
     private void SetFocus(InventorySlot_UI clickedUISlot)
     {
-        if (FocusSlot != null)
+        if (FocusSlot != null || clickedUISlot.AssingnedInventorySlot.ItemData == null)
         {
             FocusSlot.FocusLine.SetActive(false);
         }
-
-        FocusSlot = clickedUISlot;
-        FocusSlot.FocusLine.SetActive(true);
+        if(clickedUISlot.AssingnedInventorySlot.ItemData != null)
+        {
+            FocusSlot = clickedUISlot;
+            FocusSlot.FocusLine.SetActive(true);
+        }
     }
 }
