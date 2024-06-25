@@ -10,6 +10,7 @@ public class InventoryManager :MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject InventoryUI;
     [SerializeField] private GameObject ControlUI;
+    [SerializeField] private GameObject PickupUI;
     [SerializeField] private GameObject dropButton; 
     
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
@@ -39,12 +40,14 @@ public class InventoryManager :MonoBehaviour
     {
         InventoryUI.SetActive(true);
         ControlUI.SetActive(false);
+        PickupUI.SetActive(false);
     }
     
     public void CloseInventory()
     {
         InventoryUI.SetActive(false);
         ControlUI.SetActive(true);
+        PickupUI.SetActive(true);
     }
 
     #endregion
