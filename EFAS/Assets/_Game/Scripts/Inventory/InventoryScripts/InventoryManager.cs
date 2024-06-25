@@ -15,6 +15,7 @@ public class InventoryManager :MonoBehaviour
     
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
     [SerializeField] private SpawnWorldItem spawnWorldItem;
+    [SerializeField] private InventorySystem inventorySystem;
 
     [Header("Spawn Item")]
     [SerializeField] private PreviewHolder _previewHolder;
@@ -65,6 +66,7 @@ public class InventoryManager :MonoBehaviour
             if (selectedSlot.StackSize > 1)
             {
                 selectedSlot.RemoveFromStack(1);
+                //inventorySystem.OnInventorySlotChanged?.Invoke(selectedSlot);
                 staticInventoryDisplay.FocusSlot.UpdateUISlot();
             }
             else

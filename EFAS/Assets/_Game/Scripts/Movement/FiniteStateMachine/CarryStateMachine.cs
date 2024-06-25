@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiniteStateMachine : MonoBehaviour
+public class CarryStateMachine : MonoBehaviour
 {
     [SerializeField] private bool _isAIControlled = false;
     [SerializeField] private StateBase _startingState;
@@ -10,16 +10,16 @@ public class FiniteStateMachine : MonoBehaviour
     [SerializeField] private StateBase _previousState; 
     private BlackBoard _blackBoard;
     [SerializeField] private List<StateBase> _states;
-    [SerializeField] private CarryStateMachine _carryStateMachine;
+    [SerializeField] private FiniteStateMachine _finiteStateMachine;
 
     public void InitFSM(bool isAIControlled)
     {
         _blackBoard = GetComponent<BlackBoard>();
         _currentState = _startingState;
-       // isAIControlled = GetComponent<BehaviourTreeOwner>() != null;
-       foreach(var state in _states)
+        // isAIControlled = GetComponent<BehaviourTreeOwner>() != null;
+        foreach(var state in _states)
         {
-            state.InitState(_carryStateMachine,this, _blackBoard, isAIControlled);
+            state.InitState(this,_finiteStateMachine, _blackBoard, isAIControlled);
         }
         _currentState.EnterState();
     }
@@ -82,5 +82,3 @@ public class FiniteStateMachine : MonoBehaviour
         _currentState.FixedUpdateState();
     }
 }
-
-

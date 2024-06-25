@@ -15,4 +15,6 @@ public class BlackBoard : MonoBehaviour
     public bool sprint;
     public bool isGrounded;
     public LayerMask groundLayer;
+    public AvatarMask _carryMask;
+    public PreviewHolder PreviewHolder;
 }
