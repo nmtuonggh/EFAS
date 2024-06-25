@@ -21,8 +21,7 @@ public class PickupItemSystem : MonoBehaviour
 
     private void Update()
     {
-        if(_itemsInRange.Count > 0) _inventoryItemInRangeDisplay.SetActive(true);
-        else _inventoryItemInRangeDisplay.SetActive(false);
+        _inventoryItemInRangeDisplay.SetActive(_itemsInRange.Count > 0);
     }
 
     public void DisplayItems()
@@ -31,13 +30,13 @@ public class PickupItemSystem : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
         // Display new items
         foreach (var item in _itemsInRange)
         {
             var itemDisplay = Instantiate(itemDisplayPrefab, itemsInRangeHolder);
+            var imageChild = itemDisplay.transform.GetChild(2);
             itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemData.DisplayName;
-            itemDisplay.GetComponentInChildren<Image>().sprite = item.ItemData.Icon;
+            imageChild.GetComponentInChildren<Image>().sprite = item.ItemData.Icon;
             
             var button = itemDisplay.GetComponent<Button>();
             button.onClick.AddListener(() => AddToInventory(item));
@@ -50,5 +49,6 @@ public class PickupItemSystem : MonoBehaviour
         _itemsInRange.Remove(item);
         DisplayItems();
         item.worldItemData.ReturnToPool(item.gameObject);
+        item._isTriggered = false;
     }
 }

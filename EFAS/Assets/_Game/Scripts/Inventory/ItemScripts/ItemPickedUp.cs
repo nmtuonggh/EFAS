@@ -18,14 +18,15 @@ public class ItemPickedUp : MonoBehaviour
             WorldItemData.ReturnToPool(this.gameObject);
         }
     }*/
-    
+
     public InventoryItemData ItemData;
     public WorldItemData worldItemData;
-    private bool _isTriggered;
+    public bool _isTriggered = false;
+
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if(itemPickupItemSystem != null && !_isTriggered)
+        if (itemPickupItemSystem != null && !_isTriggered)
         {
             _isTriggered = true;
             itemPickupItemSystem.ItemsInRange.Add(this);
@@ -36,7 +37,7 @@ public class ItemPickedUp : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if(itemPickupItemSystem!= null)
+        if (itemPickupItemSystem != null)
         {
             _isTriggered = false;
             itemPickupItemSystem.ItemsInRange.Remove(this);
