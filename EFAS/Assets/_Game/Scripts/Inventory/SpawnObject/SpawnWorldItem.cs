@@ -44,13 +44,23 @@ public class SpawnWorldItem : MonoBehaviour
       }
    }
 
-   public void SpawnToPlayer(int id, int slotIndex)
+   /*public void SpawnToPlayer(int id, int slotIndex)
    {
       foreach (var prefab in WorldItemDataWithoutColliderList)
       {
          if(prefab.ID == id)
          {
             prefab.SpawnItemWithoutCollider(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
+         }
+      }
+   }*/
+   public void SpawnToPlayer(int id, int slotIndex)
+   {
+      foreach (var prefab in WorldItemDataList)
+      {
+         if(prefab.ID == id)
+         {
+            prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
          }
       }
    }
