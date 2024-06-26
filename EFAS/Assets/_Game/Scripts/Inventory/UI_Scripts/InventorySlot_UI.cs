@@ -63,7 +63,7 @@ public class InventorySlot_UI : MonoBehaviour
     public void ClearSlot()
     {
         if(assingnedInventorySlot == null)
-        {ClearSlot();}
+        {ClearSlot();} 
         itemSprite.sprite = null;   
         itemCount.text = "";
         itemSprite.color = Color.clear;

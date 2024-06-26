@@ -49,6 +49,44 @@ public class InventorySystem
         return false;
     }
 
+    /*public bool RemoveFromInventory(InventoryItemData itemToRemove, int amountToRemove)
+    {
+        if (ContainsItem(itemToRemove, out List<InventorySlot> invSlot)) 
+        {
+            foreach (var slot in invSlot)
+            {
+                if (slot.StackSize >= amountToRemove)
+                {
+                    slot.RemoveFromStack(amountToRemove);
+                    if (slot.StackSize == 0)
+                    {
+                        slot.ClearData();
+                    }
+                    OnInventorySlotChanged?.Invoke(slot);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }*/
+    
+    public bool RemoveFromInventory(InventorySlot slotToRemove, InventoryItemData itemToRemove, int amountToRemove)
+    {
+        if (slotToRemove.ItemData == itemToRemove)
+        {
+            if (slotToRemove.StackSize >= amountToRemove)
+            {
+                slotToRemove.RemoveFromStack(amountToRemove);
+                if (slotToRemove.StackSize == 0)
+                {
+                    slotToRemove.ClearData();
+                }
+                OnInventorySlotChanged?.Invoke(slotToRemove);
+                return true;
+            }
+        }
+        return false;
+    }
     public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> invSlot)
     { //if in the inventory have the same item, return true and get all the slots that have the item then return to a list :)
         invSlot = InventorySlots.Where(currentSlot => currentSlot.ItemData == itemToAdd).ToList();

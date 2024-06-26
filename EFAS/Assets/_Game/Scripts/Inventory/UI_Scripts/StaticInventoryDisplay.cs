@@ -6,6 +6,8 @@ public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
+    
+
     protected override void Start()
     {
         base.Start();
@@ -37,5 +39,23 @@ public class StaticInventoryDisplay : InventoryDisplay
             slots[i].Init(_inventorySystem.InventorySlots[i]);
         }
     }
+
+    public override void SlotClicked(InventorySlot_UI clickedUISlot)
+    {
+        SetFocus(clickedUISlot);
+    }
     
+    private void SetFocus(InventorySlot_UI clickedUISlot)
+    {
+        Debug.Log("run");
+        if (FocusSlot != null || clickedUISlot.AssingnedInventorySlot.ItemData == null)
+        {
+            FocusSlot.FocusLine.SetActive(false);
+        }
+        if(clickedUISlot.AssingnedInventorySlot.ItemData != null)
+        {
+            FocusSlot = clickedUISlot;
+            FocusSlot.FocusLine.SetActive(true);
+        }
+    }
 }
