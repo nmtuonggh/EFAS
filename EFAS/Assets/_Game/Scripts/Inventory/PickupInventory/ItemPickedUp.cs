@@ -5,32 +5,19 @@ using UnityEngine;
 
 public class ItemPickedUp : MonoBehaviour
 {
-    /*public InventoryItemData ItemData;
-    public WorldItemData WorldItemData;
-    public void OnTriggerEnter(Collider other)
-    {
-        var inventoryHolder = other.GetComponent<InventoryHolder>();
-        if(!inventoryHolder) return;
-        if (inventoryHolder.InventorySystem.AddToInventory(ItemData, 1))
-        {
-            Debug.Log("pick");
-            Destroy(this.gameObject);
-            WorldItemData.ReturnToPool(this.gameObject);
-        }
-    }*/
-
     public InventoryItemData ItemData;
     public WorldItemData worldItemData;
     public bool _isTriggered = false;
-
+    
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
         if (itemPickupItemSystem != null && !_isTriggered)
         {
             _isTriggered = true;
-            itemPickupItemSystem.ItemsInRange.Add(this);
-            itemPickupItemSystem.DisplayItems();
+            itemPickupItemSystem.ListItemsInRange.Add(this);
+            itemPickupItemSystem.OnAddPickUpItemToInventory.Invoke();
+            itemPickupItemSystem.DisplayItemPickup.DisplayItems();
         }
     }
 
@@ -40,8 +27,8 @@ public class ItemPickedUp : MonoBehaviour
         if (itemPickupItemSystem != null)
         {
             _isTriggered = false;
-            itemPickupItemSystem.ItemsInRange.Remove(this);
-            itemPickupItemSystem.DisplayItems();
+            itemPickupItemSystem.ListItemsInRange.Remove(this);
+            itemPickupItemSystem.DisplayItemPickup.DisplayItems();
         }
     }
 }

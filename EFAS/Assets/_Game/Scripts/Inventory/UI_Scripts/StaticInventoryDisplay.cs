@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.Action;
 using UnityEngine;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
+    [SerializeField] private DropItem _dropItem;
+    [SerializeField] private HoldeItem _holdeItem;
     
 
     protected override void Start()
@@ -15,6 +18,8 @@ public class StaticInventoryDisplay : InventoryDisplay
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
             _inventorySystem.OnInventorySlotChanged += UpdateSlot;
+            _dropItem.OnDropItemEvent += UpdateSlot;
+            _holdeItem.OnHoldeItemEvent += UpdateSlot;
         }
         else
         {

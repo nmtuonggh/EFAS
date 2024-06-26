@@ -12,7 +12,7 @@ public class InventorySystem
     public List<InventorySlot> InventorySlots { get => _inventorySlots; set => _inventorySlots = value; }
     public int InventorySize => InventorySlots.Count;
     
-    public UnityAction<InventorySlot> OnInventorySlotChanged;
+    public event UnityAction<InventorySlot> OnInventorySlotChanged;
 
     public InventorySystem(int size)
     {

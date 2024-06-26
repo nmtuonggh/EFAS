@@ -1,54 +1,61 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.PickupInventory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PickupItemSystem : MonoBehaviour
 {
-    [SerializeField] private List<ItemPickedUp> _itemsInRange = new List<ItemPickedUp>();
-    [SerializeField] private GameObject itemDisplayPrefab;
-    [SerializeField] private Transform itemsInRangeHolder;
+    [FormerlySerializedAs("_itemsInRange")] [SerializeField] private List<ItemPickedUp> _listItemsInRange = new List<ItemPickedUp>();
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private GameObject _inventoryItemInRangeDisplay;
-    
-    public List<ItemPickedUp> ItemsInRange
+    [SerializeField] private DisplayItemPickup _displayItemPickup;
+    public  Action OnAddPickUpItemToInventory;
+    public List<ItemPickedUp> ListItemsInRange
     {
-        get => _itemsInRange;   
-        set => _itemsInRange = value;
+        get => _listItemsInRange;   
+        set => _listItemsInRange = value;
+    }
+
+    public DisplayItemPickup DisplayItemPickup
+    {
+        get => _displayItemPickup;
+        set => _displayItemPickup = value;
     }
 
     private void Update()
     {
-        _inventoryItemInRangeDisplay.SetActive(_itemsInRange.Count > 0);
+        _inventoryItemInRangeDisplay.SetActive(_listItemsInRange.Count > 0);
     }
 
-    public void DisplayItems()
+    public void AddToInventory(ItemPickedUp item, int amount)
     {
-        foreach (Transform child in itemsInRangeHolder)
-        {
-            Destroy(child.gameObject);
-        }
-        // Display new items
-        foreach (var item in _itemsInRange)
-        {
-            var itemDisplay = Instantiate(itemDisplayPrefab, itemsInRangeHolder);
-            var imageChild = itemDisplay.transform.GetChild(2);
-            itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemData.DisplayName;
-            imageChild.GetComponentInChildren<Image>().sprite = item.ItemData.Icon;
-            
-            var button = itemDisplay.GetComponent<Button>();
-            button.onClick.AddListener(() => AddToInventory(item));
-        }
-    }
+        if (!_inventoryHolder.InventorySystem.AddToInventory(item.ItemData, amount)) return;
 
-    private void AddToInventory(ItemPickedUp item)
-    {
-        if (!_inventoryHolder.InventorySystem.AddToInventory(item.ItemData, 1)) return;
-        _itemsInRange.Remove(item);
-        DisplayItems();
-        item.worldItemData.ReturnToPool(item.gameObject);
-        item._isTriggered = false;
+        // Create a temporary list to hold items to be removed
+        List<ItemPickedUp> itemsToRemove = new List<ItemPickedUp>();
+
+        // Add all items with the same ID to the list
+        foreach (var listItem in _listItemsInRange)
+        {
+            if (listItem.ItemData.ID == item.ItemData.ID)
+            {
+                itemsToRemove.Add(listItem);
+            }
+        }
+
+        // Remove all items in the list from _listItemsInRange
+        foreach (var listItem in itemsToRemove)
+        {
+            _listItemsInRange.Remove(listItem);
+            listItem.worldItemData.ReturnToPool(listItem.gameObject);
+            listItem._isTriggered = false;
+        }
+        
+        OnAddPickUpItemToInventory?.Invoke();
+        //_displayItemPickup.DisplayItems();
     }
 }
