@@ -13,11 +13,12 @@ public class ItemPickedUp : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if (itemPickupItemSystem != null && !_isTriggered && isActiveAndEnabled)
+        if (itemPickupItemSystem != null && !_isTriggered && !this.CompareTag("ItemHolding"))
         {
+            Debug.Log("trigger");
             _isTriggered = true;
             itemPickupItemSystem.ListItemsInRange.Add(this);
-            itemPickupItemSystem.OnAddPickUpItemToInventory.Invoke();
+            //itemPickupItemSystem.OnAddPickUpItemToInventory.Invoke();
             itemPickupItemSystem.DisplayItemPickup.DisplayItems();
         }
     }
@@ -25,7 +26,7 @@ public class ItemPickedUp : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if (itemPickupItemSystem != null && isActiveAndEnabled)
+        if (itemPickupItemSystem != null && !this.CompareTag("ItemHolding"))
         {
             _isTriggered = false;
             itemPickupItemSystem.ListItemsInRange.Remove(this);

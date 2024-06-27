@@ -9,7 +9,6 @@ public class WalkState : GroundedState
     [SerializeField] private SprintState _sprintState;
     [SerializeField] private WalkToIdleState _walkToIdleState;
     [SerializeField] private LinearMixerTransition _walkingBlendTree;
-
     public override void EnterState()
     {
         base.EnterState();

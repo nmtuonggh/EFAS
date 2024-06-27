@@ -17,6 +17,7 @@ public class WorldItemWithoutColliderData : ScriptableObject, IFactoryWorldItemW
             item.transform.position = position;
             item.transform.rotation = ItemPrefab.transform.rotation;
             item.transform.SetParent(parent);
+            //item.tag = "PlayerHoldItem";
             item.gameObject.SetActive(true);
             return item;
         }

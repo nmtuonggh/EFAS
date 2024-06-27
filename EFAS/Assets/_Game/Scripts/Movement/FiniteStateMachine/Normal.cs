@@ -7,7 +7,8 @@ public class Normal : StateBase
     [SerializeField] private CarryState _carryState;
     public override void EnterState()
     {
-        _blackBoard.playerMovement.SetMovementDirection(Vector3.zero);
+        base.EnterState();
+        //_blackBoard.playerMovement.SetMovementDirection(Vector3.zero);
     }
     public override StateStatus UpdateState()
     {
@@ -25,4 +26,6 @@ public class Normal : StateBase
 
         return StateStatus.Running;
     }
+    
+    
 }

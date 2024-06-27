@@ -13,7 +13,7 @@ public class PickupItemSystem : MonoBehaviour
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private GameObject _inventoryItemInRangeDisplay;
     [SerializeField] private DisplayItemPickup _displayItemPickup;
-    public  Action OnAddPickUpItemToInventory;
+    public event  Action OnDisplayPickUpItemToInventory;
     public List<ItemPickedUp> ListItemsInRange
     {
         get => _listItemsInRange;   
@@ -34,11 +34,9 @@ public class PickupItemSystem : MonoBehaviour
     public void AddToInventory(ItemPickedUp item, int amount)
     {
         if (!_inventoryHolder.InventorySystem.AddToInventory(item.ItemData, amount)) return;
-
-        // Create a temporary list to hold items to be removed
+        
         List<ItemPickedUp> itemsToRemove = new List<ItemPickedUp>();
-
-        // Add all items with the same ID to the list
+        
         foreach (var listItem in _listItemsInRange)
         {
             if (listItem.ItemData.ID == item.ItemData.ID)
@@ -46,8 +44,7 @@ public class PickupItemSystem : MonoBehaviour
                 itemsToRemove.Add(listItem);
             }
         }
-
-        // Remove all items in the list from _listItemsInRange
+        
         foreach (var listItem in itemsToRemove)
         {
             _listItemsInRange.Remove(listItem);
@@ -55,7 +52,6 @@ public class PickupItemSystem : MonoBehaviour
             listItem._isTriggered = false;
         }
         
-        OnAddPickUpItemToInventory?.Invoke();
-        //_displayItemPickup.DisplayItems();
+        OnDisplayPickUpItemToInventory?.Invoke();
     }
 }

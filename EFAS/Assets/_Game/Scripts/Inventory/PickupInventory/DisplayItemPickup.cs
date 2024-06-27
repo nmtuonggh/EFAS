@@ -12,10 +12,9 @@ namespace _Game.Scripts.Inventory.PickupInventory
         [SerializeField] private PickupItemSystem _pickupItemSystem;
         [SerializeField] private GameObject itemDisplayPrefab;
         [SerializeField] private Transform itemsInRangeHolder;
-        //public event UnityAction OnItemsPickupChanged; 
         private void Start()
         {
-            _pickupItemSystem.OnAddPickUpItemToInventory += DisplayItems;
+            _pickupItemSystem.OnDisplayPickUpItemToInventory += DisplayItems;
         }
 
         public void DisplayItems()
