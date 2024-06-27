@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -44,7 +45,7 @@ public class SpawnWorldItem : MonoBehaviour
       }
    }
 
-   /*public void SpawnToPlayer(int id, int slotIndex)
+   public void SpawnToPlayer(int id, int slotIndex)
    {
       foreach (var prefab in WorldItemDataWithoutColliderList)
       {
@@ -53,8 +54,8 @@ public class SpawnWorldItem : MonoBehaviour
             prefab.SpawnItemWithoutCollider(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
          }
       }
-   }*/
-   public void SpawnToPlayer(int id, int slotIndex)
+   }
+   /*public void SpawnToPlayer(int id, int slotIndex)
    {
       foreach (var prefab in WorldItemDataList)
       {
@@ -63,5 +64,5 @@ public class SpawnWorldItem : MonoBehaviour
             prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
          }
       }
-   }
+   }*/
 }
