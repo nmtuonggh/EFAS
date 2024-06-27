@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   ID: 2
-  ItemPrefab: {fileID: 4563381241488259454, guid: e5c973ef5e0282a42807bd459fbaf540, type: 3}
+  ItemPrefab: {fileID: 4563381241488259454, guid: ba6be8f10ef875840a9625fe9f43bd28, type: 3}

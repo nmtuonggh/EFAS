@@ -7,12 +7,13 @@ public class ItemPickedUp : MonoBehaviour
 {
     public InventoryItemData ItemData;
     public WorldItemData worldItemData;
+    public WorldItemWithoutColliderData worldItemWithoutColliderData;
     public bool _isTriggered = false;
     
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if (itemPickupItemSystem != null && !_isTriggered)
+        if (itemPickupItemSystem != null && !_isTriggered && isActiveAndEnabled)
         {
             _isTriggered = true;
             itemPickupItemSystem.ListItemsInRange.Add(this);
@@ -24,7 +25,7 @@ public class ItemPickedUp : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
-        if (itemPickupItemSystem != null)
+        if (itemPickupItemSystem != null && isActiveAndEnabled)
         {
             _isTriggered = false;
             itemPickupItemSystem.ListItemsInRange.Remove(this);

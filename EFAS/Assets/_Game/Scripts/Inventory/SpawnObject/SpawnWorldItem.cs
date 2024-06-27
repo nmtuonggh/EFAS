@@ -55,14 +55,4 @@ public class SpawnWorldItem : MonoBehaviour
          }
       }
    }
-   /*public void SpawnToPlayer(int id, int slotIndex)
-   {
-      foreach (var prefab in WorldItemDataList)
-      {
-         if(prefab.ID == id)
-         {
-            prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
-         }
-      }
-   }*/
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   ID: 3
-  ItemPrefab: {fileID: 2906585874017408304, guid: 32d7dffecc88be940b1c08149538c3bf, type: 3}
+  ItemPrefab: {fileID: 2906585874017408304, guid: f495325ab488e434facccf736e5c7588, type: 3}

@@ -149,4 +149,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemData: {fileID: 11400000, guid: ab9e08b08d7eaea4886843a47b8b95d5, type: 2}
   worldItemData: {fileID: 11400000, guid: 8026dfc3462ddb743a15fac1022bb22e, type: 2}
+  worldItemWithoutColliderData: {fileID: 11400000, guid: 0775c4dddc817664f8e583a292de662d, type: 2}
   _isTriggered: 0
