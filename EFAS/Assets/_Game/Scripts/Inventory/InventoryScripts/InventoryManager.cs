@@ -12,10 +12,12 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] private GameObject ControlUI;
     [SerializeField] private GameObject PickupUI;
     [SerializeField] private GameObject dropButton; 
+    [SerializeField] private GameObject dropHoldButton; 
     
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
     [SerializeField] private SpawnWorldItem spawnWorldItem;
     [SerializeField] private InventorySystem inventorySystem;
+    [SerializeField] private HoldeItem _holdeItem;
 
     [Header("Spawn Item")]
     [SerializeField] private PreviewHolder _previewHolder;
@@ -33,6 +35,8 @@ public class InventoryManager :MonoBehaviour
         {
             Destroy(this);
         }
+
+        _holdeItem.OnItemHoldCountChanged += UpdateDropButtonState;
     }
 
     #region On Off Inventory
@@ -52,4 +56,10 @@ public class InventoryManager :MonoBehaviour
     }
 
     #endregion
+    
+    private void UpdateDropButtonState(int itemCount)
+    {
+        // Giả sử `btnDrop` là một instance của `Button`
+        dropHoldButton.SetActive(itemCount > 0);
+    }
 }

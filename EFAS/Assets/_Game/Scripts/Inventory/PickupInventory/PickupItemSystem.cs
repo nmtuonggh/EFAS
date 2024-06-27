@@ -14,6 +14,7 @@ public class PickupItemSystem : MonoBehaviour
     [SerializeField] private GameObject _inventoryItemInRangeDisplay;
     [SerializeField] private DisplayItemPickup _displayItemPickup;
     public event  Action OnDisplayPickUpItemToInventory;
+    public event Action<ItemPickedUp> OnItemPickedUp;
     public List<ItemPickedUp> ListItemsInRange
     {
         get => _listItemsInRange;   

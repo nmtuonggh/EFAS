@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreviewHolder : MonoBehaviour
 {
+    [SerializeField] private HoldeItem _holdeItem;
     [SerializeField] private List<Transform> _previewSpawnPos;
     [SerializeField] private int _itemCount = 0;
     [SerializeField] private Transform _previewSpawnPool;
-    public event Action OnHoldingItem;
     public List<Transform> PreviewSpawnPos
     {
         get => _previewSpawnPos;
@@ -26,6 +27,5 @@ public class PreviewHolder : MonoBehaviour
         get => _previewSpawnPool;
         set => _previewSpawnPool = value;
     }
-    
     
 }
