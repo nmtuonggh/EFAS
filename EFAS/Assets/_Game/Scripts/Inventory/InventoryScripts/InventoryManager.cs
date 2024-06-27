@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.Action;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,6 +19,8 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] private SpawnWorldItem spawnWorldItem;
     [SerializeField] private InventorySystem inventorySystem;
     [SerializeField] private HoldeItem _holdeItem;
+    [SerializeField] private DropWhileHolding _dropItemWhileHolding;
+    public bool isHolding;
 
     [Header("Spawn Item")]
     [SerializeField] private PreviewHolder _previewHolder;
@@ -37,6 +40,7 @@ public class InventoryManager :MonoBehaviour
         }
 
         _holdeItem.OnItemHoldCountChanged += UpdateDropButtonState;
+        _dropItemWhileHolding.OnDropItemHoldUpdate += UpdateDropButtonState;
     }
 
     #region On Off Inventory
@@ -61,5 +65,6 @@ public class InventoryManager :MonoBehaviour
     {
         // Giả sử `btnDrop` là một instance của `Button`
         dropHoldButton.SetActive(itemCount > 0);
+        isHolding = itemCount > 0;
     }
 }

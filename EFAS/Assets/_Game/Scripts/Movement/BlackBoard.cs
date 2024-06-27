@@ -18,4 +18,5 @@ public class BlackBoard : MonoBehaviour
     public AvatarMask _carryMask;
     public PreviewHolder PreviewHolder;
     public HoldeItem holdItem;
+    public InventoryManager InventoryManager;
 }

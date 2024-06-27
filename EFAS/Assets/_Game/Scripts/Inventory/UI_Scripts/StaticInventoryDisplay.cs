@@ -18,7 +18,7 @@ public class StaticInventoryDisplay : InventoryDisplay
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
             _inventorySystem.OnInventorySlotChanged += UpdateSlot;
-            _dropItem.OnDropItemEvent += UpdateSlot;
+            _dropItem.OnDropItemUpdate += UpdateSlot;
             _holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
         }
         else

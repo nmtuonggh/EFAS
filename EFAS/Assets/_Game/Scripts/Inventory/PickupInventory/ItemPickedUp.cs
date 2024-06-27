@@ -9,6 +9,7 @@ public class ItemPickedUp : MonoBehaviour
     public WorldItemData worldItemData;
     public WorldItemWithoutColliderData worldItemWithoutColliderData;
     public bool _isTriggered = false;
+    public event Action OnAddPickUpItemToInventory;
     
     public void OnTriggerEnter(Collider other)
     {
@@ -18,7 +19,6 @@ public class ItemPickedUp : MonoBehaviour
             Debug.Log("trigger");
             _isTriggered = true;
             itemPickupItemSystem.ListItemsInRange.Add(this);
-            //itemPickupItemSystem.OnAddPickUpItemToInventory.Invoke();
             itemPickupItemSystem.DisplayItemPickup.DisplayItems();
         }
     }
@@ -31,6 +31,7 @@ public class ItemPickedUp : MonoBehaviour
             _isTriggered = false;
             itemPickupItemSystem.ListItemsInRange.Remove(this);
             itemPickupItemSystem.DisplayItemPickup.DisplayItems();
+
         }
     }
 }

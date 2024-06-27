@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Game.Scripts.Inventory.Action
 {
@@ -12,7 +13,7 @@ namespace _Game.Scripts.Inventory.Action
         [SerializeField] private Transform _poolItemsHoldInPreview;
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
         [SerializeField] private PreviewHolder _previewHolder;
-
+        public event UnityAction<int> OnDropItemHoldUpdate; 
         private void Start()
         {
         }
@@ -38,6 +39,7 @@ namespace _Game.Scripts.Inventory.Action
                 {
                     child.GetComponent<ItemPickedUp>().worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                     _previewHolder.ItemCount = 0;
+                    OnDropItemHoldUpdate?.Invoke(_previewHolder.ItemCount);
                 }
             }
         }

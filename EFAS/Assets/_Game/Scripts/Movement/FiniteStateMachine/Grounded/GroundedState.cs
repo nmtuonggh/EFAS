@@ -28,7 +28,7 @@ public class GroundedState : StateBase
 
     protected virtual bool HandelJump()
     {
-        if (canJump && _blackBoard.playerMovement.CanJump())
+        if (canJump && _blackBoard.playerMovement.CanJump() && !_blackBoard.InventoryManager.isHolding)
         {
             return _blackBoard.jump;
         }
