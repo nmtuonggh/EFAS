@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts.Inventory.Action;
+using DG.Tweening;
 using UnityEngine;
 
 public class StaticInventoryDisplay : InventoryDisplay
@@ -11,7 +12,6 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private DropItem _dropItem;
     [SerializeField] private HoldeItem _holdeItem;
     public event Action OnFocusSlotTouch;
-    public event Action OnUnFocusSlotTouch;
     
 
     protected override void Start()
@@ -58,14 +58,13 @@ public class StaticInventoryDisplay : InventoryDisplay
         if (FocusSlot != null)
         {
             FocusSlot.FocusLine.SetActive(false);
-            //OnUnFocusSlotTouch?.Invoke();
         }
 
         if (clickedUISlot.AssingnedInventorySlot.ItemData != null)
         {
             FocusSlot = clickedUISlot;
             FocusSlot.FocusLine.SetActive(true);
-            OnFocusSlotTouch?.Invoke();
+            //OnFocusSlotTouch?.Invoke();
         }
     }
 }

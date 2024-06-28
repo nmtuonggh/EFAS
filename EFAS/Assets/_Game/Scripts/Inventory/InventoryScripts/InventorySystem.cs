@@ -25,25 +25,41 @@ public class InventorySystem
     
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd)
     {
-        if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot)) 
+        while (amountToAdd > 0)
         {
-            foreach (var slot in invSlot)
+            if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot))
             {
-                if (slot.RoomLeftInStack(amountToAdd))
+                foreach (var slot in invSlot)
                 {
-                    slot.AddToStack(amountToAdd);
-                    OnInventorySlotChanged?.Invoke(slot);
+                    if (slot.RoomLeftInStack(amountToAdd, out int amountRemaining))
+                    {
+                        int amountToAddToSlot = Math.Min(amountToAdd, amountRemaining);
+                        slot.AddToStack(amountToAddToSlot);
+                        amountToAdd -= amountToAddToSlot;
+                        OnInventorySlotChanged?.Invoke(slot);
+                        if (amountToAdd == 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            if (HasFreeSlot(out InventorySlot freeSlot))
+            {
+                int amountToAddToSlot = Math.Min(amountToAdd, itemToAdd.MaxStackItem);
+                freeSlot.UpdateInventorySlot(itemToAdd, amountToAddToSlot);
+                amountToAdd -= amountToAddToSlot;
+                OnInventorySlotChanged?.Invoke(freeSlot);
+                if (amountToAdd == 0)
+                {
                     return true;
                 }
             }
+            else
+            {
+                return false;
+            }
         }
-        if (HasFreeSlot(out InventorySlot freeSlot))
-        {
-            freeSlot.UpdateInventorySlot(itemToAdd, amountToAdd);
-            OnInventorySlotChanged?.Invoke(freeSlot);
-            return true;
-        }
-
         return false;
     }
     
