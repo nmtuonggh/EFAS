@@ -11,6 +11,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private InventorySlot_UI[] slots;
     [SerializeField] private DropItem _dropItem;
     [SerializeField] private HoldeItem _holdeItem;
+    [SerializeField] private InventoryManager _inventoryManager;
     public event Action OnFocusSlotTouch;
     
 
@@ -20,6 +21,7 @@ public class StaticInventoryDisplay : InventoryDisplay
         if (_inventoryHolder != null)
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
+            //_inventoryManager.OnLoadingData += UpdateSlot;
             _inventorySystem.OnInventorySlotChanged += UpdateSlot;
             _dropItem.OnDropItemUpdate += UpdateSlot;
             _holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;

@@ -2,16 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Game.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class InventorySystem
+public class InventorySystem 
 {
+    [SerializeField] private List<InventoryItemData> allItemData;
     [SerializeField] private List<InventorySlot> _inventorySlots;
     public List<InventorySlot> InventorySlots { get => _inventorySlots; set => _inventorySlots = value; }
     public int InventorySize => InventorySlots.Count;
-    
+
+    public List<InventoryItemData> AllItemData
+    {
+        get => allItemData;
+        set => allItemData = value;
+    }
+
     public event UnityAction<InventorySlot> OnInventorySlotChanged;
 
     public InventorySystem(int size)
@@ -97,4 +105,8 @@ public class InventorySystem
         slotToDrop.RemoveFromStack(1);
         OnInventorySlotChanged?.Invoke(slotToDrop);
     }
+    
+
+    
 }
+
