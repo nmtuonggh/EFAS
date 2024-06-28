@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts.Inventory.Action;
@@ -9,6 +10,8 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private InventorySlot_UI[] slots;
     [SerializeField] private DropItem _dropItem;
     [SerializeField] private HoldeItem _holdeItem;
+    public event Action OnFocusSlotTouch;
+    public event Action OnUnFocusSlotTouch;
     
 
     protected override void Start()
@@ -52,15 +55,17 @@ public class StaticInventoryDisplay : InventoryDisplay
     
     private void SetFocus(InventorySlot_UI clickedUISlot)
     {
-        Debug.Log("run");
-        if (FocusSlot != null || clickedUISlot.AssingnedInventorySlot.ItemData == null)
+        if (FocusSlot != null)
         {
             FocusSlot.FocusLine.SetActive(false);
+            //OnUnFocusSlotTouch?.Invoke();
         }
-        if(clickedUISlot.AssingnedInventorySlot.ItemData != null)
+
+        if (clickedUISlot.AssingnedInventorySlot.ItemData != null)
         {
             FocusSlot = clickedUISlot;
             FocusSlot.FocusLine.SetActive(true);
+            OnFocusSlotTouch?.Invoke();
         }
     }
 }

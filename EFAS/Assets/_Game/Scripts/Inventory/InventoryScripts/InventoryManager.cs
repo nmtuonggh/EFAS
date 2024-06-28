@@ -42,24 +42,6 @@ public class InventoryManager :MonoBehaviour
         _holdeItem.OnItemHoldCountChanged += UpdateDropButtonState;
         _dropItemWhileHolding.OnDropItemHoldUpdate += UpdateDropButtonState;
     }
-
-    #region On Off Inventory
-
-    public void OpenInventory()
-    {
-        InventoryUI.SetActive(true);
-        ControlUI.SetActive(false);
-        PickupUI.SetActive(false);
-    }
-    
-    public void CloseInventory()
-    {
-        InventoryUI.SetActive(false);
-        ControlUI.SetActive(true);
-        PickupUI.SetActive(true);
-    }
-
-    #endregion
     
     private void UpdateDropButtonState(int itemCount)
     {

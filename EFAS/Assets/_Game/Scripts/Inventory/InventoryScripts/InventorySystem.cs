@@ -25,7 +25,6 @@ public class InventorySystem
     
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd)
     {
-        //if the item is already in the inventory, add the amount to the stack
         if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot)) 
         {
             foreach (var slot in invSlot)
@@ -38,7 +37,6 @@ public class InventorySystem
                 }
             }
         }
-        //if dont have any item in the inventory or this slot have the same item is full stack, add the item to the first free slot
         if (HasFreeSlot(out InventorySlot freeSlot))
         {
             freeSlot.UpdateInventorySlot(itemToAdd, amountToAdd);
@@ -48,27 +46,6 @@ public class InventorySystem
 
         return false;
     }
-
-    /*public bool RemoveFromInventory(InventoryItemData itemToRemove, int amountToRemove)
-    {
-        if (ContainsItem(itemToRemove, out List<InventorySlot> invSlot)) 
-        {
-            foreach (var slot in invSlot)
-            {
-                if (slot.StackSize >= amountToRemove)
-                {
-                    slot.RemoveFromStack(amountToRemove);
-                    if (slot.StackSize == 0)
-                    {
-                        slot.ClearData();
-                    }
-                    OnInventorySlotChanged?.Invoke(slot);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }*/
     
     public bool RemoveFromInventory(InventorySlot slotToRemove, InventoryItemData itemToRemove, int amountToRemove)
     {

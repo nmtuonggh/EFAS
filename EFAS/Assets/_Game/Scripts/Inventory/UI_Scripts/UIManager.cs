@@ -2,31 +2,40 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Game.Scripts.Inventory.UI_Scripts
 {
     public class UIManager : MonoBehaviour
     {
         public float fadeTime = 1f;
-        public CanvasGroup canvasGroup;
-        public RectTransform rectTransform;
+        [FormerlySerializedAs("canvasGroup")] public CanvasGroup inventoryCanvasGroup;
+        [FormerlySerializedAs("rectTransform")] public RectTransform inventoRectTransform;
+        public GameObject controlUI;
+        public GameObject pickUpUI;
         public List<GameObject> _inventoryItem;
         
-        public void PanelFadeIn()
+        public void InventoryPanelFadeIn()
         {
-            canvasGroup.alpha = 0f;
-            rectTransform.transform.localPosition = new Vector3(0, -1000f, 0);
-            rectTransform.DOAnchorPos(new Vector2(0f, 10f), fadeTime, false).SetEase(Ease.Flash);
-            canvasGroup.DOFade(1f, fadeTime);
+            controlUI.SetActive(false);
+            pickUpUI.SetActive(false);
+            inventoryCanvasGroup.alpha = 0f;
+            inventoRectTransform.transform.localPosition = new Vector3(0, -1000f, 0);
+            inventoRectTransform.DOAnchorPos(new Vector2(0f, 10f), fadeTime, false).SetEase(Ease.OutElastic);
+            inventoryCanvasGroup.DOFade(1f, fadeTime);
             StartCoroutine(nameof(SlotAnimation));
         }
         
-        public void PanelFadeOut()
+        public void InventoryPanelFadeOut()
         {
-            canvasGroup.alpha = 1f;
-            rectTransform.transform.localPosition = new Vector3(0, 0f, 0);
-            rectTransform.DOAnchorPos(new Vector2(0f, -1300f), fadeTime, false).SetEase(Ease.Flash);
-            canvasGroup.DOFade(1f, fadeTime);
+           
+            inventoryCanvasGroup.alpha = 1f;
+            inventoRectTransform.transform.localPosition = new Vector3(0, 0f, 0);
+            inventoRectTransform.DOAnchorPos(new Vector2(0f, -1300f), fadeTime, false).SetEase(Ease.InOutQuint);
+            inventoryCanvasGroup.DOFade(1f, fadeTime);
+            inventoryCanvasGroup.isActiveAndEnabled.Equals(false);
+            controlUI.SetActive(true);
+            pickUpUI.SetActive(true);
         }
 
         public IEnumerator SlotAnimation()
