@@ -22,12 +22,15 @@ public abstract class InventoryDisplay : MonoBehaviour
         //slotDictionary = new Dictionary<InventorySlot_UI, InventorySlot>();
     }
 
-    protected virtual void UpdateSlot(InventorySlot updateSlot)
+    public virtual void UpdateSlot(InventorySlot updateSlot)
     {
-        foreach (var slot in SlotDictionary)
+        
+        foreach (var slot in slotDictionary)
         {
+            //Debug.Log("input Slot" + updateSlot + "Slot in Dictionary" + slot.Value);
             if (slot.Value == updateSlot)   // if the slot is the same as the one i want to update
             {
+                Debug.Log("Updating Slot");
                 slot.Key.UpdateUISlot(updateSlot);
             }
         }

@@ -1,11 +1,13 @@
 ﻿using System;
+using _Game.Scripts.Event;
 using _Game.Scripts.Inventory;
 using UnityEngine;
     public class HoldeItem : MonoBehaviour
     {
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
-        public event Action<InventorySlot> OnHoldeItemSlotChangedEvent;
+        //public event Action<InventorySlot> OnHoldeItemSlotChangedEvent;
         public event Action<int> OnItemHoldCountChanged;
+        public GameEvent<InventorySlot> OnHoldeItemSlotChanged;
         
         public void OnHoldItem()
         {
@@ -18,7 +20,8 @@ using UnityEngine;
                 InventorySlot selectedSlot = _blackBoardInventory.staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
                 if (_blackBoardInventory.inventoryHolder.InventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, 1))
                 {
-                    OnHoldeItemSlotChangedEvent?.Invoke(selectedSlot);
+                    //OnHoldeItemSlotChangedEvent?.Invoke(selectedSlot);
+                    OnHoldeItemSlotChanged.Raise(selectedSlot);
                 }
             }
         }

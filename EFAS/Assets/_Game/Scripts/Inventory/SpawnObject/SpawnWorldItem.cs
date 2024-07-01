@@ -27,7 +27,7 @@ public class SpawnWorldItem : MonoBehaviour
 
    public void SpawnDropItem(int id)
    {
-      foreach (var prefab in WorldItemDataList)
+      foreach (var prefab in WorldItemDataList) 
       {
          if(prefab.ID == id)
             prefab.Spawn(_dropPos.transform.position, Quaternion.identity, _parentSpawnItem);

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Game.Scripts.Event;
 using _Game.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,12 +20,13 @@ public class InventorySystem
         get => allItemData;
         set => allItemData = value;
     }
+    
+    private GameEvent<InventorySlot> _onInventorySlotChangedEvent;
 
-    public event UnityAction<InventorySlot> OnInventorySlotChanged;
-
-    public InventorySystem(int size)
+    public InventorySystem(int size, GameEvent<InventorySlot> OnInventorySlotChangedEvent)
     {
         _inventorySlots = new List<InventorySlot>(size);
+        this._onInventorySlotChangedEvent = OnInventorySlotChangedEvent;
         for (int i = 0; i < size; i++)
         {
             _inventorySlots.Add(new InventorySlot());
@@ -44,7 +46,8 @@ public class InventorySystem
                         int amountToAddToSlot = Math.Min(amountToAdd, amountRemaining);
                         slot.AddToStack(amountToAddToSlot);
                         amountToAdd -= amountToAddToSlot;
-                        OnInventorySlotChanged?.Invoke(slot);
+                        //OnInventorySlotChanged?.Invoke(slot);
+                        _onInventorySlotChangedEvent.Raise(slot);
                         if (amountToAdd == 0)
                         {
                             return true;
@@ -57,7 +60,8 @@ public class InventorySystem
                 int amountToAddToSlot = Math.Min(amountToAdd, itemToAdd.MaxStackItem);
                 freeSlot.UpdateInventorySlot(itemToAdd, amountToAddToSlot);
                 amountToAdd -= amountToAddToSlot;
-                OnInventorySlotChanged?.Invoke(freeSlot);
+                //OnInventorySlotChanged?.Invoke(freeSlot);
+                _onInventorySlotChangedEvent.Raise(freeSlot);
                 if (amountToAdd == 0)
                 {
                     return true;
@@ -82,7 +86,8 @@ public class InventorySystem
                 {
                     slotToRemove.ClearData();
                 }
-                OnInventorySlotChanged?.Invoke(slotToRemove);
+                //OnInventorySlotChanged?.Invoke(slotToRemove);
+                _onInventorySlotChangedEvent.Raise(slotToRemove);
                 return true;
             }
         }
@@ -103,10 +108,9 @@ public class InventorySystem
     public void DropOneItem(InventorySlot slotToDrop)
     {
         slotToDrop.RemoveFromStack(1);
-        OnInventorySlotChanged?.Invoke(slotToDrop);
+        //OnInventorySlotChanged?.Invoke(slotToDrop);
+        _onInventorySlotChangedEvent.Raise(slotToDrop);
     }
-    
-
     
 }
 

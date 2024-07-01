@@ -12,7 +12,11 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private DropItem _dropItem;
     [SerializeField] private HoldeItem _holdeItem;
     [SerializeField] private InventoryManager _inventoryManager;
-    public event Action OnFocusSlotTouch;
+    public GameEventListener<InventorySlot> OnInventorySlotChangedEventListener;
+    public GameEventListener<InventorySlot> OnDropInventoryItem;
+    public GameEventListener<InventorySlot> OnHoldeItemSlotChanged;
+
+    //public event Action OnFocusSlotTouch;
     
 
     protected override void Start()
@@ -21,16 +25,23 @@ public class StaticInventoryDisplay : InventoryDisplay
         if (_inventoryHolder != null)
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
-            //_inventoryManager.OnLoadingData += UpdateSlot;
-            _inventorySystem.OnInventorySlotChanged += UpdateSlot;
-            _dropItem.OnDropItemUpdate += UpdateSlot;
-            _holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
+            OnInventorySlotChangedEventListener.OnEnable();
+            OnDropInventoryItem.OnEnable();
+            OnHoldeItemSlotChanged.OnEnable();
+            //_holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
         }
         else
         {
             Debug.LogWarning($"No Inventory Assigned to  {this.gameObject}");
         }
         AssignSlot(_inventorySystem);
+    }
+
+    private void OnDestroy()
+    {
+        OnInventorySlotChangedEventListener.OnDisable();
+        OnDropInventoryItem.OnDisable();
+        OnHoldeItemSlotChanged.OnDisable();
     }
 
     public override void AssignSlot(InventorySystem invToDisplay)

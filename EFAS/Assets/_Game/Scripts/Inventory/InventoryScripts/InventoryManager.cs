@@ -30,7 +30,7 @@ public class InventoryManager :MonoBehaviour
     public static InventoryManager Instance;
     private string savePath = "Assets/_Game/Data/inventoryData.json";
     [SerializeField] private List<InventoryItemData> _listInventoryItemData;
-    //public event Action<InventorySlot> OnLoadingData;
+    [SerializeField] private InventorySaveData inventorySaveData;
 
     private void Awake()
     {
@@ -56,14 +56,14 @@ public class InventoryManager :MonoBehaviour
     public InventorySaveData ToSaveData()
     {
         var saveData = new InventorySaveData();
-        saveData.inventorySlots = new List<InventorySaveData.InventorySlotSaveData>();
+        saveData.inventorySlotSaveDatas = new List<InventorySaveData.InventorySlotSaveData>();
 
         foreach (var slot in inventoryHolder.InventorySystem.InventorySlots)
         {
             var slotSaveData = new InventorySaveData.InventorySlotSaveData();
             slotSaveData.itemID = slot.ItemData?.ID ?? -1;
             slotSaveData.stackSize = slot.StackSize;
-            saveData.inventorySlots.Add(slotSaveData);
+            saveData.inventorySlotSaveDatas.Add(slotSaveData);
         }
 
         return saveData;
@@ -73,24 +73,19 @@ public class InventoryManager :MonoBehaviour
     {
         var saveData = ToSaveData();
         var json = JsonUtility.ToJson(saveData);
-        Debug.Log("ghi file" + json);
 
         System.IO.File.WriteAllText(savePath, json);
     }
     
     public void LoadFromSaveData(InventorySaveData saveData)
     {
-        inventoryHolder.InventorySystem.InventorySlots.Clear();
-
-        foreach (var slotSaveData in saveData.inventorySlots)
+        foreach (var slotSaveData in saveData.inventorySlotSaveDatas)
         {
-            var slot = new InventorySlot();
-            slot.ItemData = slotSaveData.itemID >= 0 ? GetItemDataByID(slotSaveData.itemID) : null;
-            slot.StackSize = slotSaveData.stackSize;
-            inventoryHolder.InventorySystem.InventorySlots.Add(slot);
-           // OnLoadingData?.Invoke(slot);
+            inventoryHolder.InventorySystem.AddToInventory(
+                slotSaveData.itemID >= 0 ? GetItemDataByID(slotSaveData.itemID) : null, slotSaveData.stackSize);
         }
     }
+    
     
     public InventoryItemData GetItemDataByID(int id)
     {
