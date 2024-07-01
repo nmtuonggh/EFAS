@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 24308048}
   - component: {fileID: 24308047}
   m_Layer: 9
-  m_Name: Cube (1)
+  m_Name: Cube front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,13 +450,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24308045}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: 0.569}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalRotation: {x: 0.16939175, y: 9.3132246e-10, z: 4.6566123e-10, w: 0.9855488}
+  m_LocalPosition: {x: 0, y: 1.297, z: 0.675}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450902554}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.505, y: 0, z: 0}
 --- !u!65 &24308047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -730,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 80849339}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 1.626, z: 0.327}
+  m_LocalPosition: {x: 0.00000014109537, y: 1.126, z: 0.15100312}
   m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1905,7 +1905,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6287978483105616531}
-  - {fileID: 884746054}
   - {fileID: 1515560668}
   m_Father: {fileID: 501735850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2193,6 +2192,8 @@ MonoBehaviour:
   - {fileID: 657100615}
   _itemCount: 0
   _previewSpawnPool: {fileID: 1253309406}
+  OnHoldingState: {fileID: 11400000, guid: f8cdb3e0c7b3c80449a976ff15cd7f41, type: 2}
+  NoHoldingState: {fileID: 11400000, guid: 739c20501dd275b40bd62385bd2ca1a9, type: 2}
 --- !u!114 &213154885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2565,7 +2566,6 @@ MonoBehaviour:
     _inventorySlots: []
   _holdeItem: {fileID: 1419976621}
   _dropItemWhileHolding: {fileID: 507753102}
-  isHolding: 0
   _previewHolder: {fileID: 213154884}
   _listInventoryItemData:
   - {fileID: 11400000, guid: 0d61dd106d7d16f4281de96441ed7c43, type: 2}
@@ -2574,6 +2574,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54e44b23e0d76f9489f8de285625aa8e, type: 2}
   inventorySaveData:
     inventorySlotSaveDatas: []
+  UnHoldingState:
+    Event: {fileID: 0}
+    Response:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &277325248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4921,6 +4926,7 @@ MonoBehaviour:
   inventoRectTransform: {fileID: 6287978483105616531}
   controlUI: {fileID: 1011082802}
   pickUpUI: {fileID: 1515560667}
+  buttonDropWhileHolding: {fileID: 507753097}
   _inventoryItem:
   - {fileID: 730431512}
   - {fileID: 145605980}
@@ -4940,6 +4946,43 @@ MonoBehaviour:
   - {fileID: 583790884}
   - {fileID: 1490339178}
   - {fileID: 2103860956}
+  OnOutInventory: {fileID: 11400000, guid: fd65ebe5bdff47c489d16bd51b2190a8, type: 2}
+  OnHoldingState:
+    Event: {fileID: 11400000, guid: f8cdb3e0c7b3c80449a976ff15cd7f41, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 501735851}
+          m_TargetAssemblyTypeName: _Game.Scripts.Inventory.UI_Scripts.UIManager,
+            Assembly-CSharp
+          m_MethodName: activeBtnDropWhileHolding
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  UnHoldingState:
+    Event: {fileID: 11400000, guid: 739c20501dd275b40bd62385bd2ca1a9, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 501735851}
+          m_TargetAssemblyTypeName: _Game.Scripts.Inventory.UI_Scripts.UIManager,
+            Assembly-CSharp
+          m_MethodName: unActiveBtnDropWhileHolding
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &502327284
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,12 +5161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ce3728b72a47b084cc2679a8e3e869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsHoldInPlayer: []
-  itemsHoldInPreview: []
   _poolItemsHoldInPlayer: {fileID: 933071742}
   _poolItemsHoldInPreview: {fileID: 1253309406}
   _blackBoardInventory: {fileID: 1435681154}
   _previewHolder: {fileID: 213154884}
+  CubeHold: []
+  _worldItemHolder: {fileID: 1733162976}
 --- !u!1 &514847145
 GameObject:
   m_ObjectHideFlags: 0
@@ -8833,7 +8876,7 @@ GameObject:
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8846,7 +8889,7 @@ Transform:
   m_GameObject: {fileID: 601275201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37, y: 1.1969999, z: 0.353}
+  m_LocalPosition: {x: 0.059, y: 1.855, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11818,78 +11861,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcf05b06a96e842b6aeb4e1c5215ee40, type: 3}
---- !u!1 &884746053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 884746054}
-  - component: {fileID: 884746056}
-  - component: {fileID: 884746055}
-  m_Layer: 5
-  m_Name: RawImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &884746054
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884746053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 186587647}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &884746055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884746053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 61581a7b7f328cf47827d65eeac512f5, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &884746056
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884746053}
-  m_CullTransparentMesh: 1
 --- !u!4 &894738840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ee741909879eaab4ebe380caa5e25669, type: 3}
@@ -12978,7 +12949,7 @@ GameObject:
   - component: {fileID: 987106622}
   - component: {fileID: 987106621}
   m_Layer: 9
-  m_Name: Cube (3)
+  m_Name: Cube right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12992,13 +12963,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987106619}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.309, y: 1.39, z: 0.327}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalRotation: {x: -0.09229599, y: 0.7010574, z: 0.09229599, w: 0.7010574}
+  m_LocalPosition: {x: -0.45, y: 1.359, z: 0.305}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450902554}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -15, y: 90, z: 0}
 --- !u!65 &987106621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13259,38 +13230,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4868299672166794, guid: 01511af67299e4cc380a845656c6fb49, type: 3}
   m_PrefabInstance: {fileID: 1422867941}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1023053556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1023053557}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1023053557
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023053556}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1450902554}
-  m_Father: {fileID: 1109111902}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1026155227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: d917c7129a9e4c74e84188b278d96de7, type: 3}
@@ -14774,7 +14713,7 @@ Transform:
   m_Children:
   - {fileID: 933071742}
   - {fileID: 442710932}
-  - {fileID: 1023053557}
+  - {fileID: 1450902554}
   m_Father: {fileID: 1361047295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1115594406 stripped
@@ -14877,7 +14816,7 @@ GameObject:
   - component: {fileID: 1140143068}
   - component: {fileID: 1140143067}
   m_Layer: 9
-  m_Name: Cube (4)
+  m_Name: Cube under
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14892,7 +14831,7 @@ Transform:
   m_GameObject: {fileID: 1140143065}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 1.128, z: 0.327}
+  m_LocalPosition: {x: 0.00000014109537, y: 1.02, z: 0.15100312}
   m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17044,7 +16983,6 @@ MonoBehaviour:
     m_Bits: 0
   _carryMask: {fileID: 31900000, guid: 5bfdbcf34b624074f883a52e20257a9c, type: 2}
   PreviewHolder: {fileID: 213154884}
-  holdItem: {fileID: 1419976621}
   InventoryManager: {fileID: 271319142}
 --- !u!114 &1361047304
 MonoBehaviour:
@@ -17879,7 +17817,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blackBoardInventory: {fileID: 1435681154}
+  _poolItemsHoldInPlayer: {fileID: 933071742}
   OnHoldeItemSlotChanged: {fileID: 11400000, guid: 898400d996738274cbc9fe6e66e7cbe9, type: 2}
+  OnOutInventory:
+    Event: {fileID: 11400000, guid: fd65ebe5bdff47c489d16bd51b2190a8, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1419976621}
+          m_TargetAssemblyTypeName: HoldeItem, Assembly-CSharp
+          m_MethodName: SetKinematicHoldItem
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1422867941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17979,7 +17935,7 @@ GameObject:
   - component: {fileID: 1432060526}
   - component: {fileID: 1432060525}
   m_Layer: 9
-  m_Name: Cube (2)
+  m_Name: Cube left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17993,13 +17949,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432060523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.326, y: 1.39, z: 0.327}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalRotation: {x: 0.09229593, y: 0.7010574, z: -0.09229593, w: 0.7010574}
+  m_LocalPosition: {x: 0.45, y: 1.341, z: 0.38}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450902554}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 90, z: 0}
 --- !u!65 &1432060525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18148,7 +18104,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6b7a7f2143aab414e9826f7dff7ccdc5, type: 2}
     - {fileID: 11400000, guid: 54e44b23e0d76f9489f8de285625aa8e, type: 2}
     _inventorySlots: []
-  OnInventorySlotChangedEvent: {fileID: 11400000, guid: 05b17a7f47c10c94fb7538bc1256480c, type: 2}
+  onInventorySlotChangedEventT: {fileID: 11400000, guid: 05b17a7f47c10c94fb7538bc1256480c, type: 2}
 --- !u!114 &1435681153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18372,8 +18328,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450902554}
+  - component: {fileID: 1450902555}
   m_Layer: 9
-  m_Name: Holder
+  m_Name: HoldCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18387,7 +18344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450902553}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18398,8 +18355,62 @@ Transform:
   - {fileID: 80849340}
   - {fileID: 987106620}
   - {fileID: 24308046}
-  m_Father: {fileID: 1023053557}
+  m_Father: {fileID: 1109111902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450902555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450902553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e72f23114ce4b00aa52f30e7863c68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubeHold:
+  - {fileID: 1609495087}
+  - {fileID: 1432060524}
+  - {fileID: 1140143066}
+  - {fileID: 987106620}
+  - {fileID: 24308046}
+  OnHoldState:
+    Event: {fileID: 11400000, guid: f8cdb3e0c7b3c80449a976ff15cd7f41, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1450902555}
+          m_TargetAssemblyTypeName: _Game.Scripts.Inventory.Action.CubeHoldItem,
+            Assembly-CSharp
+          m_MethodName: OnHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  UnHoldState:
+    Event: {fileID: 11400000, guid: 739c20501dd275b40bd62385bd2ca1a9, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1450902555}
+          m_TargetAssemblyTypeName: _Game.Scripts.Inventory.Action.CubeHoldItem,
+            Assembly-CSharp
+          m_MethodName: OnDrop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1457144373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1566452728909448934, guid: 2d6a92863952c424982aaa7f8b09403d, type: 3}
@@ -19782,7 +19793,7 @@ GameObject:
   - component: {fileID: 1609495089}
   - component: {fileID: 1609495088}
   m_Layer: 9
-  m_Name: Cube
+  m_Name: Cube back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19796,13 +19807,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609495086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.39, z: 0.036}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalRotation: {x: -0.042391352, y: 9.3132246e-10, z: -0, w: 0.9991011}
+  m_LocalPosition: {x: 0, y: 1.362, z: -0.056}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450902554}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.859, y: 0, z: 0}
 --- !u!65 &1609495088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20490,7 +20501,7 @@ GameObject:
   m_Layer: 0
   m_Name: Slot (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -20503,7 +20514,7 @@ Transform:
   m_GameObject: {fileID: 1691482128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.428, y: 1.194, z: 0.353}
+  m_LocalPosition: {x: 0.063, y: 1.861, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20657,7 +20668,7 @@ GameObject:
   m_Layer: 0
   m_Name: Slot (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -20670,7 +20681,7 @@ Transform:
   m_GameObject: {fileID: 1735256250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.174, y: 1.013, z: 0.353}
+  m_LocalPosition: {x: 0.051, y: 1.867, z: 0.353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23817,7 +23828,7 @@ GameObject:
   m_Layer: 0
   m_Name: Slot (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23830,7 +23841,7 @@ Transform:
   m_GameObject: {fileID: 2018181462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.129, y: 1.0389999, z: 0.353}
+  m_LocalPosition: {x: 0.047, y: 1.864, z: 0.353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24676,8 +24687,8 @@ MonoBehaviour:
   _dropItem: {fileID: 969887556}
   _holdeItem: {fileID: 1419976621}
   _inventoryManager: {fileID: 271319142}
-  OnInventorySlotChangedEventListener:
-    Event: {fileID: 11400000, guid: 05b17a7f47c10c94fb7538bc1256480c, type: 2}
+  onInventorySlotChangedEventListenerT:
+    eventT: {fileID: 11400000, guid: 05b17a7f47c10c94fb7538bc1256480c, type: 2}
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -24694,15 +24705,39 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   OnDropInventoryItem:
-    Event: {fileID: 11400000, guid: 77c6fe5c55b819540b198f45da5b7df4, type: 2}
+    eventT: {fileID: 11400000, guid: 77c6fe5c55b819540b198f45da5b7df4, type: 2}
     Response:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6287978483930375467}
+          m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp
+          m_MethodName: UpdateSlot
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnHoldeItemSlotChanged:
-    Event: {fileID: 11400000, guid: 898400d996738274cbc9fe6e66e7cbe9, type: 2}
+    eventT: {fileID: 11400000, guid: 898400d996738274cbc9fe6e66e7cbe9, type: 2}
     Response:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6287978483930375467}
+          m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp
+          m_MethodName: UpdateSlot
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &6287978483941082688 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6287978483853264446, guid: 9135e1f94ece4493fae993f87769ca07, type: 3}

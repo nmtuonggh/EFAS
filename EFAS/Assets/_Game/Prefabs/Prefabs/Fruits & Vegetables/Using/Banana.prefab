@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5920593745242702897
+--- !u!1 &4563381241488259454
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6440706053912338059}
-  - component: {fileID: 7984362746116837678}
-  - component: {fileID: 5272255925732304356}
+  - component: {fileID: 3755918127635293124}
+  - component: {fileID: 265826960983845985}
+  - component: {fileID: 2617892653487429803}
   m_Layer: 0
-  m_Name: Apricot
+  m_Name: Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6440706053912338059
+--- !u!4 &3755918127635293124
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920593745242702897}
+  m_GameObject: {fileID: 4563381241488259454}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.38529587, y: 0.5929141, z: -0.38529596, w: 0.59291404}
+  m_LocalPosition: {x: -0.10670864, y: 0.10351319, z: 0.00000005129297}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7984362746116837678
+  m_LocalEulerAnglesHint: {x: 66.034, y: 90, z: 0}
+--- !u!33 &265826960983845985
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920593745242702897}
-  m_Mesh: {fileID: -5981523652634616183, guid: efee59e33b27a8b4894b6fae60964271, type: 3}
---- !u!23 &5272255925732304356
+  m_GameObject: {fileID: 4563381241488259454}
+  m_Mesh: {fileID: 3216447080179446721, guid: b023bdb9cdd811f4cb53e54a8441c5e1, type: 3}
+--- !u!23 &2617892653487429803
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5920593745242702897}
+  m_GameObject: {fileID: 4563381241488259454}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

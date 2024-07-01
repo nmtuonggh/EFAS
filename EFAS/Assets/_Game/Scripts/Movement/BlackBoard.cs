@@ -17,6 +17,5 @@ public class BlackBoard : MonoBehaviour
     public LayerMask groundLayer;
     public AvatarMask _carryMask;
     public PreviewHolder PreviewHolder;
-    public HoldeItem holdItem;
     public InventoryManager InventoryManager;
 }

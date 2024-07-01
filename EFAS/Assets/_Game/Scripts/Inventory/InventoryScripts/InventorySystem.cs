@@ -21,12 +21,12 @@ public class InventorySystem
         set => allItemData = value;
     }
     
-    private GameEvent<InventorySlot> _onInventorySlotChangedEvent;
+    private GameEventT<InventorySlot> onInventorySlotChangedEventT;
 
-    public InventorySystem(int size, GameEvent<InventorySlot> OnInventorySlotChangedEvent)
+    public InventorySystem(int size, GameEventT<InventorySlot> onInventorySlotChangedEventT)
     {
         _inventorySlots = new List<InventorySlot>(size);
-        this._onInventorySlotChangedEvent = OnInventorySlotChangedEvent;
+        this.onInventorySlotChangedEventT = onInventorySlotChangedEventT;
         for (int i = 0; i < size; i++)
         {
             _inventorySlots.Add(new InventorySlot());
@@ -47,7 +47,7 @@ public class InventorySystem
                         slot.AddToStack(amountToAddToSlot);
                         amountToAdd -= amountToAddToSlot;
                         //OnInventorySlotChanged?.Invoke(slot);
-                        _onInventorySlotChangedEvent.Raise(slot);
+                        onInventorySlotChangedEventT.Raise(slot);
                         if (amountToAdd == 0)
                         {
                             return true;
@@ -61,7 +61,7 @@ public class InventorySystem
                 freeSlot.UpdateInventorySlot(itemToAdd, amountToAddToSlot);
                 amountToAdd -= amountToAddToSlot;
                 //OnInventorySlotChanged?.Invoke(freeSlot);
-                _onInventorySlotChangedEvent.Raise(freeSlot);
+                onInventorySlotChangedEventT.Raise(freeSlot);
                 if (amountToAdd == 0)
                 {
                     return true;
@@ -87,7 +87,7 @@ public class InventorySystem
                     slotToRemove.ClearData();
                 }
                 //OnInventorySlotChanged?.Invoke(slotToRemove);
-                _onInventorySlotChangedEvent.Raise(slotToRemove);
+                onInventorySlotChangedEventT.Raise(slotToRemove);
                 return true;
             }
         }
@@ -109,7 +109,7 @@ public class InventorySystem
     {
         slotToDrop.RemoveFromStack(1);
         //OnInventorySlotChanged?.Invoke(slotToDrop);
-        _onInventorySlotChangedEvent.Raise(slotToDrop);
+        onInventorySlotChangedEventT.Raise(slotToDrop);
     }
     
 }

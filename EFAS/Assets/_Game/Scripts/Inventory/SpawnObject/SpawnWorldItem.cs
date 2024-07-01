@@ -47,11 +47,12 @@ public class SpawnWorldItem : MonoBehaviour
 
    public void SpawnToPlayer(int id, int slotIndex)
    {
-      foreach (var prefab in WorldItemDataWithoutColliderList)
+      foreach (var prefab in WorldItemDataList)
       {
          if(prefab.ID == id)
          {
-            prefab.SpawnItemWithoutCollider(_playerHoldPos[_previewHolder.ItemCount].position, Quaternion.identity, _playerHoldPool);
+            prefab.WorldItemPrefab.tag = "ItemHolding";
+            prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, prefab.WorldItemPrefab.transform.rotation, _playerHoldPool);
          }
       }
    }

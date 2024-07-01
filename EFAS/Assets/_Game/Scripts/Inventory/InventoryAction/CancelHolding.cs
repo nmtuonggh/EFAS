@@ -16,20 +16,22 @@ namespace _Game.Scripts.Inventory.Action
         {
             foreach (Transform child in _poolItemsHoldInPlayer)
             {
-                if (child.GetComponent<ItemPickedUp>() != null && child.GetComponent<ItemPickedUp>().isActiveAndEnabled)
+                var item = child.GetComponent<ItemPickedUp>();
+                if (item != null && item.isActiveAndEnabled)
                 {
-                    _inventoryHolder.InventorySystem.AddToInventory(child.GetComponent<ItemPickedUp>().ItemData, 1);
-                    child.GetComponent<ItemPickedUp>()
-                        .worldItemWithoutColliderData.ReturnToPool(child.GetComponent<ItemPickedUp>()
-                            .gameObject);
+                    //add to inventory
+                    _inventoryHolder.InventorySystem.AddToInventory(item.ItemData, 1);
+                    //return to pool
+                    item.worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                 }
             }
             foreach (Transform child in _poolItemsHoldInPreview)
             {
+                //return to pool
                 var item = child.GetComponent<ItemPickedUp>();
-                if (child.GetComponent<ItemPickedUp>() != null && child.GetComponent<ItemPickedUp>().isActiveAndEnabled)
+                if (item != null && item.isActiveAndEnabled)
                 {
-                    child.GetComponent<ItemPickedUp>().worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    item.worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                     _previewHolder.ItemCount = 0;
                 }
             }

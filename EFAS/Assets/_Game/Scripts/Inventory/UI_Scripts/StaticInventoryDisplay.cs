@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Game.Scripts.Inventory.Action;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
@@ -12,9 +13,9 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private DropItem _dropItem;
     [SerializeField] private HoldeItem _holdeItem;
     [SerializeField] private InventoryManager _inventoryManager;
-    public GameEventListener<InventorySlot> OnInventorySlotChangedEventListener;
-    public GameEventListener<InventorySlot> OnDropInventoryItem;
-    public GameEventListener<InventorySlot> OnHoldeItemSlotChanged;
+    [FormerlySerializedAs("OnInventorySlotChangedEventListener")] public GameEventListenerT<InventorySlot> onInventorySlotChangedEventListenerT;
+    public GameEventListenerT<InventorySlot> OnDropInventoryItem;
+    public GameEventListenerT<InventorySlot> OnHoldeItemSlotChanged;
 
     //public event Action OnFocusSlotTouch;
     
@@ -25,7 +26,7 @@ public class StaticInventoryDisplay : InventoryDisplay
         if (_inventoryHolder != null)
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
-            OnInventorySlotChangedEventListener.OnEnable();
+            onInventorySlotChangedEventListenerT.OnEnable();
             OnDropInventoryItem.OnEnable();
             OnHoldeItemSlotChanged.OnEnable();
             //_holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
@@ -39,7 +40,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
     private void OnDestroy()
     {
-        OnInventorySlotChangedEventListener.OnDisable();
+        onInventorySlotChangedEventListenerT.OnDisable();
         OnDropInventoryItem.OnDisable();
         OnHoldeItemSlotChanged.OnDisable();
     }

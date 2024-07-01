@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using _Game.Scripts.Inventory;
 using _Game.Scripts.Inventory.Action;
 using UnityEngine;
@@ -22,7 +23,6 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] private InventorySystem inventorySystem;
     [SerializeField] private HoldeItem _holdeItem;
     [SerializeField] private DropWhileHolding _dropItemWhileHolding;
-    public bool isHolding;
 
     [Header("Spawn Item")]
     [SerializeField] private PreviewHolder _previewHolder;
@@ -31,6 +31,8 @@ public class InventoryManager :MonoBehaviour
     private string savePath = "Assets/_Game/Data/inventoryData.json";
     [SerializeField] private List<InventoryItemData> _listInventoryItemData;
     [SerializeField] private InventorySaveData inventorySaveData;
+    
+    public GameEventListener UnHoldingState;
 
     private void Awake()
     {
@@ -42,15 +44,12 @@ public class InventoryManager :MonoBehaviour
         {
             Destroy(this);
         }
-
-        _holdeItem.OnItemHoldCountChanged += UpdateDropButtonState;
-        _dropItemWhileHolding.OnDropItemHoldUpdate += UpdateDropButtonState;
+        //UnHoldingState.OnEnable();
     }
     
-    private void UpdateDropButtonState(int itemCount)
+    private void OnDestroy()
     {
-        dropHoldButton.SetActive(itemCount > 0);
-        isHolding = itemCount > 0;
+        //UnHoldingState.OnDisable();
     }
     
     public InventorySaveData ToSaveData()

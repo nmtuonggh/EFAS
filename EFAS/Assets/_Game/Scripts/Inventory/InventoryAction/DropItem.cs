@@ -7,8 +7,7 @@ namespace _Game.Scripts.Inventory.Action
     public class DropItem : MonoBehaviour
     {
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
-        //public event Action<InventorySlot> OnDropItemUpdate;
-        public GameEvent<InventorySlot> OnDropInventoryItem;
+        public GameEventT<InventorySlot> OnDropInventoryItem;
         
         public void OnDropItem()
         {
@@ -21,7 +20,6 @@ namespace _Game.Scripts.Inventory.Action
 
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, 1))
                 {
-                    //OnDropItemUpdate?.Invoke(selectedSlot);
                     OnDropInventoryItem.Raise(selectedSlot);
                 }
             }
@@ -42,7 +40,6 @@ namespace _Game.Scripts.Inventory.Action
 
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, stackSize))
                 {
-                    //OnDropItemUpdate?.Invoke(selectedSlot);
                     OnDropInventoryItem.Raise(selectedSlot);
                 }
             }

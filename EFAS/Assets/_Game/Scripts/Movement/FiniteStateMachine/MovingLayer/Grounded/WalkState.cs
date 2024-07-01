@@ -34,7 +34,7 @@ public class WalkState : GroundedState
         //    return StateStatus.Success;
         //}
 
-        if(_blackBoard.sprint && !_blackBoard.InventoryManager.isHolding)
+        if(_blackBoard.sprint && (_blackBoard.PreviewHolder.ItemCount > 0))
         {
             _fsm.ChangeState(_sprintState);
             return StateStatus.Success;

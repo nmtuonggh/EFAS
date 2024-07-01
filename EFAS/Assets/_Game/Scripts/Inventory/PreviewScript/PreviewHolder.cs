@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public class PreviewHolder : MonoBehaviour
     [SerializeField] private List<Transform> _previewSpawnPos;
     [SerializeField] private int _itemCount = 0;
     [SerializeField] private Transform _previewSpawnPool;
+
+    public GameEvent OnHoldingState;
+    public GameEvent NoHoldingState;
     public List<Transform> PreviewSpawnPos
     {
         get => _previewSpawnPos;
@@ -27,5 +31,16 @@ public class PreviewHolder : MonoBehaviour
         get => _previewSpawnPool;
         set => _previewSpawnPool = value;
     }
-    
+
+    private void Update()
+    {
+        if (_itemCount > 0)
+        {
+            OnHoldingState.Raise();
+        }
+        else
+        {
+            NoHoldingState.Raise();
+        }
+    }
 }
