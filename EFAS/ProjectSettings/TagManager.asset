@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - ItemHolding
+  - Pot
   layers:
   - Default
   - TransparentFX

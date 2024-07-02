@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b67e853704545d8bad0eb7b976ce2df, type: 3}
   m_Name: CookedFoodItem
   m_EditorClassIdentifier: 
-  ID: 0
-  DisplayName: 
+  ID: 1001
+  DisplayName: Maguro
   Description: 
-  Icon: {fileID: 0}
-  MaxStackItem: 0
-  materialsItemList: []
+  Icon: {fileID: 21300000, guid: 59f833467c49def419ae69d2c32ac1b6, type: 3}
+  MaxStackItem: 1
+  CookedFoodPrefab: {fileID: 76723090152360229, guid: dd6aa20245981fa4a9fef688af2609d8, type: 3}
+  Ingredients:
+  - {fileID: 11400000, guid: 836314c7aa4b6244dbd7d4262295219c, type: 2}
+  - {fileID: 11400000, guid: 8026dfc3462ddb743a15fac1022bb22e, type: 2}
+  Price: 10
