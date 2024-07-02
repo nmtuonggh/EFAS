@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4509fa50b18beee44bfeec6187e823f6, type: 3}
+  m_Name: NormalState
+  m_EditorClassIdentifier: 
+  canTransiotionToSelf: 0
+  _mainAnimation:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 4f9b2cc802bffcd468bf59be5599a8d1, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  _carryState: {fileID: 11400000, guid: 49d270b8244ae124ead1c7a3330a6233, type: 2}

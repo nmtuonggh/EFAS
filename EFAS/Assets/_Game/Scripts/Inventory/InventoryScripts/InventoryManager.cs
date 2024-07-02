@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.Action;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,9 +13,14 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] private GameObject ControlUI;
     [SerializeField] private GameObject PickupUI;
     [SerializeField] private GameObject dropButton; 
+    [SerializeField] private GameObject dropHoldButton; 
     
     [SerializeField] protected StaticInventoryDisplay staticInventoryDisplay;
     [SerializeField] private SpawnWorldItem spawnWorldItem;
+    [SerializeField] private InventorySystem inventorySystem;
+    [SerializeField] private HoldeItem _holdeItem;
+    [SerializeField] private DropWhileHolding _dropItemWhileHolding;
+    public bool isHolding;
 
     [Header("Spawn Item")]
     [SerializeField] private PreviewHolder _previewHolder;
@@ -32,88 +38,15 @@ public class InventoryManager :MonoBehaviour
         {
             Destroy(this);
         }
-    }
 
-    #region On Off Inventory
-
-    public void OpenInventory()
-    {
-        InventoryUI.SetActive(true);
-        ControlUI.SetActive(false);
-        PickupUI.SetActive(false);
+        _holdeItem.OnItemHoldCountChanged += UpdateDropButtonState;
+        _dropItemWhileHolding.OnDropItemHoldUpdate += UpdateDropButtonState;
     }
     
-    public void CloseInventory()
+    private void UpdateDropButtonState(int itemCount)
     {
-        InventoryUI.SetActive(false);
-        ControlUI.SetActive(true);
-        PickupUI.SetActive(true);
-    }
-
-    #endregion
-    
-    #region DropItem
-
-    public void DropItem()
-    {
-        if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null)
-        {
-            spawnWorldItem.SpawnDropItem(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID);
-
-            InventorySlot selectedSlot = staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
-
-            if (selectedSlot.StackSize > 1)
-            {
-                selectedSlot.RemoveFromStack(1);
-                staticInventoryDisplay.FocusSlot.UpdateUISlot();
-            }
-            else
-            {
-                selectedSlot.ClearData();
-                staticInventoryDisplay.FocusSlot.UpdateUISlot();
-            }
-        }
-    }
-    
-    public void DropAllItemsInSlot()
-    {
-        if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null)
-        {
-            InventorySlot selectedSlot = staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
-            int stackSize = selectedSlot.StackSize;
-
-            for (int i = 0; i < stackSize; i++)
-            {
-                spawnWorldItem.SpawnDropItem(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID);
-                selectedSlot.RemoveFromStack(1);
-            }
-
-            selectedSlot.ClearData();
-            staticInventoryDisplay.FocusSlot.UpdateUISlot();
-        }
-    }
-
-    #endregion    
-    
-    public void HoldItem()
-    {
-        if (staticInventoryDisplay.FocusSlot != null && staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData != null && _previewHolder.ItemCount < 4)
-        {
-            spawnWorldItem.SpawnToPreview(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID, _previewHolder.ItemCount);
-            spawnWorldItem.SpawnToPlayer(staticInventoryDisplay.FocusSlot.AssingnedInventorySlot.ItemData.ID, _previewHolder.ItemCount);
-            _previewHolder.ItemCount += 1;
-            InventorySlot selectedSlot = staticInventoryDisplay.FocusSlot.AssingnedInventorySlot;
-
-            if (selectedSlot.StackSize > 1)
-            {
-                selectedSlot.RemoveFromStack(1);
-                staticInventoryDisplay.FocusSlot.UpdateUISlot();
-            }
-            else
-            {
-                selectedSlot.ClearData();
-                staticInventoryDisplay.FocusSlot.UpdateUISlot();
-            }
-        }
+        // Giả sử `btnDrop` là một instance của `Button`
+        dropHoldButton.SetActive(itemCount > 0);
+        isHolding = itemCount > 0;
     }
 }

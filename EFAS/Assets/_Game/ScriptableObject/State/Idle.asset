@@ -26,3 +26,4 @@ MonoBehaviour:
   _fallState: {fileID: 11400000, guid: 297ba3b97db19934b95f9971ddd0072e, type: 2}
   canJump: 1
   _walkState: {fileID: 11400000, guid: 30ffda33d4ed2d944bb2944ec16357d8, type: 2}
+  _carryState: {fileID: 11400000, guid: 49d270b8244ae124ead1c7a3330a6233, type: 2}

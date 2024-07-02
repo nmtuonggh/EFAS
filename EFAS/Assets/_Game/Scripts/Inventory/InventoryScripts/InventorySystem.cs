@@ -12,7 +12,7 @@ public class InventorySystem
     public List<InventorySlot> InventorySlots { get => _inventorySlots; set => _inventorySlots = value; }
     public int InventorySize => InventorySlots.Count;
     
-    public UnityAction<InventorySlot> OnInventorySlotChanged;
+    public event UnityAction<InventorySlot> OnInventorySlotChanged;
 
     public InventorySystem(int size)
     {
@@ -25,30 +25,61 @@ public class InventorySystem
     
     public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd)
     {
-        //if the item is already in the inventory, add the amount to the stack
-        if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot)) 
+        while (amountToAdd > 0)
         {
-            foreach (var slot in invSlot)
+            if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot))
             {
-                if (slot.RoomLeftInStack(amountToAdd))
+                foreach (var slot in invSlot)
                 {
-                    slot.AddToStack(amountToAdd);
-                    OnInventorySlotChanged?.Invoke(slot);
+                    if (slot.RoomLeftInStack(amountToAdd, out int amountRemaining))
+                    {
+                        int amountToAddToSlot = Math.Min(amountToAdd, amountRemaining);
+                        slot.AddToStack(amountToAddToSlot);
+                        amountToAdd -= amountToAddToSlot;
+                        OnInventorySlotChanged?.Invoke(slot);
+                        if (amountToAdd == 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            if (HasFreeSlot(out InventorySlot freeSlot))
+            {
+                int amountToAddToSlot = Math.Min(amountToAdd, itemToAdd.MaxStackItem);
+                freeSlot.UpdateInventorySlot(itemToAdd, amountToAddToSlot);
+                amountToAdd -= amountToAddToSlot;
+                OnInventorySlotChanged?.Invoke(freeSlot);
+                if (amountToAdd == 0)
+                {
                     return true;
                 }
             }
+            else
+            {
+                return false;
+            }
         }
-        //if dont have any item in the inventory or this slot have the same item is full stack, add the item to the first free slot
-        if (HasFreeSlot(out InventorySlot freeSlot))
-        {
-            freeSlot.UpdateInventorySlot(itemToAdd, amountToAdd);
-            OnInventorySlotChanged?.Invoke(freeSlot);
-            return true;
-        }
-
         return false;
     }
-
+    
+    public bool RemoveFromInventory(InventorySlot slotToRemove, InventoryItemData itemToRemove, int amountToRemove)
+    {
+        if (slotToRemove.ItemData == itemToRemove)
+        {
+            if (slotToRemove.StackSize >= amountToRemove)
+            {
+                slotToRemove.RemoveFromStack(amountToRemove);
+                if (slotToRemove.StackSize == 0)
+                {
+                    slotToRemove.ClearData();
+                }
+                OnInventorySlotChanged?.Invoke(slotToRemove);
+                return true;
+            }
+        }
+        return false;
+    }
     public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> invSlot)
     { //if in the inventory have the same item, return true and get all the slots that have the item then return to a list :)
         invSlot = InventorySlots.Where(currentSlot => currentSlot.ItemData == itemToAdd).ToList();

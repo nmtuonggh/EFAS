@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   ID: 0
-  ItemPrefab: {fileID: 4826758025746620715, guid: 396856cd1f03ef04d83d27545042cebb, type: 3}
+  ItemPrefab: {fileID: 4826758025746620715, guid: 05f2a21aeed4e8f478104e1d61e54f50, type: 3}

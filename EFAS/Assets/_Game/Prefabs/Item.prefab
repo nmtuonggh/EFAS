@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 7133004801089145224}
   - component: {fileID: 7101561811402126774}
   - component: {fileID: -1982964209275976782}
+  - component: {fileID: -2218216222479300207}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -184,8 +185,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 452487095057373202}
-  - {fileID: 5454764458652079037}
   - {fileID: 1899686626626113382}
+  - {fileID: 5454764458652079037}
   - {fileID: 8986182841949756773}
   - {fileID: 3865958015543423664}
   m_Father: {fileID: 0}
@@ -310,6 +311,22 @@ MonoBehaviour:
     _itemData: {fileID: 0}
     _stackSize: -1
   focus_Line: {fileID: 6491882224461591831}
+--- !u!114 &-2218216222479300207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751677024695113691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb73f0553b843cab892ef33615e1ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusLine: {fileID: 6491882224461591831}
+  fadeTime: 1.2
+  _easeForOutLine: 22
+  staticInventoryDisplay: {fileID: 0}
 --- !u!1 &3976117326725167264
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,10 @@ public class FiniteStateMachine : MonoBehaviour
     [SerializeField] private bool _isAIControlled = false;
     [SerializeField] private StateBase _startingState;
     [SerializeField] private StateBase _currentState;
-    [SerializeField] private StateBase _previousState;
+    [SerializeField] private StateBase _previousState; 
     private BlackBoard _blackBoard;
     [SerializeField] private List<StateBase> _states;
+    [SerializeField] private CarryStateMachine _carryStateMachine;
 
     public void InitFSM(bool isAIControlled)
     {
@@ -18,7 +19,7 @@ public class FiniteStateMachine : MonoBehaviour
        // isAIControlled = GetComponent<BehaviourTreeOwner>() != null;
        foreach(var state in _states)
         {
-            state.InitState(this, _blackBoard, isAIControlled);
+            state.InitState(_carryStateMachine,this, _blackBoard, isAIControlled);
         }
         _currentState.EnterState();
     }

@@ -32,22 +32,7 @@ public abstract class InventoryDisplay : MonoBehaviour
             }
         }
     }
-    
-    public void SlotClicked(InventorySlot_UI clickedUISlot)
-    {
-        SetFocus(clickedUISlot);
-    }
 
-    private void SetFocus(InventorySlot_UI clickedUISlot)
-    {
-        if (FocusSlot != null || clickedUISlot.AssingnedInventorySlot.ItemData == null)
-        {
-            FocusSlot.FocusLine.SetActive(false);
-        }
-        if(clickedUISlot.AssingnedInventorySlot.ItemData != null)
-        {
-            FocusSlot = clickedUISlot;
-            FocusSlot.FocusLine.SetActive(true);
-        }
-    }
+    public abstract void SlotClicked(InventorySlot_UI clickedUISlot);
+    
 }

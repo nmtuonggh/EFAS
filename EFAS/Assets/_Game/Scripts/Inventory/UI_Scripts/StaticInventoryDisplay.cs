@@ -1,11 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.Action;
+using DG.Tweening;
 using UnityEngine;
 
 public class StaticInventoryDisplay : InventoryDisplay
 {
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
+    [SerializeField] private DropItem _dropItem;
+    [SerializeField] private HoldeItem _holdeItem;
+    public event Action OnFocusSlotTouch;
+    
+
     protected override void Start()
     {
         base.Start();
@@ -13,6 +21,8 @@ public class StaticInventoryDisplay : InventoryDisplay
         {
             _inventorySystem = _inventoryHolder.InventorySystem;
             _inventorySystem.OnInventorySlotChanged += UpdateSlot;
+            _dropItem.OnDropItemUpdate += UpdateSlot;
+            _holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
         }
         else
         {
@@ -37,5 +47,24 @@ public class StaticInventoryDisplay : InventoryDisplay
             slots[i].Init(_inventorySystem.InventorySlots[i]);
         }
     }
+
+    public override void SlotClicked(InventorySlot_UI clickedUISlot)
+    {
+        SetFocus(clickedUISlot);
+    }
     
+    private void SetFocus(InventorySlot_UI clickedUISlot)
+    {
+        if (FocusSlot != null)
+        {
+            FocusSlot.FocusLine.SetActive(false);
+        }
+
+        if (clickedUISlot.AssingnedInventorySlot.ItemData != null)
+        {
+            FocusSlot = clickedUISlot;
+            FocusSlot.FocusLine.SetActive(true);
+            //OnFocusSlotTouch?.Invoke();
+        }
+    }
 }
