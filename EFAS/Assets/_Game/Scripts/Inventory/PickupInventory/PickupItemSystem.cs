@@ -34,13 +34,13 @@ public class PickupItemSystem : MonoBehaviour
 
     public void AddToInventory(ItemPickedUp item, int amount)
     {
-        if (!_inventoryHolder.InventorySystem.AddToInventory(item.ItemData, amount)) return;
+        if (!_inventoryHolder.InventorySystem.AddToInventory(item.InventoryItemData, amount)) return;
         
         List<ItemPickedUp> itemsToRemove = new List<ItemPickedUp>();
         
         foreach (var listItem in _listItemsInRange)
         {
-            if (listItem.ItemData.ID == item.ItemData.ID)
+            if (listItem.InventoryItemData.ID == item.InventoryItemData.ID)
             {
                 itemsToRemove.Add(listItem);
             }

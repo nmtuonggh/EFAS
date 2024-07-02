@@ -20,7 +20,7 @@ namespace _Game.Scripts.Inventory.Action
                 if (item != null && item.isActiveAndEnabled)
                 {
                     //add to inventory
-                    _inventoryHolder.InventorySystem.AddToInventory(item.ItemData, 1);
+                    _inventoryHolder.InventorySystem.AddToInventory(item.InventoryItemData, 1);
                     //return to pool
                     item.worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Cooking;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,11 +10,12 @@ using Random = UnityEngine.Random;
 public class SpawnWorldItem : MonoBehaviour
 {
    public List<WorldItemData> WorldItemDataList;
-   public List<WorldItemWithoutColliderData> WorldItemDataWithoutColliderList;
+   public List<CookedFoodItem> CookedFoodItemsList;
    
    [FormerlySerializedAs("_parent")] [FormerlySerializedAs("parent")] [SerializeField] Transform _parentSpawnItem;
    [FormerlySerializedAs("spawnPos")] [SerializeField] GameObject _spawnPos;
    [FormerlySerializedAs("dropPos")] [SerializeField] GameObject _dropPos;
+   [SerializeField] GameObject _cookedFoodSpawnPos;
    [SerializeField] PreviewHolder _previewHolder;
 
    [SerializeField] private List<Transform> _playerHoldPos;
@@ -53,6 +55,17 @@ public class SpawnWorldItem : MonoBehaviour
          {
             prefab.WorldItemPrefab.tag = "ItemHolding";
             prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, prefab.WorldItemPrefab.transform.rotation, _playerHoldPool);
+         }
+      }
+   }
+   
+   public void SpawnCookedFoodItem(int id)
+   {
+      foreach (var prefab in CookedFoodItemsList)
+      {
+         if(prefab.ID == id)
+         {
+            prefab.Spawn(_cookedFoodSpawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
          }
       }
    }

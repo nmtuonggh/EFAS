@@ -28,7 +28,7 @@ public class InventoryManager :MonoBehaviour
     [SerializeField] private PreviewHolder _previewHolder;
     
     public static InventoryManager Instance;
-    private string savePath = "Assets/_Game/Data/inventoryData.json";
+    private string savePath = "Assets/_Game/SaveData/inventoryData.json";
     [SerializeField] private List<InventoryItemData> _listInventoryItemData;
     [SerializeField] private InventorySaveData inventorySaveData;
     

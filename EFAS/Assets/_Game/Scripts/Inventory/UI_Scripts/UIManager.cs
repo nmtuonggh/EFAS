@@ -16,13 +16,18 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         [FormerlySerializedAs("rectTransform")] public RectTransform inventoRectTransform;
         public GameObject controlUI;
         public GameObject pickUpUI;
+        //btn
         public GameObject buttonDropWhileHolding;
-        public List<GameObject> _inventoryItem;
+        public GameObject buttonThrow;
         
+        public List<GameObject> _inventoryItem;
+        //event
         public GameEvent OnOutInventory;
         public GameEventListener OnHoldingState;
         public GameEventListener UnHoldingState;
         //public GameEventListener OnHoldState;
+        
+        [SerializeField] private InCookRange _inCookRange;
 
         private void Awake()
         {
@@ -89,6 +94,21 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         }
 
         #endregion
+
+        /*#region BtnThrow
+
+        public void ActiveBtnThrow()
+        {
+            if(_inCookRange.inCookRange == true)
+                buttonThrow.SetActive(true);
+        }
+        public void UnActiveBtnThrow()
+        {
+            if(_inCookRange.inCookRange == false)
+                buttonThrow.SetActive(false);
+        }
+
+        #endregion*/
         
     }
 }

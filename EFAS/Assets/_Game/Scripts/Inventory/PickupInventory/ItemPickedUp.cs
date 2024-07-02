@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ItemPickedUp : MonoBehaviour
 {
-    public InventoryItemData ItemData;
+    [FormerlySerializedAs("ItemData")] public InventoryItemData InventoryItemData;
     public WorldItemData worldItemData;
-    public WorldItemWithoutColliderData worldItemWithoutColliderData;
     public bool _isTriggered = false;
     public event Action OnAddPickUpItemToInventory;
     
