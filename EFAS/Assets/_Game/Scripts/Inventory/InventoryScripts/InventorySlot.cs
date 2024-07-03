@@ -7,13 +7,13 @@ using UnityEngine.Serialization;
 [System.Serializable]
 public class InventorySlot
 {
-    [SerializeField] private InventoryItemData _itemData;
+    [SerializeField] private ItemData _itemData;
     [SerializeField] private int _stackSize;
     
-    public InventoryItemData ItemData { get => _itemData; set => _itemData = value; }
+    public ItemData ItemData { get => _itemData; set => _itemData = value; }
     public int StackSize { get => _stackSize; set => _stackSize = value; }
 
-    public InventorySlot(InventoryItemData source, int amount)
+    public InventorySlot(ItemData source, int amount)
     {
         _itemData = source;
         _stackSize = amount;
@@ -30,7 +30,7 @@ public class InventorySlot
         _stackSize = -1;
     }
     
-    public void UpdateInventorySlot(InventoryItemData data, int amount)
+    public void UpdateInventorySlot(ItemData data, int amount)
     {
         _itemData = data;
         _stackSize = amount;

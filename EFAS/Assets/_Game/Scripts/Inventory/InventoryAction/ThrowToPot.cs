@@ -14,10 +14,10 @@ namespace _Game.Scripts.Inventory.Action
         {
             foreach (Transform child in _poolItemsHoldInPlayer)
             {
-                if (child.GetComponent<ItemPickedUp>()!= null )
+                if (child.GetComponent<ItemPickedUp>()!= null && isActiveAndEnabled)
                 {
-                    _pot.Ingredients.Add(child.GetComponent<ItemPickedUp>().worldItemData);
-                    child.GetComponent<ItemPickedUp>().worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    _pot.Ingredients.Add(child.GetComponent<ItemPickedUp>().itemData);
+                    child.GetComponent<ItemPickedUp>().itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                 }
             }
 
@@ -26,7 +26,9 @@ namespace _Game.Scripts.Inventory.Action
                 var item = child.GetComponent<ItemPickedUp>();
                 if (item != null && item.isActiveAndEnabled)
                 {
-                    item.worldItemData.ReturnToPool(item.gameObject);
+                    item.tag = "Untagged";
+                    item.GetComponent<Rigidbody>().isKinematic = false;
+                    item.itemData.ReturnToPool(item.gameObject);
                     _previewHolder.ItemCount = 0;
                 }
             }

@@ -9,9 +9,9 @@ using Random = UnityEngine.Random;
 
 public class SpawnWorldItem : MonoBehaviour
 {
-   public List<WorldItemData> WorldItemDataList;
-   public List<CookedFoodItem> CookedFoodItemsList;
-   
+   public List<ItemData> ItemDataList;
+   //public List<WorldItemData> WorldItemDataList;
+
    [FormerlySerializedAs("_parent")] [FormerlySerializedAs("parent")] [SerializeField] Transform _parentSpawnItem;
    [FormerlySerializedAs("spawnPos")] [SerializeField] GameObject _spawnPos;
    [FormerlySerializedAs("dropPos")] [SerializeField] GameObject _dropPos;
@@ -23,13 +23,13 @@ public class SpawnWorldItem : MonoBehaviour
 
    public void SpawnItem()
    {
-      var randomIndex = Random.Range(0, WorldItemDataList.Count);
-      WorldItemDataList[randomIndex].Spawn(_spawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
+      var randomIndex = Random.Range(0, ItemDataList.Count);
+      ItemDataList[randomIndex].Spawn(_spawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
    }
 
    public void SpawnDropItem(int id)
    {
-      foreach (var prefab in WorldItemDataList) 
+      foreach (var prefab in ItemDataList) 
       {
          if(prefab.ID == id)
             prefab.Spawn(_dropPos.transform.position, Quaternion.identity, _parentSpawnItem);
@@ -38,7 +38,7 @@ public class SpawnWorldItem : MonoBehaviour
 
    public void SpawnToPreview(int id, int slotIndex)
    {
-      foreach (var prefab in WorldItemDataList)
+      foreach (var prefab in ItemDataList)
       {
          if(prefab.ID == id)
          {
@@ -49,19 +49,18 @@ public class SpawnWorldItem : MonoBehaviour
 
    public void SpawnToPlayer(int id, int slotIndex)
    {
-      foreach (var prefab in WorldItemDataList)
+      foreach (var prefab in ItemDataList)
       {
          if(prefab.ID == id)
          {
-            prefab.WorldItemPrefab.tag = "ItemHolding";
-            prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, prefab.WorldItemPrefab.transform.rotation, _playerHoldPool);
+            prefab.Spawn(_playerHoldPos[_previewHolder.ItemCount].position, prefab.ItemPrefab.transform.rotation, _playerHoldPool);
          }
       }
    }
    
    public void SpawnCookedFoodItem(int id)
    {
-      foreach (var prefab in CookedFoodItemsList)
+      foreach (var prefab in ItemDataList)
       {
          if(prefab.ID == id)
          {
@@ -69,4 +68,5 @@ public class SpawnWorldItem : MonoBehaviour
          }
       }
    }
+   
 }

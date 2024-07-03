@@ -7,10 +7,10 @@ namespace _Game.Scripts.Cooking
 {
     public class Pot : MonoBehaviour
     {
-        private List<WorldItemData> _ingredients = new List<WorldItemData>();
+        public List<ItemData> _ingredients = new List<ItemData>();
         public GameObject btnCook;
 
-        public List<WorldItemData> Ingredients
+        public List<ItemData> Ingredients
         {
             get => _ingredients;
             set => _ingredients = value;

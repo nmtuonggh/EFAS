@@ -26,13 +26,13 @@ namespace _Game.Scripts.Inventory.PickupInventory
             Dictionary<int, (ItemPickedUp itemPickedUp, int stack)> itemStacks = new Dictionary<int, (ItemPickedUp, int)>();
             foreach (var item in _pickupItemSystem.ListItemsInRange)
             {
-                if (itemStacks.ContainsKey(item.InventoryItemData.ID))
+                if (itemStacks.ContainsKey(item.itemData.ID))
                 {
-                    itemStacks[item.InventoryItemData.ID] = (item, itemStacks[item.InventoryItemData.ID].stack + 1);
+                    itemStacks[item.itemData.ID] = (item, itemStacks[item.itemData.ID].stack + 1);
                 }
                 else
                 {
-                    itemStacks.Add(item.InventoryItemData.ID, (item, 1));
+                    itemStacks.Add(item.itemData.ID, (item, 1));
                 }
             }
             // Display new items
@@ -41,8 +41,8 @@ namespace _Game.Scripts.Inventory.PickupInventory
                 var itemDisplay = Instantiate(itemDisplayPrefab, itemsInRangeHolder);
                 var imageChild = itemDisplay.transform.GetChild(2);
                 var stackChild = itemDisplay.transform.GetChild(4);
-                itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.itemPickedUp.InventoryItemData.DisplayName;
-                imageChild.GetComponentInChildren<Image>().sprite = item.Value.itemPickedUp.InventoryItemData.Icon;
+                itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.itemPickedUp.itemData.DisplayName;
+                imageChild.GetComponentInChildren<Image>().sprite = item.Value.itemPickedUp.itemData.Icon;
                 stackChild.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.stack.ToString();
                 
                 var button = itemDisplay.GetComponent<Button>();

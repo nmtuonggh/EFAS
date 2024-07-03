@@ -6,8 +6,9 @@ using UnityEngine.Serialization;
 
 public class ItemPickedUp : MonoBehaviour
 {
-    [FormerlySerializedAs("ItemData")] public InventoryItemData InventoryItemData;
-    public WorldItemData worldItemData;
+    //[FormerlySerializedAs("ItemData")] public InventoryItemData InventoryItemData;
+    //public WorldItemData worldItemData;
+    public ItemData itemData;
     public bool _isTriggered = false;
     public event Action OnAddPickUpItemToInventory;
     
@@ -16,7 +17,6 @@ public class ItemPickedUp : MonoBehaviour
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
         if (itemPickupItemSystem != null && !_isTriggered && !this.CompareTag("ItemHolding"))
         {
-            Debug.Log("trigger");
             _isTriggered = true;
             itemPickupItemSystem.ListItemsInRange.Add(this);
             itemPickupItemSystem.DisplayItemPickup.DisplayItems();
