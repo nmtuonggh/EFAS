@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 12
   ItemType: 0
   DisplayName: Bread
+  Price: 5
   Description: 
   Icon: {fileID: 21300000, guid: 5b32abc647a7ebc4794fd6bbd0c0da17, type: 3}
   MaxStackItem: 10

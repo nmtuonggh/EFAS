@@ -7,6 +7,11 @@ namespace _Game.Scripts.Shop
     {
         public bool inShopRange;
         public GameObject btnShop;
+        public GameObject btnSellInventory;
+        public GameObject btnSellAllInventory;
+        public GameObject ShopUI;
+        public GameObject ControlUI;
+            
         
         private void OnTriggerEnter(Collider other)
         {
@@ -29,12 +34,28 @@ namespace _Game.Scripts.Shop
             if (inShopRange)
             {
                 btnShop.SetActive(true);
+                btnSellInventory.SetActive(true);
+                btnSellAllInventory.SetActive(true);
             }
             else
             {
                 btnShop.SetActive(false);
+                btnSellInventory.SetActive(false);
+                btnSellAllInventory.SetActive(false);
             }
         
+        }
+        
+        public void OpenShop()
+        {
+            ShopUI.SetActive(true);
+            ControlUI.SetActive(false);
+        }
+        
+        public void CloseShop()
+        {
+            ShopUI.SetActive(false);
+            ControlUI.SetActive(true);
         }
     }
 }

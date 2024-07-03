@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 15
   ItemType: 0
   DisplayName: Crab
+  Price: 55
   Description: 
   Icon: {fileID: 21300000, guid: 4581154a053e32e4b8b94dc90d1febc1, type: 3}
   MaxStackItem: 10

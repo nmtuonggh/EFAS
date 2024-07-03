@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1
   ItemType: 0
   DisplayName: Apricot
+  Price: 5
   Description: 
   Icon: {fileID: 21300000, guid: 29de87aa2eaa132408692149cfb90543, type: 3}
   MaxStackItem: 10

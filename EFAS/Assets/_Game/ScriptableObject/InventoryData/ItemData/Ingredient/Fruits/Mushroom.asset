@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 11
   ItemType: 0
   DisplayName: Mushroom
+  Price: 3
   Description: 
   Icon: {fileID: 21300000, guid: a897d5365c8e4224eae311d3115e19e2, type: 3}
   MaxStackItem: 10

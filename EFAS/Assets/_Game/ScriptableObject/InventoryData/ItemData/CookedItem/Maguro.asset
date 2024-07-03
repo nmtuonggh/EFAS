@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1000
   ItemType: 1
   DisplayName: Maguro
+  Price: 20
   Description: 
   Icon: {fileID: 21300000, guid: 59f833467c49def419ae69d2c32ac1b6, type: 3}
   MaxStackItem: 5

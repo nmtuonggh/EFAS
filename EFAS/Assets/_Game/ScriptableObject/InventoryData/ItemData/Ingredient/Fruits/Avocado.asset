@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 4
   ItemType: 0
   DisplayName: Avocado
+  Price: 5
   Description: 
   Icon: {fileID: 21300000, guid: 844dd0f5fa5d0de469c40c57b130d589, type: 3}
   MaxStackItem: 10

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Game.Scripts.Event;
 using _Game.Scripts.Inventory;
+using _Game.Scripts.Shop;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -93,6 +94,7 @@ public class InventorySystem
         }
         return false;
     }
+    
     public bool ContainsItem(ItemData itemToAdd, out List<InventorySlot> invSlot)
     { //if in the inventory have the same item, return true and get all the slots that have the item then return to a list :)
         invSlot = InventorySlots.Where(currentSlot => currentSlot.ItemData == itemToAdd).ToList();

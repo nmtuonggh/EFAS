@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1008
   ItemType: 1
   DisplayName: Pancake
+  Price: 30
   Description: 
   Icon: {fileID: 21300000, guid: 9d5550dc73e90f34bb8b6839a9c444e4, type: 3}
   MaxStackItem: 5

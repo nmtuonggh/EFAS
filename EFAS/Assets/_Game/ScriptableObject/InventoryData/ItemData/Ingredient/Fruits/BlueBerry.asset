@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 7
   ItemType: 0
   DisplayName: Bluberry
+  Price: 1
   Description: 
   Icon: {fileID: 21300000, guid: b7521920034977349b5fe60224d83e94, type: 3}
   MaxStackItem: 10

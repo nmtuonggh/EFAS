@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 8
   ItemType: 0
   DisplayName: Broccoli
+  Price: 3
   Description: 
   Icon: {fileID: 21300000, guid: 50aebf9ac7b51bb42a9d35273887835e, type: 3}
   MaxStackItem: 10

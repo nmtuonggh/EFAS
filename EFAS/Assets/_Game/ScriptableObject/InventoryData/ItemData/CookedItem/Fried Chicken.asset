@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1007
   ItemType: 1
   DisplayName: Fried Chicken
+  Price: 50
   Description: 
   Icon: {fileID: 21300000, guid: 98c2573bea14b0e4583665fe120c58c0, type: 3}
   MaxStackItem: 5

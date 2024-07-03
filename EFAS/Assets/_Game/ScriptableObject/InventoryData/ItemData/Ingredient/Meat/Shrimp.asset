@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 18
   ItemType: 0
   DisplayName: Shrimp
+  Price: 25
   Description: 
   Icon: {fileID: 21300000, guid: 6c011ba64f5d4f1488ae15b4bfd5783b, type: 3}
   MaxStackItem: 10

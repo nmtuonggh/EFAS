@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 0
   ItemType: 0
   DisplayName: Apple
+  Price: 5
   Description: 
   Icon: {fileID: 21300000, guid: 62e7dc936103cb54eaa1788c435628c7, type: 3}
   MaxStackItem: 10

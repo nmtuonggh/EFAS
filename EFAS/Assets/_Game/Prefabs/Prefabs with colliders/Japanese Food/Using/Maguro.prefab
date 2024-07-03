@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1878123426488887536}
   - component: {fileID: 4399582668058331976}
   - component: {fileID: 875850542377765006}
-  - component: {fileID: 7021084999190613485}
-  m_Layer: 0
+  - component: {fileID: -7220382612646391869}
+  m_Layer: 10
   m_Name: Maguro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,10 +29,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76723090152360229}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,7 +135,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5641548788209268539, guid: f32e4400b52a8154f8d84f66c48f4aff, type: 3}
---- !u!114 &7021084999190613485
+--- !u!114 &-7220382612646391869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

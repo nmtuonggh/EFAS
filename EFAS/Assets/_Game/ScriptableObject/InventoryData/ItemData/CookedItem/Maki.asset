@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1001
   ItemType: 1
   DisplayName: Maki
+  Price: 20
   Description: 
   Icon: {fileID: 21300000, guid: 81ece39bc4113cb4581ba1b9e89423f0, type: 3}
   MaxStackItem: 5

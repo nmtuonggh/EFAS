@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 13
   ItemType: 0
   DisplayName: Beef
+  Price: 15
   Description: 
   Icon: {fileID: 21300000, guid: aa0439a8f326c1249b7aee8283545809, type: 3}
   MaxStackItem: 10

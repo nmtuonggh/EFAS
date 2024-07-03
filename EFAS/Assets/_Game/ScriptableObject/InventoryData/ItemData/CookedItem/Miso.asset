@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1003
   ItemType: 1
   DisplayName: Miso
+  Price: 15
   Description: 
   Icon: {fileID: 21300000, guid: 8e0f6b60d5630554b9c45d86bddbf786, type: 3}
   MaxStackItem: 5

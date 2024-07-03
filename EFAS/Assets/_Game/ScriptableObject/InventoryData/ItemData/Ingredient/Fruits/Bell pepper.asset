@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 6
   ItemType: 0
   DisplayName: Bell Pepper
+  Price: 3
   Description: 
   Icon: {fileID: 21300000, guid: 8004ff724292a2e4fafb3f9016d9b5c0, type: 3}
   MaxStackItem: 10

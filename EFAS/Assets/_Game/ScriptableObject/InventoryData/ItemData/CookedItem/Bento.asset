@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 1002
   ItemType: 1
   DisplayName: Bento
+  Price: 40
   Description: 
   Icon: {fileID: 21300000, guid: 1aa91d476b8e81b4dadf64a3f635e16c, type: 3}
   MaxStackItem: 5

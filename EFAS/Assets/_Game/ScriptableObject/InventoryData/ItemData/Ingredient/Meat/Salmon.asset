@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 19
   ItemType: 0
   DisplayName: Salmon Fish
+  Price: 25
   Description: 
   Icon: {fileID: 21300000, guid: 5716142af80a369498e2f4eb68df2acf, type: 3}
   MaxStackItem: 10
