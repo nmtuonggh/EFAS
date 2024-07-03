@@ -14,7 +14,7 @@ namespace _Game.Scripts.Inventory.Action
         {
             foreach (Transform child in _poolItemsHoldInPlayer)
             {
-                if (child.GetComponent<ItemPickedUp>()!= null && isActiveAndEnabled)
+                if (child.GetComponent<ItemPickedUp>()!= null && child.GetComponent<ItemPickedUp>().isActiveAndEnabled)
                 {
                     _pot.Ingredients.Add(child.GetComponent<ItemPickedUp>().itemData);
                     child.GetComponent<ItemPickedUp>().itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);

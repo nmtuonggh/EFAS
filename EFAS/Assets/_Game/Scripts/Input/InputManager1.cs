@@ -30,7 +30,7 @@ public class InputManager1 : MonoBehaviour
     private int lookFingerID;
     private Vector2 targetLook;
 
-    private float pcCamSenmultiplier = 1;
+   // private float pcCamSenmultiplier = 1;
 
     private void Awake()
     {

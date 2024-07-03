@@ -1,4 +1,5 @@
 ﻿using _Game.Scripts.Cooking;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Game.Scripts.Shop
@@ -9,7 +10,7 @@ namespace _Game.Scripts.Shop
         public GameObject btnShop;
         public GameObject btnSellInventory;
         public GameObject btnSellAllInventory;
-        public GameObject ShopUI;
+        public RectTransform ShopUI;
         public GameObject ControlUI;
             
         
@@ -47,14 +48,14 @@ namespace _Game.Scripts.Shop
         }
         
         public void OpenShop()
-        {
-            ShopUI.SetActive(true);
+        {   
+            ShopUI.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ControlUI.SetActive(false);
         }
         
         public void CloseShop()
         {
-            ShopUI.SetActive(false);
+            ShopUI.DOAnchorPos(new Vector2(2000f, 0f), 0.25f);
             ControlUI.SetActive(true);
         }
     }
