@@ -10,12 +10,12 @@ using UnityEngine.Events;
 [System.Serializable]
 public class InventorySystem 
 {
-    [SerializeField] private List<InventoryItemData> allItemData;
+    [SerializeField] private List<ItemData> allItemData;
     [SerializeField] private List<InventorySlot> _inventorySlots;
     public List<InventorySlot> InventorySlots { get => _inventorySlots; set => _inventorySlots = value; }
     public int InventorySize => InventorySlots.Count;
 
-    public List<InventoryItemData> AllItemData
+    public List<ItemData> AllItemData
     {
         get => allItemData;
         set => allItemData = value;
@@ -33,7 +33,7 @@ public class InventorySystem
         }
     }
     
-    public bool AddToInventory(InventoryItemData itemToAdd, int amountToAdd)
+    public bool AddToInventory(ItemData itemToAdd, int amountToAdd)
     {
         while (amountToAdd > 0)
         {
@@ -75,7 +75,7 @@ public class InventorySystem
         return false;
     }
     
-    public bool RemoveFromInventory(InventorySlot slotToRemove, InventoryItemData itemToRemove, int amountToRemove)
+    public bool RemoveFromInventory(InventorySlot slotToRemove, ItemData itemToRemove, int amountToRemove)
     {
         if (slotToRemove.ItemData == itemToRemove)
         {
@@ -93,7 +93,7 @@ public class InventorySystem
         }
         return false;
     }
-    public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> invSlot)
+    public bool ContainsItem(ItemData itemToAdd, out List<InventorySlot> invSlot)
     { //if in the inventory have the same item, return true and get all the slots that have the item then return to a list :)
         invSlot = InventorySlots.Where(currentSlot => currentSlot.ItemData == itemToAdd).ToList();
         return invSlot == null ? false : true;

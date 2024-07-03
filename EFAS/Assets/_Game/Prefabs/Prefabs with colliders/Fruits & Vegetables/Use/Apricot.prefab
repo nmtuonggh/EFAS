@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5740281157424456468}
   m_Layer: 10
   m_Name: Apricot
-  m_TagString: ItemHolding
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: ab9e08b08d7eaea4886843a47b8b95d5, type: 2}
-  worldItemData: {fileID: 11400000, guid: 8026dfc3462ddb743a15fac1022bb22e, type: 2}
-  worldItemWithoutColliderData: {fileID: 11400000, guid: 0775c4dddc817664f8e583a292de662d, type: 2}
+  itemData: {fileID: 11400000, guid: bd9db08593fbea84e8b03197894459e6, type: 2}
   _isTriggered: 0

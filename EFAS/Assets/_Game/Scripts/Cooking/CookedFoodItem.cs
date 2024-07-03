@@ -13,7 +13,7 @@ namespace _Game.Scripts.Cooking
         public Sprite Icon;
         public int MaxStackItem;
         public GameObject CookedFoodPrefab;
-        public List<WorldItemData> Ingredients;
+        public List<ItemData> Ingredients;
         public float Price;
         public Queue<GameObject> PoolCookedFoodData = new Queue<GameObject>();
         

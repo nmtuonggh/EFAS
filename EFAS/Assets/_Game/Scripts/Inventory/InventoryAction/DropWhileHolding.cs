@@ -32,7 +32,7 @@ namespace _Game.Scripts.Inventory.Action
                 var item = child.GetComponent<ItemPickedUp>();
                 if (item != null && item.isActiveAndEnabled)
                 {
-                    item.worldItemData.ReturnToPool(item.gameObject);
+                    item.itemData.ReturnToPool(item.gameObject);
                     _previewHolder.ItemCount = 0;
                 }
             }

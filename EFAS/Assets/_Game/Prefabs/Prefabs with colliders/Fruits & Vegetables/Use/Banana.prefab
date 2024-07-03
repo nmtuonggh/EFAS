@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6766406662659786241}
   m_Layer: 10
   m_Name: Banana
-  m_TagString: ItemHolding
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: 6b7a7f2143aab414e9826f7dff7ccdc5, type: 2}
-  worldItemData: {fileID: 11400000, guid: 88099de964a8b6346a9d2288690a5ad5, type: 2}
-  worldItemWithoutColliderData: {fileID: 11400000, guid: e337c4a9cf064e64abfc6f4259e0c2da, type: 2}
+  itemData: {fileID: 11400000, guid: 2ce91f164ec5e0447a8c7fdbd4042fac, type: 2}
   _isTriggered: 0

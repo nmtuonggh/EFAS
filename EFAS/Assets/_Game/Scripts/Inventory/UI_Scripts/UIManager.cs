@@ -18,8 +18,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         public GameObject pickUpUI;
         //btn
         public GameObject buttonDropWhileHolding;
-        public GameObject buttonThrow;
-        
+
         public List<GameObject> _inventoryItem;
         //event
         public GameEvent OnOutInventory;
@@ -27,7 +26,6 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         public GameEventListener UnHoldingState;
         //public GameEventListener OnHoldState;
         
-        [SerializeField] private InCookRange _inCookRange;
 
         private void Awake()
         {
@@ -56,11 +54,11 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         
         public void InventoryPanelFadeOut()
         {
-            OnOutInventory?.Raise(); 
+            OnOutInventory.Raise(); 
             inventoryCanvasGroup.alpha = 1f;
             inventoRectTransform.transform.localPosition = new Vector3(0, 0f, 0);
             inventoRectTransform.DOAnchorPos(new Vector2(0f, -1300f), fadeTime, false).SetEase(Ease.InOutQuint);
-            inventoryCanvasGroup.DOFade(1f, fadeTime);
+            inventoryCanvasGroup.DOFade(0f, fadeTime);
             inventoryCanvasGroup.isActiveAndEnabled.Equals(false);
             controlUI.SetActive(true);
             pickUpUI.SetActive(true);

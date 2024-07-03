@@ -7,32 +7,15 @@ using _Game.Scripts.Inventory.Action;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InventoryManager :MonoBehaviour
-{   
-    [Header("UI Elements")]
-    [SerializeField] private GameObject InventoryUI;
-    [SerializeField] private GameObject ControlUI;
-    [SerializeField] private GameObject PickupUI;
-    [SerializeField] private GameObject dropButton; 
-    [SerializeField] private GameObject dropHoldButton; 
-    
+{
     [SerializeField] private InventoryHolder inventoryHolder;
-    [SerializeField] private SpawnWorldItem spawnWorldItem;
-    [SerializeField] private InventorySystem inventorySystem;
-    [SerializeField] private HoldeItem _holdeItem;
-    [SerializeField] private DropWhileHolding _dropItemWhileHolding;
-
-    [Header("Spawn Item")]
-    [SerializeField] private PreviewHolder _previewHolder;
-    
     public static InventoryManager Instance;
     private string savePath = "Assets/_Game/SaveData/inventoryData.json";
-    [SerializeField] private List<InventoryItemData> _listInventoryItemData;
-    [SerializeField] private InventorySaveData inventorySaveData;
-    
-    public GameEventListener UnHoldingState;
+    [SerializeField] private List<ItemData> _listItemData;
 
     private void Awake()
     {
@@ -44,13 +27,8 @@ public class InventoryManager :MonoBehaviour
         {
             Destroy(this);
         }
-        //UnHoldingState.OnEnable();
     }
     
-    private void OnDestroy()
-    {
-        //UnHoldingState.OnDisable();
-    }
     
     public InventorySaveData ToSaveData()
     {
@@ -86,9 +64,9 @@ public class InventoryManager :MonoBehaviour
     }
     
     
-    public InventoryItemData GetItemDataByID(int id)
+    public ItemData GetItemDataByID(int id)
     {
-        foreach (var item in _listInventoryItemData)
+        foreach (var item in _listItemData)
         {
             if (item.ID == id)
             {

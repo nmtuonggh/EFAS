@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8350333166290052278}
   m_Layer: 10
   m_Name: Carrot B
-  m_TagString: ItemHolding
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: 54e44b23e0d76f9489f8de285625aa8e, type: 2}
-  worldItemData: {fileID: 11400000, guid: 89b4340d218e06b4ead5e69ee1fc42c4, type: 2}
-  worldItemWithoutColliderData: {fileID: 11400000, guid: bc076e00d15822443ab9bb0d08dc38b6, type: 2}
+  itemData: {fileID: 11400000, guid: 4dd9be28d13d24b4692857cdb0ec8154, type: 2}
   _isTriggered: 0

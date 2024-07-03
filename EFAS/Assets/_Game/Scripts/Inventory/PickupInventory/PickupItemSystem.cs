@@ -9,12 +9,12 @@ using UnityEngine.UI;
 
 public class PickupItemSystem : MonoBehaviour
 {
-    [FormerlySerializedAs("_itemsInRange")] [SerializeField] private List<ItemPickedUp> _listItemsInRange = new List<ItemPickedUp>();
+    [FormerlySerializedAs("_itemsInRange")] 
+    [SerializeField] private List<ItemPickedUp> _listItemsInRange = new List<ItemPickedUp>();
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private GameObject _inventoryItemInRangeDisplay;
     [SerializeField] private DisplayItemPickup _displayItemPickup;
     public event  Action OnDisplayPickUpItemToInventory;
-    public event Action<ItemPickedUp> OnItemPickedUp;
     public List<ItemPickedUp> ListItemsInRange
     {
         get => _listItemsInRange;   
@@ -34,13 +34,13 @@ public class PickupItemSystem : MonoBehaviour
 
     public void AddToInventory(ItemPickedUp item, int amount)
     {
-        if (!_inventoryHolder.InventorySystem.AddToInventory(item.InventoryItemData, amount)) return;
+        if (!_inventoryHolder.InventorySystem.AddToInventory(item.itemData, amount)) return;
         
         List<ItemPickedUp> itemsToRemove = new List<ItemPickedUp>();
         
         foreach (var listItem in _listItemsInRange)
         {
-            if (listItem.InventoryItemData.ID == item.InventoryItemData.ID)
+            if (listItem.itemData.ID == item.itemData.ID)
             {
                 itemsToRemove.Add(listItem);
             }
@@ -49,7 +49,7 @@ public class PickupItemSystem : MonoBehaviour
         foreach (var listItem in itemsToRemove)
         {
             _listItemsInRange.Remove(listItem);
-            listItem.worldItemData.ReturnToPool(listItem.gameObject);
+            listItem.itemData.ReturnToPool(listItem.gameObject);
             listItem._isTriggered = false;
         }
         

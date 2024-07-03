@@ -20,9 +20,9 @@ namespace _Game.Scripts.Inventory.Action
                 if (item != null && item.isActiveAndEnabled)
                 {
                     //add to inventory
-                    _inventoryHolder.InventorySystem.AddToInventory(item.InventoryItemData, 1);
+                    _inventoryHolder.InventorySystem.AddToInventory(item.itemData, 1);
                     //return to pool
-                    item.worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    item.itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                 }
             }
             foreach (Transform child in _poolItemsHoldInPreview)
@@ -31,7 +31,7 @@ namespace _Game.Scripts.Inventory.Action
                 var item = child.GetComponent<ItemPickedUp>();
                 if (item != null && item.isActiveAndEnabled)
                 {
-                    item.worldItemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    item.itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                     _previewHolder.ItemCount = 0;
                 }
             }
