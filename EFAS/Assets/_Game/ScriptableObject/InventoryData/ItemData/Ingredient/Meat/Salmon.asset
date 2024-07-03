@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a765cca52234bd39cfbac5dbf210be3, type: 3}
+  m_Name: Salmon
+  m_EditorClassIdentifier: 
+  ID: 19
+  ItemType: 0
+  DisplayName: Salmon Fish
+  Price: 25
+  Description: 
+  Icon: {fileID: 21300000, guid: 5716142af80a369498e2f4eb68df2acf, type: 3}
+  MaxStackItem: 10
+  ItemPrefab: {fileID: 1028612130221289802, guid: ce9e62993ab4a4f4e8605aa12b40b501, type: 3}
+  Ingredients: []

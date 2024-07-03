@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a765cca52234bd39cfbac5dbf210be3, type: 3}
+  m_Name: Fried Chicken
+  m_EditorClassIdentifier: 
+  ID: 1007
+  ItemType: 1
+  DisplayName: Fried Chicken
+  Price: 50
+  Description: 
+  Icon: {fileID: 21300000, guid: 98c2573bea14b0e4583665fe120c58c0, type: 3}
+  MaxStackItem: 5
+  ItemPrefab: {fileID: 8505308866513133646, guid: b44953c2a1b39ff4fa86c78841b195f7, type: 3}
+  Ingredients:
+  - {fileID: 11400000, guid: 036934976c106524b98b5cfedba36c80, type: 2}

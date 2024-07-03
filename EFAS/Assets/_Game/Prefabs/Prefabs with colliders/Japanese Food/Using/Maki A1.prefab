@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8829336111644585685}
   - component: {fileID: 1502237815356064015}
   - component: {fileID: -8355923521623467852}
-  - component: {fileID: -1126325124178190957}
-  m_Layer: 0
+  - component: {fileID: -2802339654707488933}
+  m_Layer: 10
   m_Name: Maki A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,10 +29,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7028120217313414912}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,7 +135,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -334572309039422492, guid: 6f19875a81c349e4fb99a7d5811ffad7, type: 3}
---- !u!114 &-1126325124178190957
+--- !u!114 &-2802339654707488933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40dc62dba693a14fb336f9fd4fe0bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 0}
-  worldItemData: {fileID: 0}
-  worldItemWithoutColliderData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 4b80e28a48237b444a46ec83b9e840f2, type: 2}
   _isTriggered: 0

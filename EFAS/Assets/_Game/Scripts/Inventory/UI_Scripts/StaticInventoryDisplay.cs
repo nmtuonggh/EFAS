@@ -17,6 +17,13 @@ public class StaticInventoryDisplay : InventoryDisplay
     public GameEventListenerT<InventorySlot> OnDropInventoryItem;
     public GameEventListenerT<InventorySlot> OnHoldeItemSlotChanged;
 
+    private InventorySlot_UI currentClick;
+
+    public InventorySlot_UI CurrentClick
+    {
+        get => currentClick;
+        set => currentClick = value;
+    }
     //public event Action OnFocusSlotTouch;
     
 
@@ -64,6 +71,7 @@ public class StaticInventoryDisplay : InventoryDisplay
 
     public override void SlotClicked(InventorySlot_UI clickedUISlot)
     {
+        currentClick = clickedUISlot;
         SetFocus(clickedUISlot);
     }
     

@@ -14,6 +14,7 @@ public class ItemData : ScriptableObject, IFactoryItemData
     public int ID;
     public Type ItemType;
     public string DisplayName;
+    public int Price;
     [TextArea(4, 4)] public string Description;
     public Sprite Icon;
     public int MaxStackItem;

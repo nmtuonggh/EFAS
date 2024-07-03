@@ -92,21 +92,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         }
 
         #endregion
-
-        /*#region BtnThrow
-
-        public void ActiveBtnThrow()
-        {
-            if(_inCookRange.inCookRange == true)
-                buttonThrow.SetActive(true);
-        }
-        public void UnActiveBtnThrow()
-        {
-            if(_inCookRange.inCookRange == false)
-                buttonThrow.SetActive(false);
-        }
-
-        #endregion*/
+        
         
     }
 }

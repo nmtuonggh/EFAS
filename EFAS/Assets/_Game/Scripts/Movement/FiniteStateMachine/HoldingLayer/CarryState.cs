@@ -17,7 +17,6 @@ public class CarryState : StateBase
 
     public override StateStatus UpdateState()
     {
-        Debug.Log("On update carry");
         StateStatus baseStatus = base.UpdateState();
         if (baseStatus != StateStatus.Running)
         {
