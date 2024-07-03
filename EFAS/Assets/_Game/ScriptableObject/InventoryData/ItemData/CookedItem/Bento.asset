@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a765cca52234bd39cfbac5dbf210be3, type: 3}
+  m_Name: Bento
+  m_EditorClassIdentifier: 
+  ID: 1002
+  ItemType: 1
+  DisplayName: Bento
+  Description: 
+  Icon: {fileID: 21300000, guid: 1aa91d476b8e81b4dadf64a3f635e16c, type: 3}
+  MaxStackItem: 5
+  ItemPrefab: {fileID: 7953220647369631722, guid: 64ac3bc8078ac494095fe73905455871, type: 3}
+  Ingredients:
+  - {fileID: 11400000, guid: 24dd11d447da38f45a1ec1af764a0169, type: 2}
+  - {fileID: 11400000, guid: 4dd9be28d13d24b4692857cdb0ec8154, type: 2}
+  - {fileID: 11400000, guid: 708f550507bc7164a84375e52d37bd94, type: 2}
+  - {fileID: 11400000, guid: 0cb73ab8885050f4c9e619836b922791, type: 2}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a765cca52234bd39cfbac5dbf210be3, type: 3}
+  m_Name: Beet
+  m_EditorClassIdentifier: 
+  ID: 5
+  ItemType: 0
+  DisplayName: Beet
+  Description: 
+  Icon: {fileID: 21300000, guid: 77448ebd84b528045b06002f2f6275af, type: 3}
+  MaxStackItem: 10
+  ItemPrefab: {fileID: 2811528182840288618, guid: ab51bb6f997849542b3bea9fa3aaf6c1, type: 3}
+  Ingredients: []

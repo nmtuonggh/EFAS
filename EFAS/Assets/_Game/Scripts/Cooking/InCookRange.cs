@@ -31,7 +31,7 @@ public class InCookRange : MonoBehaviour
     {
         if (inCookRange && PreviewHolder.ItemCount > 0 && pot.Ingredients.Count <= 4)
         {
-            btnThrow.SetActive(inCookRange);
+            btnThrow.SetActive(true);
         }
         else if(!inCookRange || PreviewHolder.ItemCount == 0 || pot.Ingredients.Count > 4)
         {
