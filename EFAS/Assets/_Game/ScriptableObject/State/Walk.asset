@@ -49,3 +49,4 @@ MonoBehaviour:
     - 10.8
     _DefaultParameter: 0
     _ExtrapolateSpeed: 1
+  DecreaseStrength: {fileID: 11400000, guid: 4a0bec5866b5caa428ffef8a47f613f3, type: 2}

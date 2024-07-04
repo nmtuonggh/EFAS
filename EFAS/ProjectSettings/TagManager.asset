@@ -8,6 +8,8 @@ TagManager:
   - ItemHolding
   - Pot
   - Shop
+  - FishingSpot
+  - CollectTree
   layers:
   - Default
   - TransparentFX

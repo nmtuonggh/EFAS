@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts.Inventory.Action;
+using _Game.Scripts.Inventory.InventoryAction;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;

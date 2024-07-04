@@ -1,8 +1,7 @@
-﻿using System;
-using _Game.Scripts.Event;
+﻿using _Game.Scripts.Event;
 using UnityEngine;
 
-namespace _Game.Scripts.Inventory.Action
+namespace _Game.Scripts.Inventory.InventoryAction
 {
     public class DropItem : MonoBehaviour
     {

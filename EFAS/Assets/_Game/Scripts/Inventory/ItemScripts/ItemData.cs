@@ -19,6 +19,7 @@ public class ItemData : ScriptableObject, IFactoryItemData
     public Sprite Icon;
     public int MaxStackItem;
     public GameObject ItemPrefab;
+    public float HungerValue;
     public List<ItemData> Ingredients;
     public Queue<GameObject> PoolItemData = new Queue<GameObject>();
 

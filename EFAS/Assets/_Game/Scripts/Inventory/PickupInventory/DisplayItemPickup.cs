@@ -9,6 +9,7 @@ namespace _Game.Scripts.Inventory.PickupInventory
 {
     public class DisplayItemPickup : MonoBehaviour
     {
+        [SerializeField] private PreviewHolder _previewHolder;
         [SerializeField] private PickupItemSystem _pickupItemSystem;
         [SerializeField] private GameObject itemDisplayPrefab;
         [SerializeField] private Transform itemsInRangeHolder;
@@ -46,7 +47,13 @@ namespace _Game.Scripts.Inventory.PickupInventory
                 stackChild.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.stack.ToString();
                 
                 var button = itemDisplay.GetComponent<Button>();
-                button.onClick.AddListener(() => _pickupItemSystem.AddToInventory(item.Value.itemPickedUp, item.Value.stack));
+                button.onClick.AddListener(() => button.onClick.AddListener(() => 
+                {
+                    if (_previewHolder.ItemCount == 0)
+                    {
+                        _pickupItemSystem.AddToInventory(item.Value.itemPickedUp, item.Value.stack);
+                    }
+                }));
             }
         }
     }

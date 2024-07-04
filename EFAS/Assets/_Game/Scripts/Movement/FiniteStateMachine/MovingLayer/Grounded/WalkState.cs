@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using Animancer;
 using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/States/Walk")]
@@ -9,11 +10,13 @@ public class WalkState : GroundedState
     [SerializeField] private SprintState _sprintState;
     [SerializeField] private WalkToIdleState _walkToIdleState;
     [SerializeField] private LinearMixerTransition _walkingBlendTree;
+    public GameEventT<float> DecreaseStrength;
+
     public override void EnterState()
     {
         base.EnterState();
 
-        _state = _blackBoard.animancer.Play(_walkingBlendTree);
+        _state = _baseLayer.Play(_walkingBlendTree);
     }
 
     public override StateStatus UpdateState()
@@ -25,14 +28,8 @@ public class WalkState : GroundedState
         }
 
         ((LinearMixerState)_state).Parameter = Mathf.Lerp(((LinearMixerState)_state).Parameter, _blackBoard.playerMovement.GetSpeed(), 55 * Time.deltaTime);
-
+        DecreaseStrength.Raise(0.001f * Time.deltaTime);
         _blackBoard.playerMovement.SetMovementDirection(_blackBoard.moveDirection);
-
-        //if (_blackBoard.moveDirection.magnitude == 0f)
-        //{
-        //    _fsm.ChangeState(_idleState);
-        //    return StateStatus.Success;
-        //}
 
         if(_blackBoard.sprint && (_blackBoard.PreviewHolder.ItemCount > 0))
         {
