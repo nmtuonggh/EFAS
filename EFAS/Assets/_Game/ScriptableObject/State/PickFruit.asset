@@ -27,3 +27,4 @@ MonoBehaviour:
   canJump: 1
   _idleState: {fileID: 11400000, guid: fe4ad8ba9913f0647aaad6eae4e10a5b, type: 2}
   _walkState: {fileID: 11400000, guid: 30ffda33d4ed2d944bb2944ec16357d8, type: 2}
+  DecreaseStrengthPickFruit: {fileID: 11400000, guid: 4a0bec5866b5caa428ffef8a47f613f3, type: 2}

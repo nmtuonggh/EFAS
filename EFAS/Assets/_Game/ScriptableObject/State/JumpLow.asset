@@ -34,3 +34,4 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 1f7a93442b82e564ab956b4cd8a0bc07, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
+  DecreaseStrength: {fileID: 11400000, guid: 4a0bec5866b5caa428ffef8a47f613f3, type: 2}

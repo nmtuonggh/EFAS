@@ -18,11 +18,13 @@ namespace _Game.Scripts
 
         private void OnEnable()
         {
+            OnIncreaseStreng.OnEnable();
             OnDecreaseStreng.OnEnable();
         }
         
         private void OnDisable()
         {
+            OnIncreaseStreng.OnDisable();
             OnDecreaseStreng.OnDisable();
         }
 
