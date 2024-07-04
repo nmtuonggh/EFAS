@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using UnityEngine;
 
 namespace _Game.Scripts.Cooking
@@ -11,6 +12,7 @@ namespace _Game.Scripts.Cooking
         public SpawnWorldItem spawnWorldItem;
         public ParticleSystem cookingEffect;
         public ParticleSystem fireEffect;
+        public GameEventT<float> DecreaseStrength;
 
         public void CookFood()
         {
@@ -21,12 +23,7 @@ namespace _Game.Scripts.Cooking
                 if (IsMatchedIngredients(cookedFood.Ingredients, pot.Ingredients))
                 {//kiem tra xem nguyen lieu trong noi co phu hop voi cong thuc cua mon an khong
                  // neu co thi tao mon an va xoa nguyen lieu trong noi
-                 //StartCoroutine(DelaySpawnCookedFoodItem(cookedFood.ID));
-                    Debug.Log("Matched recipe found. Cooking " + cookedFood.ID);
-                    spawnWorldItem.SpawnCookedFoodItem(cookedFood.ID);
-                    pot.Ingredients.Clear();
-                    cookingEffect.Stop();
-                    fireEffect.Stop();
+                 StartCoroutine(DelaySpawnCookedFoodItem(cookedFood.ID));
                     return;
                 }
             }
@@ -37,6 +34,7 @@ namespace _Game.Scripts.Cooking
             cookingEffect.Stop();
             fireEffect.Stop();
             pot.Ingredients.Clear();
+            DecreaseStrength.Raise(0.05f);
         }
         
         private IEnumerator DelaySpawnCookedFoodItem(int ID)
@@ -46,7 +44,9 @@ namespace _Game.Scripts.Cooking
             pot.Ingredients.Clear();
             cookingEffect.Stop();
             fireEffect.Stop();
+            DecreaseStrength.Raise(0.05f);
         }
+        
         private bool IsMatchedIngredients(List<ItemData> recipeIngredients, List<ItemData> potIngredients)
         {
             // kiem tra so luong nguyen lieu trong noi va cong thuc

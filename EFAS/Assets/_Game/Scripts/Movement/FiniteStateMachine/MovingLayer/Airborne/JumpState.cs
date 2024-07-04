@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using Animancer;
 using UnityEngine;
 
@@ -10,12 +11,15 @@ public class JumpState : StateBase
     [SerializeField] private WalkState _walkState;
     [SerializeField] private FallState _fallState;
     [SerializeField] private ClipTransition _fallLoopAnimation;
+    public GameEventT<float> DecreaseStrength;
+
 
     public override void EnterState()
     {
         base.EnterState();
         _blackBoard.playerMovement.jumpImpulse *= jumpImpuleModifier;
         _blackBoard.playerMovement.Jump();
+        DecreaseStrength.Raise(0.07f);
         _state.Events.OnEnd = () => { _state = _blackBoard.animancer.Play(_fallLoopAnimation); };
     }
 

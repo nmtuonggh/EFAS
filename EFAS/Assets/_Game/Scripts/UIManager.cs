@@ -12,14 +12,19 @@ namespace _Game.Scripts.Inventory.UI_Scripts
     public class UIManager : MonoBehaviour
     {
         public float fadeTime = 1f;
+        public List<GameObject> _inventoryItem;
+        
         [FormerlySerializedAs("canvasGroup")] public CanvasGroup inventoryCanvasGroup;
         [FormerlySerializedAs("rectTransform")] public RectTransform inventoRectTransform;
+        public RectTransform ebookRectTransform;
+        public CanvasGroup ebookCanvasGroup;
         public GameObject controlUI;
         public GameObject pickUpUI;
+        public GameObject Rod;
         //btn
         public GameObject buttonDropWhileHolding;
-
-        public List<GameObject> _inventoryItem;
+        public GameObject buttonInventory;
+        
         //event
         public GameEvent OnOutInventory;
         public GameEventListener OnHoldingState;
@@ -92,7 +97,23 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         }
 
         #endregion
+
+        #region Ebook
+
+        public void FadeInEbook()
+        {
+            ebookCanvasGroup.alpha = 0f;
+            ebookRectTransform.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
+            ebookCanvasGroup.DOFade(1f, 0.25f);
+        }
         
-        
+        public void FadeOutEbook()
+        {
+            ebookCanvasGroup.alpha = 1f;
+            ebookRectTransform.DOAnchorPos(new Vector2(-2000f, 0f), 0.25f);
+            ebookCanvasGroup.DOFade(0f, 0.25f);
+        }
+
+        #endregion
     }
 }

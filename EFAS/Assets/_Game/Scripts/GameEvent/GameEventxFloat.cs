@@ -3,7 +3,7 @@
 namespace _Game.Scripts.Event
 {
     [CreateAssetMenu (menuName = "GameEvent/GameEventxInt")]
-    public class GameEventxInt : GameEventListenerT<int>
+    public class GameEventxFloat : GameEventT<float>
     {
         
     }

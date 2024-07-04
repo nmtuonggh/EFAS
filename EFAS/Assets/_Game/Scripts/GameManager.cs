@@ -6,6 +6,7 @@ namespace _Game.Scripts
     {
         public static GameManager Instance;
         public Money money;
+        public Streng strengUI;
         
         private void Awake()
         {
@@ -15,6 +16,7 @@ namespace _Game.Scripts
             }*/
             
             money.MoneyText.text = money.MoneyAmount.ToString();
+            strengUI.StrengSlider.value = 100;
         }
     }
 }

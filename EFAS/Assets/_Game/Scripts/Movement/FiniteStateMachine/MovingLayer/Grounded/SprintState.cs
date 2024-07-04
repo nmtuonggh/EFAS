@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Event;
 using Animancer;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class SprintState : GroundedState
    [SerializeField] private SprintTurn180State _turn180State;
    [SerializeField] private SprintToIdleState _sprintToIdleState;
    [SerializeField] private LinearMixerTransition _sprintingBlendTree;
+   public GameEventT<float> DecreaseStrength;
+
 
    public override void EnterState()
    {
@@ -32,7 +35,8 @@ public class SprintState : GroundedState
       {
          return baseStatus;
       }
-
+      
+      DecreaseStrength.Raise(0.002f * Time.deltaTime);
       if(_blackBoard.playerMovement.GetSpeed() >= 6)
       {
          _blackBoard.playerMovement.rotationRate = 270;
