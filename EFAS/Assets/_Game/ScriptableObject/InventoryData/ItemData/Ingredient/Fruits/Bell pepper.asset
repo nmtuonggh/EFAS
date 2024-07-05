@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Bell Pepper
   Price: 3
-  Description: 
+  Description: A crunchy bell pepper, available in various colors, perfect for adding
+    a fresh and sweet flavor to dishes.
   Icon: {fileID: 21300000, guid: 8004ff724292a2e4fafb3f9016d9b5c0, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 6819902130480827924, guid: 2c99bf04deaa9164280e75489a512c5b, type: 3}
+  HungerValue: 3
   Ingredients: []

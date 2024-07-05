@@ -52,7 +52,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             pickUpUI.SetActive(false);
             inventoryCanvasGroup.alpha = 0f;
             inventoRectTransform.transform.localPosition = new Vector3(0, -1000f, 0);
-            inventoRectTransform.DOAnchorPos(new Vector2(0f, 10f), fadeTime, false).SetEase(Ease.OutElastic);
+            inventoRectTransform.DOAnchorPos(new Vector2(0f, 0f), fadeTime, false).SetEase(Ease.OutElastic);
             inventoryCanvasGroup.DOFade(1f, fadeTime);
             StartCoroutine(nameof(SlotAnimation));
         }

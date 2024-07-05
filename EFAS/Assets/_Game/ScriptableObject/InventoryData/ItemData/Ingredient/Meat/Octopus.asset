@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Octopus
   Price: 60
-  Description: 
+  Description: Tender octopus, perfect for grilling, making sushi, or adding to seafood
+    dishes.
   Icon: {fileID: 21300000, guid: c96e9d0521317ef4fbe344fc2b0056d5, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 7088846974553561449, guid: e6fa4c41ceeab264e90e7c53a847e47f, type: 3}
+  HungerValue: -10
   Ingredients: []

@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Coconut
   Price: 7
-  Description: 
+  Description: A tropical coconut, offering refreshing water and creamy meat, perfect
+    for a variety of dishes and drinks.
   Icon: {fileID: 21300000, guid: c6afa590413fc1749a9d82693008475d, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 5712481618265549704, guid: 8a7666c115a115d4aa60c5a0a4d6decd, type: 3}
+  HungerValue: 3
   Ingredients: []

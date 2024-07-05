@@ -16,9 +16,11 @@ MonoBehaviour:
   ItemType: 1
   DisplayName: Beef Steak
   Price: 50
-  Description: 
+  Description: A perfectly grilled beef steak, tender and juicy, seasoned with a
+    blend of spices for a rich and savory taste.
   Icon: {fileID: 21300000, guid: cd0df2671b929e44d84c6e57268f1bc1, type: 3}
   MaxStackItem: 5
   ItemPrefab: {fileID: 319929911750120478, guid: 626e79ef9a9060049bd7cdb01e2b7db4, type: 3}
+  HungerValue: 10
   Ingredients:
   - {fileID: 11400000, guid: f80a2a3d10f7fe94b896b6ec3c096b20, type: 2}

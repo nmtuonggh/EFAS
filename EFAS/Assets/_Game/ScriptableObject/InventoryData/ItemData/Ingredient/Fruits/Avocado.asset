@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Avocado
   Price: 5
-  Description: 
+  Description: A creamy avocado, rich in healthy fats, ideal for spreading on toast
+    or making guacamole.
   Icon: {fileID: 21300000, guid: 844dd0f5fa5d0de469c40c57b130d589, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 9145492430640058663, guid: 931cf05cf79ccf74b99f8f684a42785a, type: 3}
+  HungerValue: 3
   Ingredients: []

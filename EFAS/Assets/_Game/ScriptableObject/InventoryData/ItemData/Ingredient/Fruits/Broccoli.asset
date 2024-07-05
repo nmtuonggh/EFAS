@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Broccoli
   Price: 3
-  Description: 
+  Description: A nutritious broccoli, packed with vitamins and minerals, great for
+    steaming, roasting, or adding to stir-fries.
   Icon: {fileID: 21300000, guid: 50aebf9ac7b51bb42a9d35273887835e, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 3636499358593083769, guid: a5c7c011e1b410443aa7e9cef1a17f7b, type: 3}
+  HungerValue: 3
   Ingredients: []

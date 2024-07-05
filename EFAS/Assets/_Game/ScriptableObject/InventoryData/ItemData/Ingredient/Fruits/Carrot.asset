@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Carrot
   Price: 5
-  Description: 
+  Description: A crunchy carrot, sweet and versatile, perfect for snacking, salads,
+    or cooking in soups and stews.
   Icon: {fileID: 21300000, guid: cb72f0e218720784f8d83f589d5870dc, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 2906585874017408304, guid: e9d1404f58b908f47ac83e3cd060332c, type: 3}
+  HungerValue: 3
   Ingredients: []

@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Tuna
   Price: 25
-  Description: 
+  Description: Fresh tuna, perfect for grilling, making sushi, or adding to salads.
   Icon: {fileID: 21300000, guid: 85cfb67155fbf1342804f854be81097e, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 3405172990590305217, guid: d737cfdc0668e0a469db37e3dbef3481, type: 3}
+  HungerValue: -10
   Ingredients: []
