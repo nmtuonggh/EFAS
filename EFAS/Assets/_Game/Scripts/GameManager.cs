@@ -6,17 +6,19 @@ namespace _Game.Scripts
     {
         public static GameManager Instance;
         public Money money;
-        public Streng strengUI;
+        public Streng streng;
+        public InventoryManager inventoryManager;
         
         private void Awake()
         {
-            /*if (Instance == null)
-            {
-                Instance = this;
-            }*/
-            
             money.MoneyText.text = money.MoneyAmount.ToString();
-            strengUI.StrengSlider.value = 100;
+            streng.StrengSlider.value = 100;
+            DieState.OnDie += GameOver;
+        }
+        
+        private void GameOver()
+        {
+            Time.timeScale = 0;
         }
     }
 }

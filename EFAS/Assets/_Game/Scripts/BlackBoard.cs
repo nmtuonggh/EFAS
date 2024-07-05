@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts;
 using _Game.Scripts.Action.PickFruit;
 using _Game.Scripts.Inventory.UI_Scripts;
 using Animancer;
@@ -16,6 +17,7 @@ public class BlackBoard : MonoBehaviour
     public InventoryManager InventoryManager;
     public InPickFruitRange PickFruitRange;
     public UIManager UIManager;
+    public Streng Streng;
     [Header("Object")]
     public new Camera camera;
     [Header("Bool Value")]

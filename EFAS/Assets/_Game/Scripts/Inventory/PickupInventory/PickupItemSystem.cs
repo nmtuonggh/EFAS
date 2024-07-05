@@ -14,6 +14,7 @@ public class PickupItemSystem : MonoBehaviour
     [SerializeField] private InventoryHolder _inventoryHolder;
     [SerializeField] private GameObject _inventoryItemInRangeDisplay;
     [SerializeField] private DisplayItemPickup _displayItemPickup;
+    [SerializeField] private PreviewHolder _previewHolder;
     public event  Action OnDisplayPickUpItemToInventory;
     public List<ItemPickedUp> ListItemsInRange
     {
@@ -34,7 +35,7 @@ public class PickupItemSystem : MonoBehaviour
 
     public void AddToInventory(ItemPickedUp item, int amount)
     {
-        if (!_inventoryHolder.InventorySystem.AddToInventory(item.itemData, amount)) return;
+        if (!_inventoryHolder.InventorySystem.AddToInventory(item.itemData, amount) || _previewHolder.ItemCount!=0) return;
         
         List<ItemPickedUp> itemsToRemove = new List<ItemPickedUp>();
         

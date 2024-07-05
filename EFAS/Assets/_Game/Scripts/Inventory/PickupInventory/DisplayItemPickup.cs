@@ -13,6 +13,7 @@ namespace _Game.Scripts.Inventory.PickupInventory
         [SerializeField] private PickupItemSystem _pickupItemSystem;
         [SerializeField] private GameObject itemDisplayPrefab;
         [SerializeField] private Transform itemsInRangeHolder;
+
         private void Start()
         {
             _pickupItemSystem.OnDisplayPickUpItemToInventory += DisplayItems;
@@ -20,41 +21,43 @@ namespace _Game.Scripts.Inventory.PickupInventory
 
         public void DisplayItems()
         {
-            foreach (Transform child in itemsInRangeHolder)
-            {
-                Destroy(child.gameObject);
-            }
-            Dictionary<int, (ItemPickedUp itemPickedUp, int stack)> itemStacks = new Dictionary<int, (ItemPickedUp, int)>();
-            foreach (var item in _pickupItemSystem.ListItemsInRange)
-            {
-                if (itemStacks.ContainsKey(item.itemData.ID))
+                foreach (Transform child in itemsInRangeHolder)
                 {
-                    itemStacks[item.itemData.ID] = (item, itemStacks[item.itemData.ID].stack + 1);
+                    Destroy(child.gameObject);
                 }
-                else
+
+                Dictionary<int, (ItemPickedUp itemPickedUp, int stack)> itemStacks =
+                    new Dictionary<int, (ItemPickedUp, int)>();
+                foreach (var item in _pickupItemSystem.ListItemsInRange)
                 {
-                    itemStacks.Add(item.itemData.ID, (item, 1));
+                    if (itemStacks.ContainsKey(item.itemData.ID))
+                    {
+                        itemStacks[item.itemData.ID] = (item, itemStacks[item.itemData.ID].stack + 1);
+                    }
+                    else
+                    {
+                        itemStacks.Add(item.itemData.ID, (item, 1));
+                    }
                 }
-            }
-            // Display new items
-            foreach (var item in itemStacks)
-            {
-                var itemDisplay = Instantiate(itemDisplayPrefab, itemsInRangeHolder);
-                var imageChild = itemDisplay.transform.GetChild(2);
-                var stackChild = itemDisplay.transform.GetChild(4);
-                itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.itemPickedUp.itemData.DisplayName;
-                imageChild.GetComponentInChildren<Image>().sprite = item.Value.itemPickedUp.itemData.Icon;
-                stackChild.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.stack.ToString();
-                
-                var button = itemDisplay.GetComponent<Button>();
-                button.onClick.AddListener(() => button.onClick.AddListener(() => 
+
+                // Display new items
+                foreach (var item in itemStacks)
                 {
-                    if (_previewHolder.ItemCount == 0)
+                    var itemDisplay = Instantiate(itemDisplayPrefab, itemsInRangeHolder);
+                    var imageChild = itemDisplay.transform.GetChild(2);
+                    var stackChild = itemDisplay.transform.GetChild(4);
+                    itemDisplay.GetComponentInChildren<TextMeshProUGUI>().text =
+                        item.Value.itemPickedUp.itemData.DisplayName;
+                    imageChild.GetComponentInChildren<Image>().sprite = item.Value.itemPickedUp.itemData.Icon;
+                    stackChild.GetComponentInChildren<TextMeshProUGUI>().text = item.Value.stack.ToString();
+
+                    var button = itemDisplay.GetComponent<Button>();
+
+                    button.onClick.AddListener(() =>
                     {
                         _pickupItemSystem.AddToInventory(item.Value.itemPickedUp, item.Value.stack);
-                    }
-                }));
-            }
+                    });
+                }
         }
     }
 }

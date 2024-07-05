@@ -1,4 +1,5 @@
 ﻿using _Game.Scripts.Cooking;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Game.Scripts.Inventory.Action
@@ -16,8 +17,14 @@ namespace _Game.Scripts.Inventory.Action
             {
                 if (child.GetComponent<ItemPickedUp>()!= null && child.GetComponent<ItemPickedUp>().isActiveAndEnabled)
                 {
-                    _pot.Ingredients.Add(child.GetComponent<ItemPickedUp>().itemData);
-                    child.GetComponent<ItemPickedUp>().itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    
+                    child.DOJump((_pot.transform.position + Vector3.up), 2f, 1, 1).OnComplete(() =>
+                    {
+                        child.tag = "Untagged";
+                        _pot.Ingredients.Add(child.GetComponent<ItemPickedUp>().itemData);
+                        child.GetComponent<ItemPickedUp>().itemData
+                            .ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
+                    });
                 }
             }
 

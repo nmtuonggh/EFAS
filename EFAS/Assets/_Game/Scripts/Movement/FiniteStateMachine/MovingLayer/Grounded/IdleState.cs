@@ -6,7 +6,6 @@ using UnityEngine;
 public class IdleState : GroundedState
 {
     [SerializeField] private WalkState _walkState;
-    //[SerializeField] private CarryState _carryState;
     [SerializeField] private FishingState _fishingState;
     [SerializeField] private PickFruitState _pickFruitState;
 

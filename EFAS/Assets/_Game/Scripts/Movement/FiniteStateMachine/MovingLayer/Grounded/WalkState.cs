@@ -15,7 +15,8 @@ public class WalkState : GroundedState
     public override void EnterState()
     {
         base.EnterState();
-
+        _blackBoard.isFishing = false;
+        _blackBoard.isPicking = false;
         _state = _baseLayer.Play(_walkingBlendTree);
     }
 
@@ -31,7 +32,7 @@ public class WalkState : GroundedState
         DecreaseStrength.Raise(0.001f * Time.deltaTime);
         _blackBoard.playerMovement.SetMovementDirection(_blackBoard.moveDirection);
 
-        if(_blackBoard.sprint && (_blackBoard.PreviewHolder.ItemCount > 0))
+        if(_blackBoard.sprint && !(_blackBoard.PreviewHolder.ItemCount > 0))
         {
             _fsm.ChangeState(_sprintState);
             return StateStatus.Success;

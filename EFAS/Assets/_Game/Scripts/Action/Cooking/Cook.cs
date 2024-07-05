@@ -14,7 +14,9 @@ namespace _Game.Scripts.Cooking
         public ParticleSystem cookingEffect;
         public ParticleSystem fireEffect;
         public ParticleSystem boomEffect;
+        public ParticleSystem failEffect;
         public GameEventT<float> DecreaseStrength;
+        public static event System.Action<ItemData> OnCookedFoodItem;
 
         public void CookFood()
         {
@@ -25,30 +27,51 @@ namespace _Game.Scripts.Cooking
                 if (IsMatchedIngredients(cookedFood.Ingredients, pot.Ingredients))
                 {//kiem tra xem nguyen lieu trong noi co phu hop voi cong thuc cua mon an khong
                  // neu co thi tao mon an va xoa nguyen lieu trong noi
+                 pot.btnCook.SetActive(false);
                  StartCoroutine(DelaySpawnCookedFoodItem(cookedFood.ID));
-                    return;
+                 return;
                 }
             }
             
             //TODO: sua thanh lam mon sida
             //neu khong, thong bao cho nguoi choi va xoa nguyen lieu trong noi ---> sua thanh lam mon sida
-            Debug.Log("No matched recipe found. Please check the ingredients.");
-            spawnWorldItem.SpawnCookedFoodItem(BadcookedFoodItem.ID);
-            cookingEffect.Stop();
-            fireEffect.Stop();
-            pot.Ingredients.Clear();
-            DecreaseStrength.Raise(0.05f);
+            pot.btnCook.SetActive(false);
+            StartCoroutine(DelaySpawnFailFoodItem(BadcookedFoodItem.ID));
         }
         
         private IEnumerator DelaySpawnCookedFoodItem(int ID)
         {
             yield return new WaitForSeconds(2);
-            boomEffect.Play();
+            boomEffect.gameObject.SetActive(true);
             spawnWorldItem.SpawnCookedFoodItem(ID);
             pot.Ingredients.Clear();
             cookingEffect.Stop();
             fireEffect.Stop();
             DecreaseStrength.Raise(0.05f);
+            OnCookedFoodItem?.Invoke(cookedFoodItemList.Find(x => x.ID == ID));
+            Invoke(nameof(WaitSuccess), 2f);
+        }
+        
+        private void WaitSuccess()
+        {
+            boomEffect.gameObject.SetActive(false);
+        }
+        private IEnumerator DelaySpawnFailFoodItem(int ID)
+        {
+            yield return new WaitForSeconds(2);
+            StartCoroutine(waitFail(ID));
+        }
+
+        private IEnumerator waitFail(int ID)
+        {
+            failEffect.Play();
+            spawnWorldItem.SpawnCookedFoodItem(ID);
+            OnCookedFoodItem?.Invoke(BadcookedFoodItem);
+            yield return new WaitUntil(() => !failEffect.isPlaying);
+            pot.Ingredients.Clear();
+            cookingEffect.Stop();
+            fireEffect.Stop();
+            DecreaseStrength.Raise(0.2f);
         }
         
         private bool IsMatchedIngredients(List<ItemData> recipeIngredients, List<ItemData> potIngredients)

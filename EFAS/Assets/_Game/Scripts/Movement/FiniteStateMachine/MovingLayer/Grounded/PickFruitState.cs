@@ -15,6 +15,7 @@ namespace _Game.Scripts.Movement.FiniteStateMachine.MovingLayer.Grounded
         {
             base.EnterState();
             _blackBoard.UIManager.buttonInventory.SetActive(false);
+            _blackBoard.UIManager.Basket.SetActive(true);
             _state.Events.OnEnd = () =>
             {
                 _fsm.ChangeState(_idleState);
@@ -51,7 +52,7 @@ namespace _Game.Scripts.Movement.FiniteStateMachine.MovingLayer.Grounded
         public override void ExitState()
         {
             base.ExitState();
-
+            _blackBoard.UIManager.Basket.SetActive(false);
             _blackBoard.playerMovement.useRootMotion = false;
         }
     }

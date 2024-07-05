@@ -12,6 +12,7 @@ namespace _Game.Scripts.Shop
         public GameObject btnSellAllInventory;
         public RectTransform ShopUI;
         public GameObject ControlUI;
+        public InputManager1 inputManager;
             
         
         private void OnTriggerEnter(Collider other)
@@ -19,6 +20,7 @@ namespace _Game.Scripts.Shop
             if (other.CompareTag("Shop") )
             {
                 inShopRange = true;
+                other.GetComponent<Outline>().OutlineWidth = 2f;
             }
         }
     
@@ -27,6 +29,7 @@ namespace _Game.Scripts.Shop
             if (other.CompareTag("Shop"))
             {
                 inShopRange = false;
+                other.GetComponent<Outline>().OutlineWidth = 0f;
             }
         }
 
@@ -49,6 +52,7 @@ namespace _Game.Scripts.Shop
         
         public void OpenShop()
         {   
+            inputManager.move = Vector2.zero;
             ShopUI.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ControlUI.SetActive(false);
         }
