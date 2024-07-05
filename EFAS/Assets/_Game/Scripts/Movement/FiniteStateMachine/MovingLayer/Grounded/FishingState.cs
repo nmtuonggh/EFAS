@@ -22,7 +22,6 @@ namespace _Game.Scripts.Movement.FiniteStateMachine.MovingLayer.Grounded
                 DecreaseStrength.Raise(0.05f);
                 _blackBoard.isFishing = false;
                 _blackBoard.UIManager.buttonInventory.SetActive(true);
-                _blackBoard.UIManager.Rod.SetActive(false);
             };
             RotatePlayer();
         }
@@ -55,7 +54,7 @@ namespace _Game.Scripts.Movement.FiniteStateMachine.MovingLayer.Grounded
         public override void ExitState()
         {
             base.ExitState();
-
+            _blackBoard.UIManager.Rod.SetActive(false);
             _blackBoard.playerMovement.useRootMotion = false;
         }
     }

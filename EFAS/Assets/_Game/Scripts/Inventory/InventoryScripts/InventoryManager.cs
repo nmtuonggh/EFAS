@@ -51,7 +51,8 @@ public class InventoryManager :MonoBehaviour
         var saveData = ToSaveData();
         var json = JsonUtility.ToJson(saveData);
 
-        System.IO.File.WriteAllText(savePath, json);
+        //System.IO.File.WriteAllText(savePath, json);
+        PlayerPrefs.SetString(savePath, json);
     }
     
     public void LoadFromSaveData(InventorySaveData saveData)
@@ -79,6 +80,7 @@ public class InventoryManager :MonoBehaviour
     public void LoadFromFile()
     {
         var json = System.IO.File.ReadAllText(savePath);
+        //json = 
         var saveData = JsonUtility.FromJson<InventorySaveData>(json);
         LoadFromSaveData(saveData);
     }

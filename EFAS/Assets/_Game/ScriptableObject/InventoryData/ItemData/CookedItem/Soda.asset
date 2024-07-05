@@ -21,7 +21,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: e5b15fc30c2c55a4083549e613ec4316, type: 3}
   MaxStackItem: 5
   ItemPrefab: {fileID: 6714453655996489885, guid: 49e5079edad328545989443de0cfa355, type: 3}
-  HungerValue: 5
+  HungerValue: 0.05
   Ingredients:
   - {fileID: 11400000, guid: 4dd9be28d13d24b4692857cdb0ec8154, type: 2}
   - {fileID: 11400000, guid: 5f28b4feda34a074784617987933be41, type: 2}

@@ -22,6 +22,7 @@ namespace _Game.Scripts.Inventory.Action
                     //add to inventory
                     _inventoryHolder.InventorySystem.AddToInventory(item.itemData, 1);
                     //return to pool
+                    item.tag = "Untagged";
                     item.itemData.ReturnToPool(child.GetComponent<ItemPickedUp>().gameObject);
                 }
             }

@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class SpawnWorldItem : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SpawnWorldItem : MonoBehaviour
    [FormerlySerializedAs("spawnPos")] [SerializeField] GameObject _spawnPos;
    [FormerlySerializedAs("dropPos")] [SerializeField] GameObject _dropPos;
    [SerializeField] GameObject _cookedFoodSpawnPos;
+   [SerializeField] GameObject tweencookedFoodSpawnPos;
    [SerializeField] PreviewHolder _previewHolder;
 
    [SerializeField] private List<Transform> _playerHoldPos;
@@ -64,7 +66,8 @@ public class SpawnWorldItem : MonoBehaviour
       {
          if(prefab.ID == id)
          {
-            prefab.Spawn(_cookedFoodSpawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
+            var item = prefab.Spawn(_cookedFoodSpawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
+            item.transform.DOJump(tweencookedFoodSpawnPos.transform.position, 1, 1,1);
          }
       }
    }

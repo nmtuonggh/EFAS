@@ -19,6 +19,7 @@ namespace _Game.Scripts
         public BuyItem BuyItem; 
         public SellItem SellItem;
         
+        
         private void Awake()
         {
             BuyItem.OnBuyItemEvent += DecreaseMoney;
@@ -35,8 +36,8 @@ namespace _Game.Scripts
         
         public void DecreaseMoney(int amount)
         {
-            _money -= amount;
-            _moneyText.text = _money.ToString();
+                _money -= amount;
+                _moneyText.text = _money.ToString();
         }
     }
 }

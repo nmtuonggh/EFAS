@@ -6,8 +6,6 @@ using UnityEngine.Serialization;
 
 public class ItemPickedUp : MonoBehaviour
 {
-    //[FormerlySerializedAs("ItemData")] public InventoryItemData InventoryItemData;
-    //public WorldItemData worldItemData;
     public ItemData itemData;
     public bool _isTriggered = false;
     public event Action OnAddPickUpItemToInventory;

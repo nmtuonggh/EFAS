@@ -26,6 +26,7 @@ namespace _Game.Scripts.Action.PickFruit
             {
                 pickFruit = true;
                 targetTree = other.transform;
+                other.GetComponent<Outline>().OutlineWidth = 5f;
             }
         }
 
@@ -34,6 +35,7 @@ namespace _Game.Scripts.Action.PickFruit
             if (other.CompareTag("CollectTree"))
             {
                 pickFruit = false;
+                other.GetComponent<Outline>().OutlineWidth = 0f;
             }
         }
     }

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Cooking;
 using _Game.Scripts.Event;
+using _Game.Scripts.Shop;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace _Game.Scripts.Inventory.UI_Scripts
 {
@@ -21,6 +25,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         public GameObject controlUI;
         public GameObject pickUpUI;
         public GameObject Rod;
+        public GameObject Basket;
         //btn
         public GameObject buttonDropWhileHolding;
         public GameObject buttonInventory;
@@ -30,9 +35,17 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         public GameEventListener OnHoldingState;
         public GameEventListener UnHoldingState;
         //public GameEventListener OnHoldState;
+        //popup ui
+        public RectTransform cookPopupRect;
+        public CanvasGroup cookPopupCanvas;
+        public RectTransform moneyPopupRect;
+        public CanvasGroup moneyPopupCanvas;
+        //
+        public BlackBoard blackBoard;
+        public InputManager1 inputManager;
+        public FloatingJoystick joystickMove;
         
-
-        private void Awake()
+        private void OnEnable()
         {
             OnHoldingState.OnEnable();
             UnHoldingState.OnEnable();
@@ -44,10 +57,17 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             UnHoldingState.OnDisable();
         }
 
+        private void Awake()
+        {
+            Cook.OnCookedFoodItem += SetDataPopupCook;
+            BuyItem.OnOutOfMoney += SetDataPopupMoney;
+        }
+
         #region Inventory
 
         public void InventoryPanelFadeIn()
         {
+            joystickMove.ResetInput();
             controlUI.SetActive(false);
             pickUpUI.SetActive(false);
             inventoryCanvasGroup.alpha = 0f;
@@ -59,6 +79,8 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         
         public void InventoryPanelFadeOut()
         {
+            
+            blackBoard.stopMove = false;
             OnOutInventory.Raise(); 
             inventoryCanvasGroup.alpha = 1f;
             inventoRectTransform.transform.localPosition = new Vector3(0, 0f, 0);
@@ -102,6 +124,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
 
         public void FadeInEbook()
         {
+            joystickMove.ResetInput();
             ebookCanvasGroup.alpha = 0f;
             ebookRectTransform.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ebookCanvasGroup.DOFade(1f, 0.25f);
@@ -114,6 +137,71 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             ebookCanvasGroup.DOFade(0f, 0.25f);
         }
 
+        #endregion
+
+        #region Popup
+
+        public void ShowPopupCook()
+        {
+            cookPopupCanvas.gameObject.SetActive(true);
+            cookPopupCanvas.alpha = 0;
+            cookPopupCanvas.DOFade(1f, .5f);
+            cookPopupRect.localScale = Vector3.zero;
+            cookPopupRect.DOScale(Vector3.one, .5f);
+        }
+        
+        public void HidePopupCook()
+        {
+            cookPopupCanvas.DOFade(0f, .5f);
+            cookPopupRect.DOScale(Vector3.zero, .5f);
+            cookPopupCanvas.gameObject.SetActive(false);
+        }
+        
+        IEnumerator ShowPopup()
+        {
+            ShowPopupCook();
+            yield return new WaitForSeconds(1f);
+            HidePopupCook();
+        }
+        
+        public void SetDataPopupCook(ItemData itemData)
+        {
+            var image = cookPopupCanvas.transform.GetChild(4);
+            var name = cookPopupCanvas.transform.GetChild(3);
+
+            image.GetComponent<Image>().sprite = itemData.Icon;
+            name.GetComponent<TextMeshProUGUI>().text = itemData.DisplayName;
+            StartCoroutine(nameof(ShowPopup));
+        }
+        
+        
+        public void ShowPopupMoney()
+        {
+            moneyPopupCanvas.gameObject.SetActive(true);
+            moneyPopupCanvas.alpha = 0;
+            moneyPopupCanvas.DOFade(1f, .5f);
+            moneyPopupRect.localScale = Vector3.zero;
+            moneyPopupRect.DOScale(Vector3.one, .5f);
+        }
+        
+        public void HidePopupCookMoney()
+        {
+            moneyPopupCanvas.DOFade(0f, .5f);
+            moneyPopupRect.DOScale(Vector3.zero, .5f);
+            moneyPopupCanvas.gameObject.SetActive(false);
+        }
+        
+        IEnumerator ShowPopupM()
+        {
+            ShowPopupMoney();
+            yield return new WaitForSeconds(1f);
+            HidePopupCookMoney();
+        }
+        
+        public void SetDataPopupMoney()
+        {
+            StartCoroutine(nameof(ShowPopupM));
+        }
         #endregion
     }
 }

@@ -10,6 +10,7 @@ namespace _Game.Scripts.Shop
     {
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
         public UnityEvent<int> OnSellItemEvent;
+        public static event System.Action AudioSellItem;
 
         public void OnSellItem()
         {
@@ -23,6 +24,7 @@ namespace _Game.Scripts.Shop
 
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, 1))
                 {
+                    AudioSellItem?.Invoke();
                     OnSellItemEvent?.Invoke(price);
                 }
             }
@@ -40,6 +42,7 @@ namespace _Game.Scripts.Shop
 
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, selectedSlot.StackSize))
                 {
+                    AudioSellItem?.Invoke();
                     OnSellItemEvent?.Invoke(value);
                 }
             }

@@ -8,6 +8,7 @@ public class FiniteStateMachine : MonoBehaviour
     [SerializeField] private StateBase _startingState;
     [SerializeField] private StateBase _currentState;
     [SerializeField] private StateBase _previousState; 
+    [SerializeField] private StateBase _dieState;
     private BlackBoard _blackBoard;
     [SerializeField] private List<StateBase> _states;
     [SerializeField] private CarryStateMachine _carryStateMachine;
@@ -57,6 +58,10 @@ public class FiniteStateMachine : MonoBehaviour
 
     private void Update()
     {
+        if(_blackBoard.Streng.StrengSlider.value <=0)
+        {
+            ChangeState(_dieState);
+        }
         if (!_isAIControlled)
         {
             OnUpdate();
