@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Apricot
   Price: 5
-  Description: 
+  Description: A sweet and tangy apricot, great for eating fresh or using in desserts
+    and jams.
   Icon: {fileID: 21300000, guid: 29de87aa2eaa132408692149cfb90543, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 5920593745242702897, guid: 7eaa1212496384c4c8d153777ede0f5f, type: 3}
+  HungerValue: 3
   Ingredients: []

@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Beet
   Price: 2
-  Description: 
+  Description: A vibrant beet, earthy and sweet, great for roasting, salads, or juicing.
   Icon: {fileID: 21300000, guid: 77448ebd84b528045b06002f2f6275af, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 2811528182840288618, guid: ab51bb6f997849542b3bea9fa3aaf6c1, type: 3}
+  HungerValue: 3
   Ingredients: []

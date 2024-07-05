@@ -16,8 +16,10 @@ MonoBehaviour:
   ItemType: 0
   DisplayName: Bluberry
   Price: 1
-  Description: 
+  Description: A handful of sweet blueberries, bursting with flavor, ideal for snacking
+    or adding to cereals and desserts.
   Icon: {fileID: 21300000, guid: b7521920034977349b5fe60224d83e94, type: 3}
   MaxStackItem: 10
   ItemPrefab: {fileID: 2271964281049696082, guid: 27848dc57ef6ec34a9277632cd45c0ff, type: 3}
+  HungerValue: 3
   Ingredients: []

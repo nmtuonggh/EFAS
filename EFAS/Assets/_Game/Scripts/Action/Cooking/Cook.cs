@@ -9,9 +9,11 @@ namespace _Game.Scripts.Cooking
     {
         public Pot pot;
         public List<ItemData> cookedFoodItemList;
+        public ItemData BadcookedFoodItem;
         public SpawnWorldItem spawnWorldItem;
         public ParticleSystem cookingEffect;
         public ParticleSystem fireEffect;
+        public ParticleSystem boomEffect;
         public GameEventT<float> DecreaseStrength;
 
         public void CookFood()
@@ -31,6 +33,7 @@ namespace _Game.Scripts.Cooking
             //TODO: sua thanh lam mon sida
             //neu khong, thong bao cho nguoi choi va xoa nguyen lieu trong noi ---> sua thanh lam mon sida
             Debug.Log("No matched recipe found. Please check the ingredients.");
+            spawnWorldItem.SpawnCookedFoodItem(BadcookedFoodItem.ID);
             cookingEffect.Stop();
             fireEffect.Stop();
             pot.Ingredients.Clear();
@@ -40,6 +43,7 @@ namespace _Game.Scripts.Cooking
         private IEnumerator DelaySpawnCookedFoodItem(int ID)
         {
             yield return new WaitForSeconds(2);
+            boomEffect.Play();
             spawnWorldItem.SpawnCookedFoodItem(ID);
             pot.Ingredients.Clear();
             cookingEffect.Stop();
