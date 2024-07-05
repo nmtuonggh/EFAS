@@ -88,7 +88,6 @@ namespace _Game.Scripts.Cooking
             {
                 return false;
             }
-            Debug.Log("So luong trong cong thuc"+ recipeIngredients.Count + "So luong trong noi" + potIngredients.Count);
             // tao 2 dictionary de dem so luong nguyen lieu trong cong thuc va noi
             var recipeIngredientCounts = new Dictionary<int, int>();
             var potIngredientCounts = new Dictionary<int, int>();
