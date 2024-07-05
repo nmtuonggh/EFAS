@@ -67,7 +67,7 @@ public class SpawnWorldItem : MonoBehaviour
          if(prefab.ID == id)
          {
             var item = prefab.Spawn(_cookedFoodSpawnPos.transform.position, Quaternion.identity, _parentSpawnItem);
-            item.transform.DOMove(tweencookedFoodSpawnPos.transform.position, 1, false);
+            item.transform.DOJump(tweencookedFoodSpawnPos.transform.position, 1, 1,1);
          }
       }
    }

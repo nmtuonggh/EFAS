@@ -41,9 +41,10 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         public RectTransform moneyPopupRect;
         public CanvasGroup moneyPopupCanvas;
         //
+        public BlackBoard blackBoard;
         public InputManager1 inputManager;
+        public FloatingJoystick joystickMove;
         
-
         private void OnEnable()
         {
             OnHoldingState.OnEnable();
@@ -66,7 +67,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
 
         public void InventoryPanelFadeIn()
         {
-            inputManager.move = Vector2.zero;
+            joystickMove.ResetInput();
             controlUI.SetActive(false);
             pickUpUI.SetActive(false);
             inventoryCanvasGroup.alpha = 0f;
@@ -78,6 +79,8 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         
         public void InventoryPanelFadeOut()
         {
+            
+            blackBoard.stopMove = false;
             OnOutInventory.Raise(); 
             inventoryCanvasGroup.alpha = 1f;
             inventoRectTransform.transform.localPosition = new Vector3(0, 0f, 0);
@@ -121,7 +124,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
 
         public void FadeInEbook()
         {
-            inputManager.move = Vector2.zero;
+            joystickMove.ResetInput();
             ebookCanvasGroup.alpha = 0f;
             ebookRectTransform.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ebookCanvasGroup.DOFade(1f, 0.25f);

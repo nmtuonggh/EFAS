@@ -8,6 +8,7 @@ namespace _Game.Scripts.Inventory.InventoryAction
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
         public GameEventT<float> OnEat;
         public GameEventT<InventorySlot> OnEatInventoryItem;
+        public static event System.Action OnEatSound;
         
         public void OnEatItem()
         {
@@ -19,6 +20,7 @@ namespace _Game.Scripts.Inventory.InventoryAction
                 InventorySlot selectedSlot = currentSlot.AssingnedInventorySlot;
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, 1))
                 {
+                    OnEatSound?.Invoke();
                     OnEatInventoryItem.Raise(selectedSlot);
                 }
             }

@@ -17,6 +17,9 @@ namespace _Game.Scripts.Cooking
         public ParticleSystem failEffect;
         public GameEventT<float> DecreaseStrength;
         public static event System.Action<ItemData> OnCookedFoodItem;
+        public static event System.Action OnCookSuccess;
+        public static event System.Action OnCookeFail;
+        public static event System.Action OnPop;
 
         public void CookFood()
         {
@@ -42,12 +45,14 @@ namespace _Game.Scripts.Cooking
         private IEnumerator DelaySpawnCookedFoodItem(int ID)
         {
             yield return new WaitForSeconds(2);
+            OnCookSuccess?.Invoke();
             boomEffect.gameObject.SetActive(true);
             spawnWorldItem.SpawnCookedFoodItem(ID);
             pot.Ingredients.Clear();
             cookingEffect.Stop();
             fireEffect.Stop();
             DecreaseStrength.Raise(0.05f);
+            OnPop?.Invoke();
             OnCookedFoodItem?.Invoke(cookedFoodItemList.Find(x => x.ID == ID));
             Invoke(nameof(WaitSuccess), 2f);
         }
@@ -64,14 +69,16 @@ namespace _Game.Scripts.Cooking
 
         private IEnumerator waitFail(int ID)
         {
+            OnCookeFail?.Invoke();
             failEffect.Play();
             spawnWorldItem.SpawnCookedFoodItem(ID);
+            OnPop?.Invoke();
             OnCookedFoodItem?.Invoke(BadcookedFoodItem);
             yield return new WaitUntil(() => !failEffect.isPlaying);
             pot.Ingredients.Clear();
             cookingEffect.Stop();
             fireEffect.Stop();
-            DecreaseStrength.Raise(0.2f);
+            DecreaseStrength.Raise(0.05f);
         }
         
         private bool IsMatchedIngredients(List<ItemData> recipeIngredients, List<ItemData> potIngredients)

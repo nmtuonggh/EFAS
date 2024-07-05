@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Inventory.UI_Scripts;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -20,8 +22,7 @@ public class InputManager1 : MonoBehaviour
     public Vector2 look;
     public bool isLooking;
 
-    [Header("Input Actions")] 
-    public InputAction jump;
+    [Header("Input Actions")] public InputAction jump;
     public InputAction sprint;
 
     public bool disableInput;
@@ -29,8 +30,9 @@ public class InputManager1 : MonoBehaviour
     private Vector2 cachedTouchPos;
     private int lookFingerID;
     private Vector2 targetLook;
+    [SerializeField] private UIManager uiManager;
 
-   // private float pcCamSenmultiplier = 1;
+    // private float pcCamSenmultiplier = 1;
 
     private void Awake()
     {
@@ -52,7 +54,6 @@ public class InputManager1 : MonoBehaviour
     private void Start()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
-        //Cursor.lockState = CursorLockMode.Locked;
 #endif
     }
 
@@ -60,70 +61,28 @@ public class InputManager1 : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.H))
             Debug.Break();
+        if (disableInput)
+        {
+            if (joystickMove.gameObject.activeInHierarchy)
+            {
+                joystickMove.gameObject.SetActive(false);
+                joystickMove.OnPointerUp(null);
+                lookPanel.SetActive(false);
+            }
 
-// #if UNITY_EDITOR || UNITY_STANDALONE_WIN
-//             move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-//             look = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-//             look *= (camsensitivity * pcCamSenmultiplier);
-//
-//             if (Input.GetKeyDown(KeyCode.LeftAlt))
-//             {
-//                 Cursor.lockState = CursorLockMode.None;
-//             }
-//             if (Input.GetKeyUp(KeyCode.LeftAlt))
-//             {
-//                 Cursor.lockState = CursorLockMode.Locked;
-//             }
-//
-//             if (Cursor.lockState == CursorLockMode.None)
-//             {
-//                 move = Vector2.zero;
-//                 look = Vector2.zero;
-//             }
-//
-//             if (Input.GetKeyDown(KeyCode.PageUp))
-//                 pcCamSenmultiplier += 0.2f;
-//             if (Input.GetKeyUp(KeyCode.PageDown))
-//             {
-//                 pcCamSenmultiplier -= 0.2f;
-//                 if (pcCamSenmultiplier <= 0)
-//                     pcCamSenmultiplier = 0.2f;
-//             }
-//
-//             /*if (Input.GetKey(KeyCode.LeftControl))
-//             {
-//                 TimeManager.instance.focus = true;
-//             }
-//             else
-//             {
-//                 TimeManager.instance.focus = false;
-//             }*/
-//
-// #endif
-//
-//             if (disableInput)
-//             {
-//                 if (joystickMove.gameObject.activeInHierarchy)
-//                 {
-//                     joystickMove.gameObject.SetActive(false);
-//                     joystickMove.OnPointerUp(null);
-//                     lookPanel.SetActive(false);
-//                 }
-//                 move = Vector2.zero;
-//                 look = Vector2.zero;
-//                 jump.Cancel();
-//                 sprint.Cancel();
-//                 return;
-//             }
-//
-//             if (!joystickMove.gameObject.activeInHierarchy)
-//             {
-//                 joystickMove.gameObject.SetActive(true);
-//                 lookPanel.SetActive(true);
-//             }
+            move = Vector2.zero;
+            look = Vector2.zero;
+            jump.Cancel();
+            sprint.Cancel();
+            return;
+        }
 
-//#if UNITY_ANDROID && !UNITY_EDITOR
-        //Debug.Log("Move " + joystickMove.Horizontal + " " + joystickMove.Vertical);
+        if (!joystickMove.gameObject.activeInHierarchy)
+        {
+            joystickMove.gameObject.SetActive(true);
+            lookPanel.SetActive(true);
+        }
+
         move = new Vector2(joystickMove.Horizontal, joystickMove.Vertical);
 
         if (Input.touchCount == 0)
@@ -179,6 +138,7 @@ public class InputManager1 : MonoBehaviour
         {
             look.y = 0;
         }
+
 
         /*if (TimeManager.instance.pause)
         {

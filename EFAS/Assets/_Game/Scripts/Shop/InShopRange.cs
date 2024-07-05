@@ -52,7 +52,7 @@ namespace _Game.Scripts.Shop
         
         public void OpenShop()
         {   
-            inputManager.move = Vector2.zero;
+            inputManager.joystickMove.ResetInput();
             ShopUI.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ControlUI.SetActive(false);
         }

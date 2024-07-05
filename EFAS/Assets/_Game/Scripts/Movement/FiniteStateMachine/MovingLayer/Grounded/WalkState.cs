@@ -38,7 +38,7 @@ public class WalkState : GroundedState
             return StateStatus.Success;
         }
 
-        if (_blackBoard.moveDirection.magnitude < 0.1f)
+        if (_blackBoard.moveDirection.magnitude < 0.1f )
         {
             _fsm.ChangeState(_walkToIdleState);
             return StateStatus.Success;

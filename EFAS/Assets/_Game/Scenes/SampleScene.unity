@@ -5429,6 +5429,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2040255801}
+    - targetCorrespondingSourceObject: {fileID: 1660164172697688, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2040255803}
   m_SourcePrefab: {fileID: 100100000, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
 --- !u!4 &260390953 stripped
 Transform:
@@ -13082,6 +13085,7 @@ MonoBehaviour:
   jump: {fileID: 11400000, guid: a46ca23604322a14d897af8991d84ab6, type: 2}
   sprint: {fileID: 11400000, guid: c04790d56a94feb41b49b99a13e36183, type: 2}
   disableInput: 0
+  uiManager: {fileID: 1111054611}
 --- !u!1001 &391507351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38051,7 +38055,9 @@ MonoBehaviour:
   cookPopupCanvas: {fileID: 2686178203331934392}
   moneyPopupRect: {fileID: 5426653244399418174}
   moneyPopupCanvas: {fileID: 5426653244399418176}
+  blackBoard: {fileID: 1361047303}
   inputManager: {fileID: 391327871}
+  joystickMove: {fileID: 963014843}
 --- !u!1001 &1113042104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43374,6 +43380,7 @@ GameObject:
   - component: {fileID: 1361047307}
   - component: {fileID: 1361047308}
   - component: {fileID: 1361047309}
+  - component: {fileID: 1361047310}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -43599,6 +43606,7 @@ MonoBehaviour:
   isFishing: 0
   isPicking: 0
   isGrounded: 0
+  stopMove: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -43768,6 +43776,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24dd11d447da38f45a1ec1af764a0169, type: 2}
   - {fileID: 11400000, guid: a4348708282e97f46b270cce29b00d56, type: 2}
   _inventoryHolder: {fileID: 1435681152}
+--- !u!114 &1361047310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361047290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5236c6ea83978043ba07553d50c59de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioData: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!1001 &1361172046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57534,6 +57556,20 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 95663820981796124, guid: a3981b0f4b9c4bb489dce3db59ee32b5, type: 3}
   m_PrefabInstance: {fileID: 259251658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2040255803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040255799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5236c6ea83978043ba07553d50c59de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioData: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!1 &2041438848
 GameObject:
   m_ObjectHideFlags: 3
@@ -64993,7 +65029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 124.99785, y: -45.02}
+  m_AnchoredPosition: {x: 124.99805, y: -45.02}
   m_SizeDelta: {x: 249.9957, y: 90.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3801579797690972178

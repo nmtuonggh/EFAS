@@ -10,6 +10,8 @@ namespace _Game.Scripts.Shop
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
         public event Action<int> OnBuyItemEvent;
         public static event System.Action OnOutOfMoney;
+        public static event System.Action AudioBuyItem;
+        
         public Money Money;
         
         public void OnBuyItem()
@@ -23,6 +25,7 @@ namespace _Game.Scripts.Shop
                 {
                     if (inventorySystem.AddToInventory(selectedSlot.Data, 1))
                     {
+                        AudioBuyItem?.Invoke();
                         OnBuyItemEvent?.Invoke(selectedSlot.Data.Price);
                     }
                 }else

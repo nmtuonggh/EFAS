@@ -26,6 +26,7 @@ public class BlackBoard : MonoBehaviour
     public bool isFishing;
     public bool isPicking;
     public bool isGrounded;
+    public bool stopMove;
     [Header("Component")]
     public LayerMask groundLayer;
     public AvatarMask _carryMask;

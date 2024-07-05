@@ -9,6 +9,10 @@ namespace _Game.Scripts
         public Streng streng;
         public InventoryManager inventoryManager;
         
+        private void OnEnable()
+        {
+            inventoryManager.LoadFromFile();
+        }
         private void Awake()
         {
             money.MoneyText.text = money.MoneyAmount.ToString();
