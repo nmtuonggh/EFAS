@@ -17,6 +17,8 @@ public class StaticInventoryDisplay : InventoryDisplay
     [FormerlySerializedAs("OnInventorySlotChangedEventListener")] public GameEventListenerT<InventorySlot> onInventorySlotChangedEventListenerT;
     public GameEventListenerT<InventorySlot> OnDropInventoryItem;
     public GameEventListenerT<InventorySlot> OnHoldeItemSlotChanged;
+    public static event Action OnFocus;
+    public static event Action OutFocus;
 
     private InventorySlot_UI currentClick;
 
@@ -25,8 +27,6 @@ public class StaticInventoryDisplay : InventoryDisplay
         get => currentClick;
         set => currentClick = value;
     }
-    //public event Action OnFocusSlotTouch;
-    
 
     protected override void Start()
     {
@@ -37,7 +37,6 @@ public class StaticInventoryDisplay : InventoryDisplay
             onInventorySlotChangedEventListenerT.OnEnable();
             OnDropInventoryItem.OnEnable();
             OnHoldeItemSlotChanged.OnEnable();
-            //_holdeItem.OnHoldeItemSlotChangedEvent += UpdateSlot;
         }
         else
         {
@@ -81,13 +80,14 @@ public class StaticInventoryDisplay : InventoryDisplay
         if (FocusSlot != null)
         {
             FocusSlot.FocusLine.SetActive(false);
+            OutFocus?.Invoke();
         }
 
         if (clickedUISlot.AssingnedInventorySlot.ItemData != null)
         {
             FocusSlot = clickedUISlot;
             FocusSlot.FocusLine.SetActive(true);
-            //OnFocusSlotTouch?.Invoke();
+            OnFocus?.Invoke();
         }
     }
 }

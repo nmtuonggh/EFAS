@@ -29,8 +29,6 @@ namespace _Game.Scripts
         public void AddMoney(int amount)
         {
             _money += amount;
-            Debug.Log("Money: " + _money);
-            Debug.Log("amount: " + amount);
             _moneyText.text = _money.ToString();
         }
         

@@ -5,9 +5,8 @@ using UnityEngine;
     public class HoldeItem : MonoBehaviour
     {
         [SerializeField] private BlackBoardInventory _blackBoardInventory;
-        [SerializeField] private Transform _poolItemsHoldInPlayer; 
-        //public event Action<int> OnItemHoldCountChanged;
-        
+        [SerializeField] private Transform _poolItemsHoldInPlayer;
+
         public GameEventT<InventorySlot> OnHoldeItemSlotChanged;
         public GameEventListener OnOutInventory;
 
@@ -31,7 +30,6 @@ using UnityEngine;
                 _blackBoardInventory.spawnWorldItem.SpawnToPreview(currentTouchSlot.AssingnedInventorySlot.ItemData.ID, _blackBoardInventory._previewHolder.ItemCount);
                 _blackBoardInventory.spawnWorldItem.SpawnToPlayer(currentTouchSlot.AssingnedInventorySlot.ItemData.ID, _blackBoardInventory._previewHolder.ItemCount);
                 _blackBoardInventory._previewHolder.ItemCount += 1;
-                //OnItemHoldCountChanged?.Invoke(_blackBoardInventory._previewHolder.ItemCount);
                 InventorySlot selectedSlot = currentTouchSlot.AssingnedInventorySlot;
                 if (inventorySystem.RemoveFromInventory(selectedSlot, selectedSlot.ItemData, 1))
                 {
@@ -42,7 +40,6 @@ using UnityEngine;
             {
                 if (child.GetComponent<ItemPickedUp>() != null)
                 {
-                    //child.GetComponent<Rigidbody>().isKinematic = true;
                     child.tag = "ItemHolding";
                 }
             }
@@ -55,7 +52,6 @@ using UnityEngine;
                 if (child.GetComponent<ItemPickedUp>() != null && child.GetComponent<ItemPickedUp>().isActiveAndEnabled)
                 {
                     child.GetComponent<Rigidbody>().isKinematic = true;
-                    //child.tag = "ItemHolding";
                 }
             }
         }

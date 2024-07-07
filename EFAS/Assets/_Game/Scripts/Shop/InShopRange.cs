@@ -1,5 +1,6 @@
 ﻿using _Game.Scripts.Cooking;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Game.Scripts.Shop
@@ -13,12 +14,15 @@ namespace _Game.Scripts.Shop
         public RectTransform ShopUI;
         public GameObject ControlUI;
         public InputManager1 inputManager;
-            
-        
+        public static event System.Action OnShop;
+        public static event System.Action OutShop;
+
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Shop") )
             {
+                OnShop?.Invoke();
                 inShopRange = true;
                 other.GetComponent<Outline>().OutlineWidth = 2f;
             }
@@ -29,27 +33,11 @@ namespace _Game.Scripts.Shop
             if (other.CompareTag("Shop"))
             {
                 inShopRange = false;
+                OutShop?.Invoke();
                 other.GetComponent<Outline>().OutlineWidth = 0f;
             }
         }
 
-        private void Update()
-        {
-            if (inShopRange)
-            {
-                btnShop.SetActive(true);
-                btnSellInventory.SetActive(true);
-                btnSellAllInventory.SetActive(true);
-            }
-            else
-            {
-                btnShop.SetActive(false);
-                btnSellInventory.SetActive(false);
-                btnSellAllInventory.SetActive(false);
-            }
-        
-        }
-        
         public void OpenShop()
         {   
             inputManager.joystickMove.ResetInput();

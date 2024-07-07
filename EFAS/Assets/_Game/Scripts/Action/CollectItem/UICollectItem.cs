@@ -18,6 +18,7 @@ namespace _Game.Scripts.Action.Fishing
         [SerializeField] private CanvasGroup _popupFishingCanvasGroup;
         [SerializeField] private FishingRate _fishingRate;
         [SerializeField] private PickFruitRate _pickFruitRate;
+        [SerializeField] private PreviewHolder _previewHolder;
 
         private void OnEnable()
         {
@@ -27,8 +28,22 @@ namespace _Game.Scripts.Action.Fishing
 
         private void Update()
         {
-            btnFishing.SetActive(_fishingRange.CanFishing);
-            btnPickFruit.SetActive(_pickFruitRange.PickFruit);
+            if (_fishingRange.CanFishing && _previewHolder.ItemCount==0)
+            {
+                btnFishing.SetActive(true);
+            }
+            else
+            {
+                btnFishing.SetActive(false);
+            }
+            if (_pickFruitRange.PickFruit && _previewHolder.ItemCount==0)
+            {
+                btnPickFruit.SetActive(true);
+            }
+            else
+            {
+                btnPickFruit.SetActive(false);
+            }
         }
 
         public void SetDataPopup(ItemData itemData)
