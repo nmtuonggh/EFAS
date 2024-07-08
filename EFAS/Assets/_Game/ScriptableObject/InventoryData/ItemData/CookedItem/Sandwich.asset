@@ -15,11 +15,11 @@ MonoBehaviour:
   ID: 1004
   ItemType: 1
   DisplayName: Sandwich
-  Price: 20
+  Price: 70
   Description: A classic sandwich layered with fresh vegetables, cheese, and your
     choice of meat, perfect for a quick and tasty meal.
   Icon: {fileID: 21300000, guid: 5217262d665887043abdeb98a960068f, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 734588659803669126, guid: f6d8e0dd94ae7694694a869e4ea419f3, type: 3}
   HungerValue: 0.07
   Ingredients:

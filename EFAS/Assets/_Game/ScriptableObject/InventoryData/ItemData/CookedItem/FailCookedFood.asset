@@ -18,7 +18,7 @@ MonoBehaviour:
   Price: 0
   Description: '.....Ah, some thing '
   Icon: {fileID: 21300000, guid: 7f0e7a45274ba2043bc2dae277b80eff, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 1564219083653548811, guid: a28f658d45f9d23439fd08ba72b017f1, type: 3}
   HungerValue: -0.2
   Ingredients: []

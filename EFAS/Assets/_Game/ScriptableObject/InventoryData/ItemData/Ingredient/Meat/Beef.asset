@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: Fresh beef, versatile and rich in protein, perfect for grilling, roasting,
     or making stews.
   Icon: {fileID: 21300000, guid: aa0439a8f326c1249b7aee8283545809, type: 3}
-  MaxStackItem: 10
+  MaxStackItem: 50
   ItemPrefab: {fileID: 3548689661371909717, guid: 0094f2334766fbf408033d663e3d79e5, type: 3}
   HungerValue: -0.05
   Ingredients: []

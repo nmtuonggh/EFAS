@@ -15,11 +15,11 @@ MonoBehaviour:
   ID: 1008
   ItemType: 1
   DisplayName: Pancake
-  Price: 30
+  Price: 65
   Description: ' Fluffy and golden pancakes, drizzled with syrup and topped with
     a pat of butter for a sweet morning treat.'
   Icon: {fileID: 21300000, guid: 9d5550dc73e90f34bb8b6839a9c444e4, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 1338983533945103329, guid: 863dffb8e4acc454facf80f13a7bdc48, type: 3}
   HungerValue: 0.08
   Ingredients:

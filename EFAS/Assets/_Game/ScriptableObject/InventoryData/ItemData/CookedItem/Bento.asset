@@ -15,13 +15,13 @@ MonoBehaviour:
   ID: 1002
   ItemType: 1
   DisplayName: Bento
-  Price: 40
+  Price: 70
   Description: A delightful bento box packed with rice, vegetables, and a variety
     of proteins, perfect for a balanced meal on the go.
   Icon: {fileID: 21300000, guid: 1aa91d476b8e81b4dadf64a3f635e16c, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 7953220647369631722, guid: 64ac3bc8078ac494095fe73905455871, type: 3}
-  HungerValue: 0.1
+  HungerValue: 0.15
   Ingredients:
   - {fileID: 11400000, guid: 24dd11d447da38f45a1ec1af764a0169, type: 2}
   - {fileID: 11400000, guid: 4dd9be28d13d24b4692857cdb0ec8154, type: 2}

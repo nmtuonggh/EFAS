@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: Crispy and golden fried chicken, marinated in a secret blend of herbs
     and spices for a flavorful crunch.
   Icon: {fileID: 21300000, guid: 98c2573bea14b0e4583665fe120c58c0, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 8505308866513133646, guid: b44953c2a1b39ff4fa86c78841b195f7, type: 3}
   HungerValue: 0.1
   Ingredients:

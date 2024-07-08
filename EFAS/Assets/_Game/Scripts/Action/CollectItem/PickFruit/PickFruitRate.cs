@@ -23,7 +23,7 @@ namespace _Game.Scripts.Action.PickFruit
             {
                 if (i == randomIndex)
                 {
-                    _inventoryHolder.InventorySystem.AddToInventory(_fruitItem[i], 1);
+                    _inventoryHolder.InventorySystem.AddToInventory(_fruitItem[i], 3);
                     OnPopupPickFruit?.Invoke(_fruitItem[i]);
                     Debug.Log("Fishing item" + _fruitItem[i].DisplayName + " added to inventory");
                 }

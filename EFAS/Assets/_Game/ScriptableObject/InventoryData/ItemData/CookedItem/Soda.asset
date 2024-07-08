@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: 1005
   ItemType: 1
   DisplayName: Soda
-  Price: 15
+  Price: 75
   Description: A refreshing soda, fizzy and sweet, perfect for quenching your thirst
     and complementing any meal.
   Icon: {fileID: 21300000, guid: e5b15fc30c2c55a4083549e613ec4316, type: 3}
-  MaxStackItem: 5
+  MaxStackItem: 25
   ItemPrefab: {fileID: 6714453655996489885, guid: 49e5079edad328545989443de0cfa355, type: 3}
   HungerValue: 0.05
   Ingredients:
   - {fileID: 11400000, guid: 4dd9be28d13d24b4692857cdb0ec8154, type: 2}
-  - {fileID: 11400000, guid: 5f28b4feda34a074784617987933be41, type: 2}
-  - {fileID: 11400000, guid: 5f28b4feda34a074784617987933be41, type: 2}
+  - {fileID: 11400000, guid: 6c823427af939d942a4f3e843e689bf5, type: 2}
+  - {fileID: 11400000, guid: 21b13071b6bc1fe4a81747111d1ba223, type: 2}
   - {fileID: 11400000, guid: bd9db08593fbea84e8b03197894459e6, type: 2}

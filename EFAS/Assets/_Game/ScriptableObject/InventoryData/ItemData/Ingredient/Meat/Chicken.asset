@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: Tender chicken, versatile and protein-rich, ideal for roasting, grilling,
     or frying.
   Icon: {fileID: 21300000, guid: 4376dcab14fb10b469e1f5e4ceddbc3d, type: 3}
-  MaxStackItem: 10
+  MaxStackItem: 50
   ItemPrefab: {fileID: 5737063890357748916, guid: 4810647dd06b29f4db99e357133c278c, type: 3}
   HungerValue: -0.05
   Ingredients: []

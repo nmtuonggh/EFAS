@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: Soft and fresh bread, perfect for sandwiches, toasting, or as a side
     to any meal.
   Icon: {fileID: 21300000, guid: 5b32abc647a7ebc4794fd6bbd0c0da17, type: 3}
-  MaxStackItem: 10
+  MaxStackItem: 50
   ItemPrefab: {fileID: 2791781682257442433, guid: bbbe47ff613a6d34f9437f4fe086904e, type: 3}
   HungerValue: 0.03
   Ingredients: []

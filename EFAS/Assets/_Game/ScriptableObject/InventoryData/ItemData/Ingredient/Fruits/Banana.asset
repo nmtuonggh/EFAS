@@ -19,7 +19,7 @@ MonoBehaviour:
   Description: ' A ripe banana, naturally sweet and full of energy, perfect for a
     quick snack or smoothie ingredient.'
   Icon: {fileID: 21300000, guid: d5a92975589a4624da93e7216ee3fc90, type: 3}
-  MaxStackItem: 10
+  MaxStackItem: 50
   ItemPrefab: {fileID: 4563381241488259454, guid: 4c65e418d469d5644a33164146977404, type: 3}
   HungerValue: 0.03
   Ingredients: []
