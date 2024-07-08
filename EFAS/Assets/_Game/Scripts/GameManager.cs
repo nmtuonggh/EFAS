@@ -77,14 +77,11 @@ namespace _Game.Scripts
         private void GameOver()
         {
             gameOverScreen.gameObject.SetActive(true);
-            gameOverScreen.DOFade(1, 6f);
-            //Time.timeScale = 0;
-        }
-        
-        public void Replay()
-        {
-            gameOverScreen.DOFade(0, 0f);
-            SceneManager.LoadScene("SampleScene");
+            
+            gameOverScreen.DOFade(1, 4.5f).OnComplete(() =>
+            {
+                DOTween.KillAll();
+            });
         }
 
         private void LoadingScreen()

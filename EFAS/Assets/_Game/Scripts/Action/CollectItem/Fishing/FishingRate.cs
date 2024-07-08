@@ -25,7 +25,6 @@ public class FishingRate : MonoBehaviour
             {
                 _inventoryHolder.InventorySystem.AddToInventory(_fishingItem[i], 1);
                 OnPopup?.Invoke(_fishingItem[i]);
-                Debug.Log("Fishing item" + _fishingItem[i].DisplayName + " added to inventory");
             }
         }
     }

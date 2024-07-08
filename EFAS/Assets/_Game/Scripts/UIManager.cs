@@ -6,6 +6,7 @@ using _Game.Scripts.Event;
 using _Game.Scripts.Shop;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -17,40 +18,50 @@ namespace _Game.Scripts.Inventory.UI_Scripts
     {
         public float fadeTime = 1f;
         public List<GameObject> _inventoryItem;
-        
         [FormerlySerializedAs("canvasGroup")] public CanvasGroup inventoryCanvasGroup;
-        [FormerlySerializedAs("rectTransform")] public RectTransform inventoRectTransform;
+        [FormerlySerializedAs("rectTransform")]
+        public RectTransform inventoRectTransform;
         public RectTransform ebookRectTransform;
         public CanvasGroup ebookCanvasGroup;
         public GameObject controlUI;
         public GameObject pickUpUI;
         public GameObject Rod;
         public GameObject Basket;
-        //btn
-        public GameObject buttonDropWhileHolding;
+        [Header("Button")] public GameObject buttonDropWhileHolding;
         public GameObject buttonInventory;
-        
-        //event
-        public GameEvent OnOutInventory;
+        public GameObject btnCancelWhileHolding;
+        public GameObject btnHolding;
+        public GameObject btnEat;
+        public GameObject btnDropAll;
+        public GameObject btnDrop;
+        public GameObject btnShop;
+        public GameObject btnSell;
+        public GameObject btnSellAll;
+
+        [Header("Event")] public GameEvent OnOutInventory;
         public GameEventListener OnHoldingState;
         public GameEventListener UnHoldingState;
-        //public GameEventListener OnHoldState;
-        //popup ui
-        public RectTransform cookPopupRect;
+        [Header("UI")] public RectTransform cookPopupRect;
         public CanvasGroup cookPopupCanvas;
         public RectTransform moneyPopupRect;
         public CanvasGroup moneyPopupCanvas;
+
         //
         public BlackBoard blackBoard;
-        public InputManager1 inputManager;
         public FloatingJoystick joystickMove;
+        public PreviewHolder previewHolder;
+        public InShopRange inShopRange;
+        public StaticInventoryDisplay staticInvent;
+        //
         
+
+
         private void OnEnable()
         {
             OnHoldingState.OnEnable();
             UnHoldingState.OnEnable();
         }
-        
+
         private void OnDestroy()
         {
             OnHoldingState.OnDisable();
@@ -61,7 +72,19 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         {
             Cook.OnCookedFoodItem += SetDataPopupCook;
             BuyItem.OnOutOfMoney += SetDataPopupMoney;
+            StaticInventoryDisplay.OnFocus += ActiveBtn;
+            StaticInventoryDisplay.OutFocus += UnActiveBtn;
+            InShopRange.OnShop += ActiveBtnShop;
+            InShopRange.OutShop += UnActiveBtnShop;
         }
+
+        private void Update()
+        {
+            BtnSell();
+        }
+
+        
+
 
         #region Inventory
 
@@ -76,12 +99,11 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             inventoryCanvasGroup.DOFade(1f, fadeTime);
             StartCoroutine(nameof(SlotAnimation));
         }
-        
+
         public void InventoryPanelFadeOut()
         {
-            
             blackBoard.stopMove = false;
-            OnOutInventory.Raise(); 
+            OnOutInventory.Raise();
             inventoryCanvasGroup.alpha = 1f;
             inventoRectTransform.transform.localPosition = new Vector3(0, 0f, 0);
             inventoRectTransform.DOAnchorPos(new Vector2(0f, -1300f), fadeTime, false).SetEase(Ease.InOutQuint);
@@ -93,7 +115,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
 
         public IEnumerator SlotAnimation()
         {
-            foreach (var item in _inventoryItem )
+            foreach (var item in _inventoryItem)
             {
                 item.transform.localScale = Vector3.zero;
             }
@@ -113,9 +135,58 @@ namespace _Game.Scripts.Inventory.UI_Scripts
         {
             buttonDropWhileHolding.SetActive(true);
         }
+
         public void unActiveBtnDropWhileHolding()
         {
             buttonDropWhileHolding.SetActive(false);
+        }
+
+        #endregion
+
+        #region InventoryBtn
+
+        public void ActiveBtn()
+        {
+            btnHolding.SetActive(true);
+            btnDrop.SetActive(true);
+            btnEat.SetActive(true);
+            btnDropAll.SetActive(true);
+        }
+
+        public void UnActiveBtn()
+        {
+            btnHolding.SetActive(false);
+            btnDrop.SetActive(false);
+            btnEat.SetActive(false);
+            btnDropAll.SetActive(false);
+        }
+
+        #endregion
+
+        #region ShopBtn
+
+        public void ActiveBtnShop()
+        {
+            btnShop.SetActive(true);
+        }
+
+        public void UnActiveBtnShop()
+        {
+            btnShop.SetActive(false);
+        }
+        
+        private void BtnSell()
+        {
+            if (previewHolder.ItemCount > 0 || (!inShopRange.inShopRange && staticInvent.FocusSlot == null))
+            {
+                btnSell.SetActive(false);
+                btnSellAll.SetActive(false);
+            }
+            else if (previewHolder.ItemCount == 0 && inShopRange.inShopRange && staticInvent.FocusSlot != null)
+            {
+                btnSell.SetActive(true);
+                btnSellAll.SetActive(true);
+            }
         }
 
         #endregion
@@ -129,7 +200,7 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             ebookRectTransform.DOAnchorPos(new Vector2(0f, 0f), 0.25f);
             ebookCanvasGroup.DOFade(1f, 0.25f);
         }
-        
+
         public void FadeOutEbook()
         {
             ebookCanvasGroup.alpha = 1f;
@@ -149,21 +220,21 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             cookPopupRect.localScale = Vector3.zero;
             cookPopupRect.DOScale(Vector3.one, .5f);
         }
-        
+
         public void HidePopupCook()
         {
             cookPopupCanvas.DOFade(0f, .5f);
             cookPopupRect.DOScale(Vector3.zero, .5f);
             cookPopupCanvas.gameObject.SetActive(false);
         }
-        
+
         IEnumerator ShowPopup()
         {
             ShowPopupCook();
             yield return new WaitForSeconds(1f);
             HidePopupCook();
         }
-        
+
         public void SetDataPopupCook(ItemData itemData)
         {
             var image = cookPopupCanvas.transform.GetChild(4);
@@ -173,8 +244,8 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             name.GetComponent<TextMeshProUGUI>().text = itemData.DisplayName;
             StartCoroutine(nameof(ShowPopup));
         }
-        
-        
+
+
         public void ShowPopupMoney()
         {
             moneyPopupCanvas.gameObject.SetActive(true);
@@ -183,25 +254,26 @@ namespace _Game.Scripts.Inventory.UI_Scripts
             moneyPopupRect.localScale = Vector3.zero;
             moneyPopupRect.DOScale(Vector3.one, .5f);
         }
-        
+
         public void HidePopupCookMoney()
         {
             moneyPopupCanvas.DOFade(0f, .5f);
             moneyPopupRect.DOScale(Vector3.zero, .5f);
             moneyPopupCanvas.gameObject.SetActive(false);
         }
-        
+
         IEnumerator ShowPopupM()
         {
             ShowPopupMoney();
             yield return new WaitForSeconds(1f);
             HidePopupCookMoney();
         }
-        
+
         public void SetDataPopupMoney()
         {
             StartCoroutine(nameof(ShowPopupM));
         }
+
         #endregion
     }
 }

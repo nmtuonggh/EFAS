@@ -7,7 +7,6 @@ namespace _Game.Scripts.Inventory.Action
     {
         [SerializeField] private Transform _poolItemsHoldInPlayer;
         [SerializeField] private Transform _poolItemsHoldInPreview;
-        [SerializeField] private BlackBoardInventory _blackBoardInventory;
         [SerializeField] private PreviewHolder _previewHolder;
         [SerializeField] private InventoryHolder _inventoryHolder;
         

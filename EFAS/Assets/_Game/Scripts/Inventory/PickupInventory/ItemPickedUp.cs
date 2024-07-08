@@ -8,8 +8,7 @@ public class ItemPickedUp : MonoBehaviour
 {
     public ItemData itemData;
     public bool _isTriggered = false;
-    public event Action OnAddPickUpItemToInventory;
-    
+
     public void OnTriggerEnter(Collider other)
     {
         var itemPickupItemSystem = other.GetComponent<PickupItemSystem>();
