@@ -30,7 +30,6 @@ namespace _Game.Scripts
         private void Awake()
         {
             loadingScreen.SetActive(true);
-            //inventoryManager.LoadFromFile();
             LoadingScreen();
             money.MoneyText.text = money.MoneyAmount.ToString();
             streng.StrengSlider.value = 100;
@@ -103,7 +102,7 @@ namespace _Game.Scripts
             }
             loadingScreenSlider.value = 100;
 
-            LoadingScreenCanvasGroup.DOFade(0, 5f).OnComplete(() =>
+            LoadingScreenCanvasGroup.DOFade(0, 3f).OnComplete(() =>
             {
                 tutorialScreen.gameObject.SetActive(true);
                 loadingScreen.SetActive(false);
